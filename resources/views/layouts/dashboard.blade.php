@@ -5,13 +5,11 @@
     <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
-        <div class="border-right" id="sidebar-wrapper" style="background-color: #f1f4f8!important">
-{{--            <div class="sidebar-heading">Start Bootstrap </div>--}}
+        <div class="border-right" id="sidebar-wrapper" style="background-color: #f5f6f8!important">
+            <div class="sidebar-heading" style="padding-bottom: 0">Available Dashboards</div>
             <div class="list-group list-group-flush">
 
-
                 @foreach($permissions as $permission)
-{{--                    {{ dd(request()->path() == 'dashboard/asanLoginRealTime') }}--}}
                     <a href="{{route(''. $permission . '')}}" class="list-group-item {{ request()->path() == 'dashboard/'. lcfirst($permission) ? 'custom-active' : '' }}">{{$permission}}</a>
                 @endforeach
 {{--                <a href="#" class="list-group-item custom-active">Dashboard</a>--}}
