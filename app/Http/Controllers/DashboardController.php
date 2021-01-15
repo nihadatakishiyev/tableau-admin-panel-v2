@@ -12,4 +12,18 @@ class DashboardController extends Controller
            return view('dashboards.AsanLogin.AsanLoginRealTime');
         }
     }
+
+    public function asanLoginMainPage(){
+        if (1)
+        {
+            return view('dashboards.AsanLogin.AsanLoginMainPage');
+        }
+    }
+
+    public function asanFinanceGeneral(){
+        if (1)
+        {
+            return view('dashboards.AsanLogin.AsanFinanceGeneral');
+        }
+    }
 }
