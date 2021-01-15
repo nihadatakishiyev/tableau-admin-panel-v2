@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,12 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes([
     'register' => false
 ]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/dashboard/asanLoginRealTime', [DashboardController::class, 'asanLoginRealTime']);
+
+Route::prefix('dashboard')->middleware('auth')->group(function (){
+    Route::get('/asanLoginRealTime', [DashboardController::class, 'asanLoginRealTime']);
+    Route::get('/asanLoginMainPage', [DashboardController::class, 'asanLoginMainPage']);
+    Route::get('/asanFinanceGeneral', [DashboardController::class, 'asanFinanceGeneral']);
+});
