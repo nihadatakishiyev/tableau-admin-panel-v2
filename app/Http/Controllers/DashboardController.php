@@ -4,9 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    public function index(){
+//        $user = Auth::user();
+//        $data = $user->getPermissionsViaRoles();
+//        $permissions = array();
+//
+//        foreach ($data as $i=>$dt){
+//            $perm_id = $dt['pivot']['permission_id'] ;
+//            $perm_name = DB::table('permissions')->where('id', $perm_id)->value('name');
+//             array_push($permissions, $perm_name);
+//        }
+
+        return view('layouts.dashboard');
+    }
+
     public function asanLoginRealTime(){
         $user = Auth::user();
 

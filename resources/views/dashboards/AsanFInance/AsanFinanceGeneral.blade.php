@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-@section('content')
+@section('inside')
 
     <script type='text/javascript' src='http://192.168.20.213/javascripts/api/viz_v1.js'></script>
 

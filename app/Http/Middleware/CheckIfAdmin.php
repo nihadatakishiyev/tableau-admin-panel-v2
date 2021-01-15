@@ -29,8 +29,7 @@ class CheckIfAdmin
      */
     private function checkIfUserIsAdmin($user)
     {
-        $user = Auth::user();
-        return $user->hasRole('Admin');
+            return $user->hasRole('Admin');
     }
 
     /**

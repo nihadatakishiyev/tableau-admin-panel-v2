@@ -6,14 +6,19 @@
 
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Start Bootstrap </div>
+{{--            <div class="sidebar-heading">Start Bootstrap </div>--}}
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+
+
+                @foreach($permissions as $permission)
+                    <a href="{{route(''. $permission . '')}}" class="list-group-item">{{$permission}}</a>
+                @endforeach
+{{--                <a href="#" class="list-group-item custom-active">Dashboard</a>--}}
+{{--                <a href="#" class="list-group-item">Shortcuts</a>--}}
+{{--                <a href="#" class="list-group-item">Overview</a>--}}
+{{--                <a href="#" class="list-group-item">Events</a>--}}
+{{--                <a href="#" class="list-group-item">Profile</a>--}}
+{{--                <a href="#" class="list-group-item">Status</a>--}}
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -29,21 +34,21 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src= {{ asset('js/jquery.min.js') }}></script>
-    <script src= {{ asset('js/bootstrap.bundle.min.js') }}></script>
+{{--    <script src= {{ asset('js/bootstrap.bundle.min.js') }}></script>--}}
 
     <!-- Menu Toggle Script -->
-{{--    <script>--}}
-{{--        $("#menu-toggle").click(function(e) {--}}
-{{--            e.preventDefault();--}}
-{{--            $("#wrapper").toggleClass("toggled");--}}
-{{--        });--}}
-{{--    </script>--}}
-
     <script>
-        document.getElementById('menu-toggle').click((e) => {
-            console.log('func fired')
+        $("#menu-toggle").click(function(e) {
             e.preventDefault();
-            document.getElementById('wrapper').className = 'toggled'
-        })
+            $("#wrapper").toggleClass("toggled");
+        });
     </script>
+
+{{--    <script>--}}
+{{--        document.getElementById('menu-toggle').click((e) => {--}}
+{{--            console.log('func fired')--}}
+{{--            e.preventDefault();--}}
+{{--            document.getElementById('wrapper').className = 'toggled'--}}
+{{--        })--}}
+{{--    </script>--}}
 @endsection

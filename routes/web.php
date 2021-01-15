@@ -27,9 +27,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 //Route::get('/dashboard/asanLoginRealTime', [DashboardController::class, 'asanLoginRealTime']);
 
 Route::prefix('dashboard')->middleware('auth')->group(function (){
-    Route::get('/asanLoginRealTime', [DashboardController::class, 'asanLoginRealTime']);
-    Route::get('/asanLoginMainPage', [DashboardController::class, 'asanLoginMainPage']);
-    Route::get('/asanFinanceGeneral', [DashboardController::class, 'asanFinanceGeneral']);
+    Route::get('', [DashboardController::class, 'index']);
+    Route::get('/asanLoginRealTime', [DashboardController::class, 'asanLoginRealTime'])->name('AsanLoginRealTime');
+    Route::get('/asanLoginMainPage', [DashboardController::class, 'asanLoginMainPage'])->name('AsanLoginMainPage');
+    Route::get('/asanFinanceGeneral', [DashboardController::class, 'asanFinanceGeneral'])->name('AsanFinanceGeneral');
 });
 
 Route::get('test', function (){
