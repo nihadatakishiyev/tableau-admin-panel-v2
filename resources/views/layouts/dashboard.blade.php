@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
@@ -18,22 +19,8 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-            </nav>
-
-            <div class="container-fluid">
-                <h1 class="mt-4">Simple Sidebar</h1>
-                <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
-            </div>
+        <div id="page-content-wrapper" class="px-3 py-3">
+            @yield('inside')
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -45,10 +32,18 @@
     <script src= {{ asset('js/bootstrap.bundle.min.js') }}></script>
 
     <!-- Menu Toggle Script -->
+{{--    <script>--}}
+{{--        $("#menu-toggle").click(function(e) {--}}
+{{--            e.preventDefault();--}}
+{{--            $("#wrapper").toggleClass("toggled");--}}
+{{--        });--}}
+{{--    </script>--}}
+
     <script>
-        $("#menu-toggle").click(function(e) {
+        document.getElementById('menu-toggle').click((e) => {
+            console.log('func fired')
             e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
+            document.getElementById('wrapper').className = 'toggled'
+        })
     </script>
 @endsection
