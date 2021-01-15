@@ -31,3 +31,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function (){
     Route::get('/asanLoginMainPage', [DashboardController::class, 'asanLoginMainPage']);
     Route::get('/asanFinanceGeneral', [DashboardController::class, 'asanFinanceGeneral']);
 });
+
+Route::get('test', function (){
+    return view('layouts.dashboard');
+});

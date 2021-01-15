@@ -18,6 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href={{ asset('css/bootstrap.min.css') }} rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href={{ asset('css/simple-sidebar.css') }} rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -45,7 +51,7 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-                            
+
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
