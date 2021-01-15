@@ -23,7 +23,7 @@ class DashboardController extends Controller
     public function asanFinanceGeneral(){
         if (1)
         {
-            return view('dashboards.AsanLogin.AsanFinanceGeneral');
+            return view('dashboards.AsanFinance.AsanFinanceGeneral');
         }
     }
 }
