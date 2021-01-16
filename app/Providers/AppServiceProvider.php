@@ -27,12 +27,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        $user = request()->user();
-//        $user = Auth::user();
 
         view()->composer('*', function($view)
         {
-//            dd(Auth::user());
             if (Auth::check()) {
                 $user = Auth::user();
                 $data = $user->getPermissionsViaRoles();
@@ -51,8 +48,5 @@ class AppServiceProvider extends ServiceProvider
 //                $view->with('currentUser', null);
 //            }
         });
-
-//        dd($user);
-
     }
 }
