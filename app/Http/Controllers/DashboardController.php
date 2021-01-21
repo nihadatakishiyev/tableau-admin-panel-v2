@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    function __construct()
+    {
+
+    }
+
     public function index(){
         $user = Auth::user();
         $data = $user->getPermissionsViaRoles();
