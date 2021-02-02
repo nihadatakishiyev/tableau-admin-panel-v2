@@ -6,19 +6,19 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Position extends Model
+class UnitPosition extends Model
 {
     use HasFactory, CrudTrait;
 
     protected $fillable = [
-        'name'
+        'unit_id', 'position_id'
     ];
 
-    public function units(){
-        return $this->belongsToMany(Unit::class, 'unit_positions', 'position_id', 'unit_id');
+    public function unit(){
+        return $this->belongsTo(Unit::class);
     }
 
-    public function users(){
-        return $this->hasMany(User::class);
+    public function position(){
+        return $this->belongsTo(Position::class);
     }
 }
