@@ -33,6 +33,4 @@ Route::prefix('dashboard')->middleware('auth')->group(function (){
     Route::get('/asanFinanceGeneral', [DashboardController::class, 'asanFinanceGeneral'])->name('AsanFinanceGeneral');
 });
 
-Route::get('test', function (){
-    return view('layouts.dashboard');
-});
+Route::get('test', [DashboardController::class, 'test']);

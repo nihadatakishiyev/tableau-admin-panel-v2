@@ -11,6 +11,7 @@
 
                 @foreach($permissions as $permission)
                     <a href="{{route(''. $permission . '')}}" class="list-group-item {{ request()->path() == 'dashboard/'. lcfirst($permission) ? 'custom-active' : '' }}">{{$permission}}</a>
+{{--                        {{$permission}}--}}
                 @endforeach
 {{--                <a href="#" class="list-group-item custom-active">Dashboard</a>--}}
 {{--                <a href="#" class="list-group-item">Shortcuts</a>--}}
