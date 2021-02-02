@@ -72,7 +72,7 @@ class DashboardController extends Controller
     }
 
     public function get_trusted_url($user, $server, $view_url, $site) {
-        $params = ':embed=yes&:toolbar=yes:tabs=no';
+        $params = ':embed=yes&:toolbar=no:tabs=no';
         $ticket = $this->get_trusted_ticket($server, $user);
 
         return "http://$server/trusted/$ticket/$view_url?$params";
@@ -80,7 +80,10 @@ class DashboardController extends Controller
 
     public function test(){
 //        return $this->get_trusted_ticket($this->remote_addr, $this->user);
-        return $this->get_trusted_url($this->user, $this->remote_addr, 'test_view', '');
+        $url = $this->get_trusted_url($this->user, $this->remote_addr, 'views/E-GovGeneral/Finaldashboard', '');
+
+        return view('test')->with('url', $url);
+//        return redirect($url);
     }
 
 }
