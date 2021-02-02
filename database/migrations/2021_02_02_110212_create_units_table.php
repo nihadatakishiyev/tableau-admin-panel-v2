@@ -15,6 +15,8 @@ class CreateUnitsTable extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('department_id')->default(1)->references('id')->on('departments');
             $table->timestamps();
         });
     }
