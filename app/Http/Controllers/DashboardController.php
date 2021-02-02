@@ -62,31 +62,25 @@ class DashboardController extends Controller
         return response()->view('errors.401', [], 401);
     }
 
-    public function get_trusted_ticket($wgserver, $user, $remote_addr, $site) {
-        $params = array(
-            'username' => 'ehim.analytics'
-            //,'client_ip' => '85.132.73.6'
-            //'target_site' => $site
-        );
+    public function get_trusted_ticket($wgserver, $user) {
 
-        $val =  Http::post("http://$wgserver/trusted", [
-            'content' => $params
+        $ticket = Http::asForm()->post("http://$wgserver/trusted", [
+            'username' => $user,
         ])->body();
 
-        dd($val);
-        //return http_parse_message(http_post_fields("http://$wgserver/trusted", $params))->body;
+        return $ticket;
     }
 
     public function get_trusted_url($user, $server, $view_url, $site) {
         $params = ':embed=yes&:toolbar=yes:tabs=no';
-        $ticket = get_trusted_ticket($server, $user, $_SERVER['REMOTE_ADDR'], $site);
+        $ticket = $this->get_trusted_ticket($server, $user);
 
         return "http://$server/trusted/$ticket/$view_url?$params";
     }
 
     public function test(){
-        $this->get_trusted_ticket($this->remote_addr, $this->user, '10.251.26.59', '');
-        //$this->get_trusted_url($this->user, )
+//        return $this->get_trusted_ticket($this->remote_addr, $this->user);
+        return $this->get_trusted_url($this->user, $this->remote_addr, 'test_view', '');
     }
 
 }
