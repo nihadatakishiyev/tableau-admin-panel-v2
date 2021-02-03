@@ -79,11 +79,10 @@ class DashboardController extends Controller
     }
 
     public function test(){
-//        return $this->get_trusted_ticket($this->remote_addr, $this->user);
         $url = $this->get_trusted_url($this->user, $this->remote_addr, 'views/E-GovGeneral/Finaldashboard', '');
 
+//        return $url;
         return view('test')->with('url', $url);
-//        return redirect($url);
     }
 
 }
