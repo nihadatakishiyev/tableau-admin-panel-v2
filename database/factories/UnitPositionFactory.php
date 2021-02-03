@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Position;
+use App\Models\Unit;
 use App\Models\UnitPosition;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +24,8 @@ class UnitPositionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'unit_id' => $this->faker->numberBetween(1, Unit::count()),
+            'position_id' => $this->faker->numberBetween(1, Positioni::count())
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Department;
 use App\Models\Unit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +23,8 @@ class UnitFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->randomElement(['Data Analytics', 'Machine Learning', 'Mobile Dev', 'ESD']),
+            'department_id' => $this->faker->numberBetween(1, Department::count())
         ];
     }
 }
