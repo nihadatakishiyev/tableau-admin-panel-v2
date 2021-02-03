@@ -64,7 +64,7 @@
                                 </li>
                             @endif
                         @else
-                            @if( auth()->user()->hasRole('Admin') )
+                            @if( auth()->user()->hasRole('admin') )
                                 <a class="nav-item nav-link" href="{{ '/admin' }}">
                                     Admin Dashboard
                                 </a>
