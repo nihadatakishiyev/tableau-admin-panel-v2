@@ -25,7 +25,7 @@ class UnitPositionFactory extends Factory
     {
         return [
             'unit_id' => $this->faker->numberBetween(1, Unit::count()),
-            'position_id' => $this->faker->numberBetween(1, Positioni::count())
+            'position_id' => $this->faker->numberBetween(1, Position::count())
         ];
     }
 }

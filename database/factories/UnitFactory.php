@@ -23,7 +23,7 @@ class UnitFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->randomElement(['Data Analytics', 'Machine Learning', 'Mobile Dev', 'ESD']),
+            'name' => $this->faker->unique()->randomElement(['Data Analytics', 'Machine Learning', 'Mobile Dev', 'ESD']),
             'department_id' => $this->faker->numberBetween(1, Department::count())
         ];
     }
