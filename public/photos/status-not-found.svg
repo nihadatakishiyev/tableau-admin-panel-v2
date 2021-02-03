@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="199" viewBox="0 0 380 199">
+    <defs>
+        <radialGradient id="a" cx="30.854%" cy="92.339%" r="127.382%" fx="30.854%" fy="92.339%" gradientTransform="matrix(.54237 -.4787 .87883 .32328 -.67 .773)">
+            <stop offset="0%" stop-color="#A7D6DC"/>
+            <stop offset="100%" stop-color="#A4BDD0"/>
+        </radialGradient>
+        <radialGradient id="b" cx="69.171%" cy="52.728%" r="197.13%" fx="69.171%" fy="52.728%" gradientTransform="matrix(-.3509 -.51643 .93436 -.1931 .442 .986)">
+            <stop offset="0%" stop-color="#242046"/>
+            <stop offset="100%" stop-color="#A7A7D2"/>
+        </radialGradient>
+        <radialGradient id="c" cx="44.921%" cy="65.398%" r="90.956%" fx="44.921%" fy="65.398%" gradientTransform="matrix(0 -.6213 .76724 0 -.053 .933)">
+            <stop offset="0%" stop-color="#A7D6DC"/>
+            <stop offset="100%" stop-color="#A4BDD0"/>
+        </radialGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(0 -94)">
+        <rect width="218" height="53" x="40" y="142" fill="#F5F5FA" rx="26.5"/>
+        <rect width="291" height="56" y="193" fill="#EBEBF0" rx="28"/>
+        <rect width="153" height="69" x="80" y="168" fill="#DDDDE9" rx="34"/>
+        <rect width="190" height="36" x="48" y="237" fill="#DDDDE9" rx="18"/>
+        <rect width="209" height="49" x="108" y="244" fill="#D2D2E1" rx="24.5"/>
+        <path fill="url(#a)" d="M148.965 251.215c40.748.007 73.775-37.807 73.766-97.285-.01-59.478-33.058-161.678-73.806-161.685C108.177-7.76 75.16 94.43 75.17 153.907c.009 59.478 33.047 97.302 73.795 97.308z" transform="scale(-1 1) rotate(-85 -26.622 361.824)"/>
+        <path fill="url(#b)" d="M142.482 249.16c37.526.006 67.943-35.974 67.934-92.569-.008-56.595-30.445-153.84-67.972-153.847-37.526-.006-67.933 97.23-67.925 153.825.009 56.595 30.436 92.585 67.963 92.59z" transform="scale(-1 1) rotate(-85 -27.444 357.161)"/>
+        <path fill="url(#c)" d="M161.648 320.315c40.748.006 73.775-34.672 73.767-89.22-.009-54.546-33.056-148.275-73.804-148.281-40.748-.006-73.766 93.712-73.757 148.259.008 54.547 33.046 89.236 73.794 89.242z" transform="rotate(115 195.634 223.225)"/>
+    </g>
+</svg>

@@ -33,7 +33,7 @@ class DashboardController extends Controller
                 return view('errors.401');
             }
         }catch (Throwable $e){
-            return view('noPermDashboard')->with('error', $e->getMessage());
+            return view('pnf')->with('error', $e->getMessage());
         }
     }
 
