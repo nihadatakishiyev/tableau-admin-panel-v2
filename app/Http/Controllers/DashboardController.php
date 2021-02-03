@@ -34,9 +34,7 @@ class DashboardController extends Controller
             }
         }catch (Throwable $e){
             return view('noPermDashboard')->with('error', $e->getMessage());
-
         }
-
     }
 
     public function asanLoginRealTime(){
@@ -88,7 +86,6 @@ class DashboardController extends Controller
     public function test(){
         $url = $this->get_trusted_url($this->user, $this->remote_addr, 'views/E-GovGeneral/Finaldashboard', '');
 
-//        return $url;
         return view('test')->with('url', $url);
     }
 
