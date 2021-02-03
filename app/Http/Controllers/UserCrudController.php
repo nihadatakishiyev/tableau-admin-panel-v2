@@ -160,21 +160,25 @@ class UserCrudController extends CrudController
                 'name'  => 'name',
                 'label' => trans('backpack::permissionmanager.name'),
                 'type'  => 'text',
+                'wrapper' => ['class' => 'form-group col-md-6']
             ],
             [
                 'name'  => 'email',
                 'label' => trans('backpack::permissionmanager.email'),
                 'type'  => 'email',
+                'wrapper' => ['class' => 'form-group col-md-6']
             ],
             [
-                'name' => 'department_id'
-//                'type' => 'relationship'
-            ],            [
-                'name' => 'unit_id'
-//                'type' => 'relationship'
-            ],            [
-                'name' => 'position_id'
-//                'type' => 'relationship'
+                'name' => 'department_id',
+                'wrapper' => ['class' => 'form-group col-md-4']
+            ],
+            [
+                'name' => 'unit_id',
+                'wrapper' => ['class' => 'form-group col-md-4']
+            ],
+            [
+                'name' => 'position_id',
+                'wrapper' => ['class' => 'form-group col-md-4']
             ],
             [
                 'name'  => 'password',
