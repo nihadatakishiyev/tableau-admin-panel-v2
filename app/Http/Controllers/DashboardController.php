@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Throwable;
 
 class DashboardController extends Controller
 {
@@ -14,22 +15,28 @@ class DashboardController extends Controller
 
 
     public function index(){
-        $user = Auth::user();
-        $data = $user->getPermissionsViaRoles();
-        $permissions = array();
+        try {
+            $user = Auth::user();
+            $datas = $user->getPermissionsViaRoles();
+            $permissions = array();
 
-        foreach ($data as $i=>$dt){
-            $perm_id = $dt['pivot']['permission_id'] ;
-            $perm_name = DB::table('permissions')->where('id', $perm_id)->value('name');
-             array_push($permissions, $perm_name);
+            foreach ($datas as $i=>$data){
+                $perm_id = $data['pivot']['permission_id'] ;
+                $perm_name = DB::table('permissions')->where('id', $perm_id)->value('name');
+                array_push($permissions, $perm_name);
+            }
+
+            if(sizeof($permissions)>0){
+                return redirect(route(''.$permissions[0]));
+            }
+            else{
+                return view('errors.401');
+            }
+        }catch (Throwable $e){
+            return view('noPermDashboard')->with('error', $e->getMessage());
+
         }
 
-        if(sizeof($permissions)>0){
-            return redirect(route(''.$permissions[0]));
-        }
-        else{
-            return view('errors.401');
-        }
     }
 
     public function asanLoginRealTime(){

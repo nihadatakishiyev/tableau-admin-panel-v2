@@ -3,7 +3,14 @@
 namespace Database\Seeders;
 
 use App\Models\Department;
+use App\Models\Position;
+use App\Models\Unit;
+use App\Models\UnitPosition;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +22,40 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        Department::factory()
+        DB::table('departments')->insert([
+            'name' => 'default',
+            'created_at' => now()
+        ]);
+
+        DB::table('units')->insert([
+            'name' => 'default',
+            'department_id' => 1,
+            'created_at' => now()
+        ]);
+
+        DB::table('positions')->insert([
+            'name' => 'default',
+            'created_at' => now()
+        ]);
+
+        DB::table('unit_positions')->insert([
+            'unit_id' => 1,
+            'position_id' => 1,
+            'created_at' => now()
+
+        ]);
+
+        DB::table('users')->insert([
+           'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'department_id' => 1,
+            'unit_id' => 1,
+            'position_id' => 1,
+            'email_verified_at' => now(),
+            'password' => Hash::make('123123'),
+            'remember_token' => Str::random(10),
+            'created_at' => now()
+        ]);
+
     }
 }
