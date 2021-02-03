@@ -9,3 +9,13 @@
         <li class="nav-item"><a class="nav-link" href="{{ backpack_url('permission') }}"><i class="nav-icon la la-key"></i> <span>Permissions</span></a></li>
     </ul>
 </li>
+
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon las la-sitemap"></i> Structure</a>
+    <ul class="nav-dropdown-items">
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('department') }}'><i class='nav-icon lab la-discord'></i> Departments</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('unit') }}'><i class='nav-icon lab la-github'></i> Units</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('position') }}'><i class='nav-icon las la-code-branch'></i> Positions</a></li>
+    </ul>
+</li>
+
