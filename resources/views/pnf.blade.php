@@ -7,7 +7,6 @@
             <p>Looks like you hit a bad link somehow</p>
             <img src="{{asset('photos/status-not-found.svg')}}" alt="" style="margin-top: 2rem">
         </div>
-
     </div>
 
 
