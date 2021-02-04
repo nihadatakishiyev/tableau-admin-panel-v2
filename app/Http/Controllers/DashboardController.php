@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 use Throwable;
 use App\Helpers\TrustedAuthHelper;
 
-class DashboardController extends Controller,
+class DashboardController extends Controller
 {
     private $user = 'ehim.analytics';
     private $remote_addr = '192.168.20.213';
