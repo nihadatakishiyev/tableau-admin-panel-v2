@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     protected static $ignoreChangedAttributes = ['password', 'remember_token', 'updated_at'];
 
-    protected static $recordEvents = ['created', 'updated'];
+//    protected static $recordEvents = ['created', 'updated', 'deleted'];
 
     protected static $logOnlyDirty = true;
 
