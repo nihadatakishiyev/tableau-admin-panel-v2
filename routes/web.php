@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\TrackPageVisits;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -17,20 +18,23 @@ use App\Http\Controllers\DashboardController;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-
 Auth::routes([
     'register' => false
 ]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware([TrackPageVisits::class, 'auth'])->group(function (){
+    Route::prefix('dashboard')->group(function (){
+        Route::get('', [DashboardController::class, 'index']);
+        Route::get('/asanLoginRealTime', [DashboardController::class, 'asanLoginRealTime'])->name('AsanLoginRealTime');
+        Route::get('/asanLoginMainPage', [DashboardController::class, 'asanLoginMainPage'])->name('AsanLoginMainPage');
+        Route::get('/asanFinanceGeneral', [DashboardController::class, 'asanFinanceGeneral'])->name('AsanFinanceGeneral');
+    });
 
-//Route::get('/dashboard/asanLoginRealTime', [DashboardController::class, 'asanLoginRealTime']);
+    Route::get('test', [DashboardController::class, 'test']);
 
-Route::prefix('dashboard')->middleware('auth')->group(function (){
-    Route::get('', [DashboardController::class, 'index']);
-    Route::get('/asanLoginRealTime', [DashboardController::class, 'asanLoginRealTime'])->name('AsanLoginRealTime');
-    Route::get('/asanLoginMainPage', [DashboardController::class, 'asanLoginMainPage'])->name('AsanLoginMainPage');
-    Route::get('/asanFinanceGeneral', [DashboardController::class, 'asanFinanceGeneral'])->name('AsanFinanceGeneral');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
-Route::get('test', [DashboardController::class, 'test'])->middleware('auth');
+
+
+
