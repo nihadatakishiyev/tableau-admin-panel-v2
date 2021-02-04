@@ -5,6 +5,7 @@ namespace App\Listeners;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\DB;
 
 class LogoutSuccessful
 {
@@ -26,13 +27,10 @@ class LogoutSuccessful
      */
     public function handle(Logout $event)
     {
-        dd($event->user->id);
-        $event->subject = 'logout';
-        $event->description = "Logout Successful";
-
-//        Session::flash('login-success', 'Hello ' . $event->user->name . ', welcome back!');
-        activity($event->subject)
-            ->by($event->user)
-            ->log($event->description);
+        DB::table('auth_logs')->insert([
+            'user_id' => $event->user->id,
+            'action_name' => 'Logout',
+            'created_at' => now()
+        ]);
     }
 }
