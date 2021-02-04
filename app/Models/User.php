@@ -7,11 +7,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, CrudTrait, HasRoles;
+    use HasFactory, Notifiable, CrudTrait, HasRoles, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -46,6 +47,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected static $logAttributes = ['name', 'department_id', 'unit_id', 'position_id', 'email'];
+
+    protected static $ignoreChangedAttributes = ['password', 'updated_at'];
+
+    protected static $recordEvents = ['created', 'updated'];
+
+    protected static $logOnlyDirty = true;
+
+    protected static $logName = 'user';
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "You have {$eventName} user";
+    }
 
     public function position(){
         return $this->belongsTo(Position::class);
