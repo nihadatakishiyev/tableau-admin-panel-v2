@@ -26,6 +26,7 @@ class DashboardController extends Controller
                 array_push($permissions, $perm_name);
             }
 
+
             if(sizeof($permissions)>0){
                 return redirect(route(''.$permissions[0]));
             }

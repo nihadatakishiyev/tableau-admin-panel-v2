@@ -30,6 +30,7 @@ class LogoutSuccessful
         DB::table('auth_logs')->insert([
             'user_id' => $event->user->id,
             'action_name' => 'Logout',
+            'ip_address' => request()->ip(),
             'created_at' => now()
         ]);
     }

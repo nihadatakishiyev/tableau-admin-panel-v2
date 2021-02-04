@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAuthLogsTable extends Migration
+class CreatePageVisitLogs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAuthLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('auth_logs', function (Blueprint $table) {
+        Schema::create('page_visit_logs', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('action_name');
             $table->string('ip_address');
+            $table->string('page_url');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateAuthLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('auth_logs');
+        Schema::dropIfExists('page_visit_logs');
     }
 }

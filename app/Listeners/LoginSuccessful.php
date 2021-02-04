@@ -31,6 +31,7 @@ class LoginSuccessful
         DB::table('auth_logs')->insert([
             'user_id' => $event->user->id,
             'action_name' => 'Login',
+            'ip_address' => request()->ip(),
             'created_at' => now()
         ]);
     }
