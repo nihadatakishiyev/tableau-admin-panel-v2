@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ApiAuthHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -72,6 +73,10 @@ class DashboardController extends Controller
         $url = TrustedAuthHelper::get_trusted_url($this->user, $this->remote_addr, 'views/E-GovGeneral/Finaldashboard', '');
 
         return view('test')->with('url', $url);
+    }
+
+    public function authTest(){
+        ApiAuthHelper::getAuthToken();
     }
 
 }

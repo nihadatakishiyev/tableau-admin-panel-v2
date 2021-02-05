@@ -11,8 +11,8 @@ class ApiAuthHelper
     private static $url = 'http://192.168.20.213/api/3.9/auth/signin';
 
     public static function getAuthToken(){
-        $req = Http::withHeaders([
-            'Content' => 'application/json'
+        $res = Http::withHeaders([
+            'Accept' => 'application/json'
         ])->post(self::$url, [
             'credentials' => [
                 'name' => 'ehim.analytics',
@@ -21,6 +21,8 @@ class ApiAuthHelper
                     'contentUrl' => ''
                 ]
             ]
-        ]);
+        ])->body();
+
+        return json_decode($res)->credentials->token;
     }
 }

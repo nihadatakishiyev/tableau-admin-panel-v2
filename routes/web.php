@@ -33,6 +33,8 @@ Route::middleware([TrackPageVisits::class, 'auth'])->group(function (){
     Route::get('test', [DashboardController::class, 'test']);
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::get('/auth', [DashboardController::class, 'authTest']);
 });
 
 
