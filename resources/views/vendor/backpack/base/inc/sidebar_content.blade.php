@@ -19,3 +19,13 @@
     </ul>
 </li>
 
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon las la-chart-bar"></i> Tableau</a>
+    <ul class="nav-dropdown-items">
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('project') }}'><i class='nav-icon las la-project-diagram'></i> Projects</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('workbook') }}'><i class='nav-icon las la-book'></i> Workbooks</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('view') }}'><i class='nav-icon la la-file'></i> Views</a></li>
+    </ul>
+</li>
+
+
