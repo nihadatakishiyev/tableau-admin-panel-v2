@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class View extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+       'name', 'workbook_id', 'tableau_url', 'photo_url'
+    ];
+
+    public function workbook(){
+        return $this->belongsTo(Workbook::class);
+    }
 }
