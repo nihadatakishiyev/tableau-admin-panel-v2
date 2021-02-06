@@ -39,6 +39,7 @@ class ProjectCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        CRUD::column('id');
         CRUD::column('name');
         CRUD::column('tableau_id');
         CRUD::column('photo_url');

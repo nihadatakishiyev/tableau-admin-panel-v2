@@ -17,27 +17,28 @@ class DashboardController extends Controller
     private $remote_addr = '192.168.20.213';
 
     public function index(){
-        try {
-            $user = Auth::user();
-            $datas = $user->getPermissionsViaRoles();
-            $permissions = array();
-
-            foreach ($datas as $i=>$data){
-                $perm_id = $data['pivot']['permission_id'] ;
-                $perm_name = DB::table('permissions')->where('id', $perm_id)->value('name');
-                array_push($permissions, $perm_name);
-            }
-
-
-            if(sizeof($permissions)>0){
-                return redirect(route(''.$permissions[0]));
-            }
-            else{
-                return view('errors.401');
-            }
-        }catch (Throwable $e){
-            return view('errors.404')->with('error', $e->getMessage());
-        }
+//        try {
+//            $datas = \auth()->user()->getPermissionsViaRoles();
+//            $permissions = array();
+//
+//            foreach ($datas as $i=>$data){
+//                $perm_id = $data['pivot']['permission_id'] ;
+//                $perm_name = DB::table('permissions')->where('id', $perm_id)->value('name');
+//                array_push($permissions, $perm_name);
+//            }
+//
+//
+//            if(sizeof($permissions)>0){
+//                return redirect(route(''.$permissions[0]));
+//            }
+//            else{
+//                abort(404);
+//            }
+//        }catch (Throwable $e){
+////            return view('errors.404')->with('error', $e->getMessage());
+//            abort(404);
+//        }
+        return view()
     }
 
     public function asanLoginRealTime(){
