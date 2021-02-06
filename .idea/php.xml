@@ -119,6 +119,8 @@
       <path value="$PROJECT_DIR$/vendor/backpack/permissionmanager" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-activitylog" />
+      <path value="$PROJECT_DIR$/vendor/jeroennoten/laravel-adminlte" />
+      <path value="$PROJECT_DIR$/vendor/almasaeed2010/adminlte" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">

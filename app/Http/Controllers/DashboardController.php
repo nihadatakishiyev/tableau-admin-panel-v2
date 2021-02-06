@@ -36,7 +36,7 @@ class DashboardController extends Controller
                 return view('errors.401');
             }
         }catch (Throwable $e){
-            return view('pnf')->with('error', $e->getMessage());
+            return view('errors.404')->with('error', $e->getMessage());
         }
     }
 
@@ -79,7 +79,8 @@ class DashboardController extends Controller
     public function authTest(){
 //        ApiAuthHelper::getAuthToken();
 //        $proj = Project::all();
-        return Project::with('workbooks', 'workbooks.views')->get();
+//        return Project::with('workbooks', 'workbooks.views')->get();
+        return view('pnf');
     }
 
 
