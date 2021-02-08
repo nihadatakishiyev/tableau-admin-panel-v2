@@ -40,9 +40,8 @@ class DashboardController extends Controller
 //        }
 //        return \auth()->user()->can('all');
 
-
-//        return view('pnf');
-        return auth()->user()->getSidebar();
+        return view('pnf');
+//            return \auth()->user()->can('ASAN Finans.Asan Finance New Model');
     }
 
     public function asanLoginRealTime(){

@@ -83,7 +83,7 @@ class User extends Authenticatable
             if (sizeof($arr) == 1){
                 foreach ($trees as $tree)
                     if ($tree->name == $perm->name){
-//                        return $content = $tree;
+//                        return gettype($tree);
                         array_push($res, $tree);
                     };
             }
@@ -105,17 +105,18 @@ class User extends Authenticatable
                             if ($workbook->name == $arr[1]){
                                 foreach ($workbook->views as $j => $view){
                                     if ($view->name == $arr[2]){
-                                        $parse = [
+                                        $parse = array(
                                             'name' => $arr[0],
-                                            'workbooks' => [
+                                            'workbooks' => array(
                                                 'name' => $arr[1],
                                                 'views' => [
                                                     'name' => $arr[2],
                                                     'tableau_url' => $tree->workbooks[$i]->views[$j]->tableau_url
                                                 ]
-                                            ]
-                                        ];
-                                        array_push($res, $parse);
+                                            )
+                                        );
+                                        array_push($res, (object)$parse);
+//                                        return gettype((object)$parse);
                                     }
                                 }
                             }
@@ -124,6 +125,11 @@ class User extends Authenticatable
                 }
             }
         }
-        return json_encode($res);
+        return $res;
+    }
+
+    public function getNewSidebar(){
+//        return $trees = Project::with('workbooks', 'workbooks.views')->get();
+        return $perms = $this->getPermissionsViaRoles();
     }
 }

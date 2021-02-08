@@ -5,5 +5,31 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+{{--        {{gettype($permissions)}}--}}
+{{--    @foreach($permissions as $i => $permission)--}}
+{{--        <h4>{{$permission['name']}}</h4>--}}
+{{--            @foreach($permission['workbooks'] as $workbook)--}}
+{{--                <h3>{{$workbook['name']}}</h3>--}}
+{{--                {{gettype($workbook)}}--}}
+{{--            @endforeach--}}
+{{--    @endforeach--}}
+{{--    @if(auth()->user()->can('ASAN Finans'))--}}
+{{--        abc--}}
+{{--    @endif--}}
+    @foreach($permissions as $permission)
+        @if(auth()->user()->can($permission['name']))
+            <h1>{{$permission['name']}}</h1>
+            @foreach($permission['workbooks'] as $workbook)
+                @if(auth()->user()->can($permission['name'] . '.' . $workbook['name']))
+                    <h3>{{$workbook['name']}}</h3>
+                    @foreach($workbook['views'] as $view)
+                        @if(auth()->user()->can($permission['name'] . '.' . $workbook['name'] . '.' . $view['name']))
+                            <h5>{{$view['name']}}</h5>
+                        @endif
+                    @endforeach
+                @endif
+            @endforeach
+        @endif
+    @endforeach
+
 @stop
