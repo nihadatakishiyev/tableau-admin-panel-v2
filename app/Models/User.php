@@ -73,4 +73,57 @@ class User extends Authenticatable
     public function department(){
         return $this->belongsTo(Department::class);
     }
+
+    public function getSidebar(){
+         $trees = Project::with('workbooks', 'workbooks.views')->get();
+         $perms = $this->getPermissionsViaRoles();
+         $res = [];
+        foreach ($perms as $perm){
+            $arr = explode('.', $perm->name);
+            if (sizeof($arr) == 1){
+                foreach ($trees as $tree)
+                    if ($tree->name == $perm->name){
+//                        return $content = $tree;
+                        array_push($res, $tree);
+                    };
+            }
+            else if (sizeof($arr) == 2){
+                foreach ($trees as $tree){
+                    if ($tree->name == $arr[0]){
+                        foreach ($tree as $i => $workbook){
+                            if ($workbook->name == $arr[1]){
+                                return $tree[$i];
+                            }
+                        }
+                    }
+                }
+            }
+            else if (sizeof($arr) == 3){
+                foreach ($trees as $tree){
+                    if ($tree->name == $arr[0]){
+                        foreach ($tree->workbooks as $i => $workbook){
+                            if ($workbook->name == $arr[1]){
+                                foreach ($workbook->views as $j => $view){
+                                    if ($view->name == $arr[2]){
+                                        $parse = [
+                                            'name' => $arr[0],
+                                            'workbooks' => [
+                                                'name' => $arr[1],
+                                                'views' => [
+                                                    'name' => $arr[2],
+                                                    'tableau_url' => $tree->workbooks[$i]->views[$j]->tableau_url
+                                                ]
+                                            ]
+                                        ];
+                                        array_push($res, $parse);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return json_encode($res);
+    }
 }

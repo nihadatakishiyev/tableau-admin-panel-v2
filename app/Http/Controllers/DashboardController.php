@@ -38,7 +38,11 @@ class DashboardController extends Controller
 ////            return view('errors.404')->with('error', $e->getMessage());
 //            abort(404);
 //        }
-        return view()
+//        return \auth()->user()->can('all');
+
+
+//        return view('pnf');
+        return auth()->user()->getSidebar();
     }
 
     public function asanLoginRealTime(){
