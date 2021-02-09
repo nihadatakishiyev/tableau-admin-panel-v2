@@ -75,7 +75,7 @@ class User extends Authenticatable
         return $this->belongsTo(Department::class);
     }
 
-    public function getContent(){
+    public function getPermittedHierarchy(){
         $projs = Project::with('workbooks', 'workbooks.views')->get();
         $perms = $this->getPermissionsViaRoles();
         $arr = [];

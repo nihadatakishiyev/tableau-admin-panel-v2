@@ -39,8 +39,8 @@ class MenuGenerationHelper
         return false;
     }
 
-    public static function generateAdminLte($event){
-        $projs = auth()->user()->getContent();
+    public static function generateSidebar($event){
+        $projs = auth()->user()->getPermittedHierarchy();
 
         foreach ($projs as $proj){
             $event->menu->add([
@@ -51,7 +51,7 @@ class MenuGenerationHelper
                 foreach ($workbook->views as $view){
                     array_push($arr, [
                         'text' => $view->name,
-                        'url' => '/'
+                        'url' => '/dashboard/'
                             . $proj->id
                             . '/'. $workbook->id
                             . '/'. $view->id,

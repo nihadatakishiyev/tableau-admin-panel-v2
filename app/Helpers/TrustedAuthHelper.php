@@ -16,7 +16,7 @@ class TrustedAuthHelper {
     }
 
     public static function get_trusted_url($user, $server, $view_url, $site) {
-        $params = ':embed=yes&:toolbar=no:tabs=no';
+        $params = ':embed=yes&:toolbar=yes&:tabs=no';
         $ticket = self::get_trusted_ticket($server, $user);
 
         return "http://$server/trusted/$ticket/$view_url?$params";

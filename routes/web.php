@@ -25,16 +25,13 @@ Auth::routes([
 Route::middleware([TrackPageVisits::class, 'auth'])->group(function (){
     Route::prefix('dashboard')->group(function (){
         Route::get('', [DashboardController::class, 'index']);
-        Route::get('/asanLoginRealTime', [DashboardController::class, 'asanLoginRealTime'])->name('AsanLoginRealTime');
-        Route::get('/asanLoginMainPage', [DashboardController::class, 'asanLoginMainPage'])->name('AsanLoginMainPage');
-        Route::get('/asanFinanceGeneral', [DashboardController::class, 'asanFinanceGeneral'])->name('AsanFinanceGeneral');
+
+        Route::get('/{proj_id}/{wb_id}/{view_id}', [DashboardController::class, 'renderView']);
     });
 
     Route::get('test', [DashboardController::class, 'test']);
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-    Route::get('/auth', [DashboardController::class, 'authTest']);
 });
 
 

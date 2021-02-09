@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ApiAuthHelper;
 use App\Models\Project;
+use App\Models\View;
+use App\Models\Workbook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,62 +21,25 @@ class DashboardController extends Controller
 
     public function index(){
         return view('pnf');
-
-        return $arr = [
-            [
-                'text' => 'level_three',
-                'url'  => '#',
-            ],
-            [
-                'text' => 'level_three',
-                'url'  => '#',
-            ],
-        ];
     }
 
+    public function renderView($proj_id, $wb_id, $view_id){
+        $view = View::findOrFail($view_id);
+        $proj = Project::findOrFail($proj_id);
+        $wb = Workbook::findOrFail($wb_id);
 
+        if (\auth()->user()->can($proj->name . '.' . $wb->name . '.' . $view->name)){
+            $url = TrustedAuthHelper::get_trusted_url($this->user, $this->remote_addr, 'views/' . $view->tableau_url, '');
 
-    public function asanLoginRealTime(){
-        $user = Auth::user();
-
-        if ($user->can('AsanLoginRealTime'))
-        {
-           return view('dashboards.AsanLogin.AsanLoginRealTime');
+            return view('renderView')->with('url', $url);
         }
-        return response()->view('errors.401', [], 401);
-    }
-
-    public function asanLoginMainPage(){
-        $user = Auth::user();
-
-        if ($user->can('AsanLoginMainPage'))
-        {
-            return view('dashboards.AsanLogin.AsanLoginMainPage');
-        }
-        return response()->view('errors.401', [], 401);
-    }
-
-    public function asanFinanceGeneral(){
-        $user = Auth::user();
-
-        if ($user->can('AsanFinanceGeneral'))
-        {
-            return view('dashboards.AsanFinance.AsanFinanceGeneral');
-        }
-        return response()->view('errors.401', [], 401);
+        abort(403);
     }
 
     public function test(){
         $url = TrustedAuthHelper::get_trusted_url($this->user, $this->remote_addr, 'views/E-GovGeneral/Finaldashboard', '');
 
         return view('test')->with('url', $url);
-    }
-
-    public function authTest(){
-//        ApiAuthHelper::getAuthToken();
-//        $proj = Project::all();
-//        return Project::with('workbooks', 'workbooks.views')->get();
-        return view('pnf');
     }
 
 
