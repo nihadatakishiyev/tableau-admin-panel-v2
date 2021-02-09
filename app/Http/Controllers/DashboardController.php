@@ -23,12 +23,9 @@ class DashboardController extends Controller
         return view('pnf');
     }
 
-    public function renderView($proj_id, $wb_id, $view_id){
-        $view = View::findOrFail($view_id);
-        $proj = Project::findOrFail($proj_id);
-        $wb = Workbook::findOrFail($wb_id);
+    public function renderView(Project $proj, Workbook $wb, View $view){
 
-        if (\auth()->user()->can($proj->name . '.' . $wb->name . '.' . $view->name)){
+        if ($view->workbook_id == $wb->id && $wb->project_id == $proj->id && auth()->user()->can($proj->name . '.' . $wb->name . '.' . $view->name)){
             $url = TrustedAuthHelper::get_trusted_url($this->user, $this->remote_addr, 'views/' . $view->tableau_url, '');
 
             return view('renderView')->with('url', $url);
