@@ -51,7 +51,10 @@ class MenuGenerationHelper
                 foreach ($workbook->views as $view){
                     array_push($arr, [
                         'text' => $view->name,
-                        'url' => '#',
+                        'url' => '/'
+                            . $proj->id
+                            . '/'. $workbook->id
+                            . '/'. $view->id,
                         'shift' => 'ml-3'
                     ]);
                 }
