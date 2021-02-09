@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
+use App\Helpers\MenuGenerationHelper;
 
 class User extends Authenticatable
 {
@@ -74,62 +75,28 @@ class User extends Authenticatable
         return $this->belongsTo(Department::class);
     }
 
-//    public function getSidebar(){
-//         $trees = Project::with('workbooks', 'workbooks.views')->get();
-//         $perms = $this->getPermissionsViaRoles();
-//         $res = [];
-//        foreach ($perms as $perm){
-//            $arr = explode('.', $perm->name);
-//            if (sizeof($arr) == 1){
-//                foreach ($trees as $tree)
-//                    if ($tree->name == $perm->name){
-////                        return gettype($tree);
-//                        array_push($res, $tree);
-//                    };
-//            }
-//            else if (sizeof($arr) == 2){
-//                foreach ($trees as $tree){
-//                    if ($tree->name == $arr[0]){
-//                        foreach ($tree as $i => $workbook){
-//                            if ($workbook->name == $arr[1]){
-//                                return $tree[$i];
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            else if (sizeof($arr) == 3){
-//                foreach ($trees as $tree){
-//                    if ($tree->name == $arr[0]){
-//                        foreach ($tree->workbooks as $i => $workbook){
-//                            if ($workbook->name == $arr[1]){
-//                                foreach ($workbook->views as $j => $view){
-//                                    if ($view->name == $arr[2]){
-//                                        $parse = array(
-//                                            'name' => $arr[0],
-//                                            'workbooks' => array(
-//                                                'name' => $arr[1],
-//                                                'views' => [
-//                                                    'name' => $arr[2],
-//                                                    'tableau_url' => $tree->workbooks[$i]->views[$j]->tableau_url
-//                                                ]
-//                                            )
-//                                        );
-//                                        array_push($res, (object)$parse);
-////                                        return gettype((object)$parse);
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return $res;
-//    }
+    public function getContent(){
+        $projs = Project::with('workbooks', 'workbooks.views')->get();
+        $perms = $this->getPermissionsViaRoles();
+        $arr = [];
 
-    public function getNewSidebar(){
-//        return $trees = Project::with('workbooks', 'workbooks.views')->get();
-        return $perms = $this->getPermissionsViaRoles();
+        foreach ($projs as $i => $proj){
+            if($this->can($proj->name) || MenuGenerationHelper::projChecker($perms, $proj->name)){
+                array_push($arr, $proj);
+                foreach ($proj->workbooks as $j=> $workbook){
+                    if (!$this->can($proj->name . '.' . $workbook->name) && !MenuGenerationHelper::wbChecker($perms, $workbook->name)){
+                        unset($arr[$i]->workbooks[$j]);
+                    }
+                    else {
+                        foreach ($workbook->views as $k => $view){
+                            if (!$this->can($proj->name . '.' . $workbook->name . '.' . $view->name) && !MenuGenerationHelper::viewChecker($perms, $view->name)){
+                                unset($arr[$i]->workbooks[$j]->views[$k]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return $arr;
     }
 }

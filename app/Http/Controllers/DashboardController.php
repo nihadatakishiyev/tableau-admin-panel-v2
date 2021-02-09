@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 use App\Helpers\TrustedAuthHelper;
+use App\Helpers\MenuGenerationHelper;
 
 class DashboardController extends Controller
 {
@@ -17,86 +18,21 @@ class DashboardController extends Controller
     private $remote_addr = '192.168.20.213';
 
     public function index(){
-//        try {
-//            $datas = \auth()->user()->getPermissionsViaRoles();
-//            $permissions = array();
-//
-//            foreach ($datas as $i=>$data){
-//                $perm_id = $data['pivot']['permission_id'] ;
-//                $perm_name = DB::table('permissions')->where('id', $perm_id)->value('name');
-//                array_push($permissions, $perm_name);
-//            }
-//
-//
-//            if(sizeof($permissions)>0){
-//                return redirect(route(''.$permissions[0]));
-//            }
-//            else{
-//                abort(404);
-//            }
-//        }catch (Throwable $e){
-////            return view('errors.404')->with('error', $e->getMessage());
-//            abort(404);
-//        }
-//        return \auth()->user()->can('all');
+        return view('pnf');
 
-//        return view('pnf');
-          $projs = Project::with('workbooks', 'workbooks.views')->get();
-          $perms = auth()->user()->getPermissionsViaRoles();
-          $arr = [];
-
-          foreach ($projs as $i => $proj){
-              if(auth()->user()->can($proj->name) || $this->projChecker($perms, $proj->name)){
-                  array_push($arr, $proj);
-                  foreach ($proj->workbooks as $j=> $workbook){
-                      if (!auth()->user()->can($proj->name . '.' . $workbook->name) && !$this->wbChecker($perms, $workbook->name)){
-                          unset($arr[$i]->workbooks[$j]);
-                      }
-                      else {
-                          foreach ($workbook->views as $k => $view){
-                              if (!auth()->user()->can($proj->name . '.' . $workbook->name . '.' . $view->name) && !$this->viewChecker($perms, $view->name)){
-                                  unset($arr[$i]->workbooks[$j]->views[$k]);
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-          return $arr;
+        return $arr = [
+            [
+                'text' => 'level_three',
+                'url'  => '#',
+            ],
+            [
+                'text' => 'level_three',
+                'url'  => '#',
+            ],
+        ];
     }
 
-    public function projChecker($perms, $name): bool
-    {
-        foreach ($perms as $i => $perm) {
-            $temp = explode( '.', $perm->name);
-            if (!strcmp($temp[0], $name)){
-                return true;
-            }
-        }
-        return false;
-    }
 
-    public function wbChecker($perms, $name): bool
-    {
-        foreach ($perms as $perm) {
-            $temp = explode( '.', $perm->name);
-            if (count($temp) > 1 && !strcmp($temp[1], $name)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function viewChecker($perms, $name): bool
-    {
-        foreach ($perms as $perm) {
-            $temp = explode( '.', $perm->name);
-            if (count($temp) > 2 && !strcmp($temp[2], $name)){
-                return true;
-            }
-        }
-        return false;
-    }
 
     public function asanLoginRealTime(){
         $user = Auth::user();
