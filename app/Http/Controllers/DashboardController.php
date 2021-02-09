@@ -40,8 +40,62 @@ class DashboardController extends Controller
 //        }
 //        return \auth()->user()->can('all');
 
-        return view('pnf');
-//            return \auth()->user()->can('ASAN Finans.Asan Finance New Model');
+//        return view('pnf');
+          $projs = Project::with('workbooks', 'workbooks.views')->get();
+          $perms = auth()->user()->getPermissionsViaRoles();
+          $arr = [];
+
+          foreach ($projs as $i => $proj){
+              if(auth()->user()->can($proj->name) || $this->projChecker($perms, $proj->name)){
+                  array_push($arr, $proj);
+                  foreach ($proj->workbooks as $j=> $workbook){
+                      if (!auth()->user()->can($proj->name . '.' . $workbook->name) && !$this->wbChecker($perms, $workbook->name)){
+                          unset($arr[$i]->workbooks[$j]);
+                      }
+                      else {
+                          foreach ($workbook->views as $k => $view){
+                              if (!auth()->user()->can($proj->name . '.' . $workbook->name . '.' . $view->name) && !$this->viewChecker($perms, $view->name)){
+                                  unset($arr[$i]->workbooks[$j]->views[$k]);
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+          return $arr;
+    }
+
+    public function projChecker($perms, $name): bool
+    {
+        foreach ($perms as $i => $perm) {
+            $temp = explode( '.', $perm->name);
+            if (!strcmp($temp[0], $name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function wbChecker($perms, $name): bool
+    {
+        foreach ($perms as $perm) {
+            $temp = explode( '.', $perm->name);
+            if (count($temp) > 1 && !strcmp($temp[1], $name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function viewChecker($perms, $name): bool
+    {
+        foreach ($perms as $perm) {
+            $temp = explode( '.', $perm->name);
+            if (count($temp) > 2 && !strcmp($temp[2], $name)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public function asanLoginRealTime(){

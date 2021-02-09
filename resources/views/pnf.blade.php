@@ -19,17 +19,17 @@
     @foreach($permissions as $permission)
         @if(auth()->user()->can($permission['name']))
             <h1>{{$permission['name']}}</h1>
+        @endif
             @foreach($permission['workbooks'] as $workbook)
                 @if(auth()->user()->can($permission['name'] . '.' . $workbook['name']))
                     <h3>{{$workbook['name']}}</h3>
+                @endif
                     @foreach($workbook['views'] as $view)
                         @if(auth()->user()->can($permission['name'] . '.' . $workbook['name'] . '.' . $view['name']))
                             <h5>{{$view['name']}}</h5>
                         @endif
                     @endforeach
-                @endif
             @endforeach
-        @endif
     @endforeach
 
 @stop
