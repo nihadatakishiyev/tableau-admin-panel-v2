@@ -31,16 +31,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Dispatcher $events)
     {
-//
-//        view()->composer('*', function($view)
-//        {
-//            if (Auth::check()){
-//                view()->share('permissions', Project::with('workbooks', 'workbooks.views')->get());
-//            }
-//        });
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
             MenuGenerationHelper::generateSidebar($event);
         });
-
     }
 }

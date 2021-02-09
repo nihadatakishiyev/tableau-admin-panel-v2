@@ -51,7 +51,8 @@ class MenuGenerationHelper
                 foreach ($workbook->views as $view){
                     array_push($arr, [
                         'text' => $view->name,
-                        'url' => '/dashboard/'
+                        'url' => url('/') .
+                            '/dashboard/'
                             . $proj->id
                             . '/'. $workbook->id
                             . '/'. $view->id,
