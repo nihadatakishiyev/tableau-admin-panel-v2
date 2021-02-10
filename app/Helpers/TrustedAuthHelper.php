@@ -22,6 +22,6 @@ class TrustedAuthHelper {
         if ($ticket < 0)
             throw new \Exception("Server did not return a valid ticket");
 
-        return "http://$server/trusted/$ticket/$view_url?$params";
+        return "trusted/$ticket/$view_url?$params";
     }
 }
