@@ -19,6 +19,9 @@ class TrustedAuthHelper {
         $params = ':embed=yes&:toolbar=yes&:tabs=no';
         $ticket = self::get_trusted_ticket($server, $user);
 
+        if ($ticket < 0)
+            throw new \Exception("Server did not return a valid ticket");
+
         return "http://$server/trusted/$ticket/$view_url?$params";
     }
 }

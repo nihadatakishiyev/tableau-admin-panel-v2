@@ -24,13 +24,18 @@ class DashboardController extends Controller
     }
 
     public function renderView(Project $proj, Workbook $wb, View $view){
-        if ($view->workbook_id == $wb->id && $wb->project_id == $proj->id && auth()->user()->can($proj->name . '.' . $wb->name . '.' . $view->name)){
+        try {
+            if ($view->workbook_id == $wb->id && $wb->project_id == $proj->id && auth()->user()->can($proj->name . '.' . $wb->name . '.' . $view->name)){
 //            return view('renderView')->with('var', $view->name);
-            $url = TrustedAuthHelper::get_trusted_url($this->user, $this->remote_addr, 'views/' . $view->tableau_url, '');
 
-            return view('renderView')->with('url', $url);
+                $url = TrustedAuthHelper::get_trusted_url($this->user, $this->remote_addr, 'views/' . $view->tableau_url, '');
+
+                return view('renderView')->with('url', $url);
+            }
+            abort(403);
+        } catch (\Exception $e){
+            return $e->getMessage();
         }
-        abort(403);
     }
 
     public function test(){
