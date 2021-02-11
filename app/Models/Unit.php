@@ -33,7 +33,7 @@ class Unit extends Model
     }
 
     public function positions(){
-        return $this->belongsToMany(Position::class);
+        return $this->belongsToMany(Position::class,'unit_positions', 'unit_id', 'position_id');
     }
 
     public function users(){

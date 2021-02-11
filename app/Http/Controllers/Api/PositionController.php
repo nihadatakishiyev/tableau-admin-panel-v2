@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Position;
+use App\Models\UnitPosition;
 use Illuminate\Http\Request;
 
 class PositionController extends Controller
@@ -25,7 +26,7 @@ class PositionController extends Controller
 
         // if a category has been selected, only show articles in that category
         if ($form['unit_id']) {
-            $options = $options->where('unit_id', $form['unit_id']);
+            $options = $options->where('id', UnitPosition::select('position_id')->where('unit_id', $form['unit_id'])->pluck('position_id'));
         }
 
         if ($search_term) {
