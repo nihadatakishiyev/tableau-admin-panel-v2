@@ -37,10 +37,12 @@ class UserCrudController extends CrudController
             [
                 'name' => 'department',
                 'type' => 'relationship'
-            ],            [
+            ],
+            [
                 'name' => 'unit',
-                'type' => 'relationship'
-            ],            [
+                'type' => 'relationship',
+            ],
+            [
                 'name' => 'position',
                 'type' => 'relationship'
             ],
@@ -169,15 +171,43 @@ class UserCrudController extends CrudController
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],
             [
-                'name' => 'department_id',
+//                'name' => 'department_id',
+//                'wrapper' => ['class' => 'form-group col-md-4']
+                'label'         => 'Department',
+                'type'          => 'select',
+                'name'          => 'department_id', //name to be referred by dependant
+                'entity'        => 'department', //method name in the model
+                'attribute'     => 'name', //attribute to be displayed, ex name, id
                 'wrapper' => ['class' => 'form-group col-md-4']
             ],
             [
-                'name' => 'unit_id',
+//                'name' => 'unit_id',
+//                'wrapper' => ['class' => 'form-group col-md-4']
+                'label'                => 'Unit', // Table column heading
+                'type'                 => 'select2_from_ajax',
+                'name'                 => 'unit_id', // the column that contains the ID of that connected entity;
+                'entity'               => 'unit', // the method that defines the relationship in your Model
+                'attribute'            => 'name', // foreign key attribute that is shown to user
+                'data_source'          => url('api/unit'), // url to controller search function (with /{id} should return model)
+                'placeholder'          => 'Select a unit', // placeholder for the select
+                'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
+                'minimum_input_length' => 0, // minimum characters to type before querying results
+                'dependencies'         => ['department_id'], // when a dependency changes, this select2 is reset to null
                 'wrapper' => ['class' => 'form-group col-md-4']
             ],
             [
-                'name' => 'position_id',
+//                'name' => 'position_id',
+//                'wrapper' => ['class' => 'form-group col-md-4']
+                'label'                => 'Unit', // Table column heading
+                'type'                 => 'select2_from_ajax',
+                'name'                 => 'unit_id', // the column that contains the ID of that connected entity;
+                'entity'               => 'unit', // the method that defines the relationship in your Model
+                'attribute'            => 'name', // foreign key attribute that is shown to user
+                'data_source'          => url('api/unit'), // url to controller search function (with /{id} should return model)
+                'placeholder'          => 'Select a unit', // placeholder for the select
+                'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
+                'minimum_input_length' => 0, // minimum characters to type before querying results
+                'dependencies'         => ['department_id'], // when a dependency changes, this select2 is reset to null
                 'wrapper' => ['class' => 'form-group col-md-4']
             ],
             [
