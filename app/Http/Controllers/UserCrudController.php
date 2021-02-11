@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 use Backpack\PermissionManager\app\Http\Requests\UserStoreCrudRequest as StoreRequest;
 use Backpack\PermissionManager\app\Http\Requests\UserUpdateCrudRequest as UpdateRequest;
 use Illuminate\Support\Facades\Hash;
 
 class UserCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation { store as traitStore; }
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation { update as traitUpdate; }
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    use ListOperation;
+    use CreateOperation { store as traitStore; }
+    use UpdateOperation { update as traitUpdate; }
+    use DeleteOperation;
 
     public function setup()
     {
@@ -124,7 +128,7 @@ class UserCrudController extends CrudController
     /**
      * Update the specified resource in the database.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Backpack\CRUD\app\Http\Controllers\Operations\Response
      */
     public function update()
     {
