@@ -42,7 +42,7 @@ class PositionCrudController extends CrudController
         CRUD::column('id');
         CRUD::column('name');
         CRUD::addColumn([
-            'label'     => 'Position', // Table column heading
+            'label'     => 'Unit', // Table column heading
             'type'      => 'select_multiple',
             'name'      => 'units', // the method that defines the relationship in your Model
             'entity'    => 'units', // the method that defines the relationship in your Model

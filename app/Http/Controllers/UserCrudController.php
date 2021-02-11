@@ -208,6 +208,7 @@ class UserCrudController extends CrudController
                 'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
                 'minimum_input_length' => 0, // minimum characters to type before querying results
                 'dependencies'         => ['unit_id'], // when a dependency changes, this select2 is reset to null
+                'model' => 'App\Models\UnitPosition',
                 'wrapper' => ['class' => 'form-group col-md-4']
             ],
             [
