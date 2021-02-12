@@ -19,7 +19,8 @@ use App\Http\Controllers\DashboardController;
 //    return view('welcome');
 //});
 Auth::routes([
-    'register' => false
+    'register' => false,
+    'reset' => false
 ]);
 
 Route::middleware([TrackPageVisits::class, 'auth'])->group(function (){
