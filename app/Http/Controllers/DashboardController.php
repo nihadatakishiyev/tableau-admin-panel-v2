@@ -35,7 +35,7 @@ class DashboardController extends Controller
 
                 return view('renderView')->with('url', $url);
             }
-            abort(403);
+            return view('errors.403');
         } catch (\Exception $e){
             return $e->getMessage();
         }
