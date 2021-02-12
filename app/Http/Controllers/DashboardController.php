@@ -23,12 +23,15 @@ class DashboardController extends Controller
         return view('pnf');
     }
 
-    public function renderView(Project $proj, Workbook $wb, View $view){
+    public function renderView(Project $proj, Workbook $wb, View $view, Request $request){
         try {
             if ($view->workbook_id == $wb->id && $wb->project_id == $proj->id && auth()->user()->can($proj->name . '.' . $wb->name . '.' . $view->name)){
-//            return view('renderView')->with('var', $view->name);
-
-                $url = TrustedAuthHelper::get_trusted_url($this->user, $this->remote_addr, 'views/' . $view->tableau_url, '');
+                if (auth()->user()->existsValidTicket()){
+                     $url = TrustedAuthHelper::get_trusted_url($this->user, $this->remote_addr, 'views/' . $view->tableau_url, 1);
+                }
+                else {
+                    $url = TrustedAuthHelper::get_trusted_url($this->user, $this->remote_addr, 'views/' . $view->tableau_url, 0);
+                }
 
                 return view('renderView')->with('url', $url);
             }
@@ -36,11 +39,5 @@ class DashboardController extends Controller
         } catch (\Exception $e){
             return $e->getMessage();
         }
-    }
-
-    public function test(){
-        $url = TrustedAuthHelper::get_trusted_url($this->user, $this->remote_addr, 'views/E-GovGeneral/Finaldashboard', '');
-
-        return view('test')->with('url', $url);
     }
 }

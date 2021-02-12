@@ -74,21 +74,21 @@ class PositionCrudController extends CrudController
         CRUD::setValidation(PositionRequest::class);
 
         CRUD::field('name');
-        CRUD::addField([   // n-n relationship
-            'label'       => "Unit", // Table column heading
-            'type'        => "select2_from_ajax_multiple",
-            'name'        => 'units', // a unique identifier (usually the method that defines the relationship in your Model)
-            'entity'      => 'units', // the method that defines the relationship in your Model
-            'attribute'   => "name", // foreign key attribute that is shown to user
-            'data_source' => url("api/city"), // url to controller search function (with /{id} should return model)
-            'pivot'       => true, // on create&update, do you need to add/delete pivot table entries?
-
-            // OPTIONAL
-            'model'                => "App\Models\City", // foreign key model
-            'placeholder'          => "Select a city", // placeholder for the select
-            'minimum_input_length' => 2, // minimum characters to type before querying results
-            // 'include_all_form_fields'  => false, // optional - only send the current field through AJAX (for a smaller payload if you're not using multiple chained select2s)
-        ]);
+//        CRUD::addField([   // n-n relationship
+//            'label'       => "Unit", // Table column heading
+//            'type'        => "select2_from_ajax_multiple",
+//            'name'        => 'units', // a unique identifier (usually the method that defines the relationship in your Model)
+//            'entity'      => 'units', // the method that defines the relationship in your Model
+//            'attribute'   => "name", // foreign key attribute that is shown to user
+//            'data_source' => url("api/city"), // url to controller search function (with /{id} should return model)
+//            'pivot'       => true, // on create&update, do you need to add/delete pivot table entries?
+//
+//            // OPTIONAL
+//            'model'                => "App\Models\City", // foreign key model
+//            'placeholder'          => "Select a city", // placeholder for the select
+//            'minimum_input_length' => 2, // minimum characters to type before querying results
+//            // 'include_all_form_fields'  => false, // optional - only send the current field through AJAX (for a smaller payload if you're not using multiple chained select2s)
+//        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

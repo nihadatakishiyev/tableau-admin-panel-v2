@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use phpDocumentor\Reflection\Types\Boolean;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 use App\Helpers\MenuGenerationHelper;
@@ -98,5 +100,22 @@ class User extends Authenticatable
             }
         }
         return $arr;
+    }
+
+    public function removeTicket(){
+            request()->session()->pull('expire_time');
+    }
+
+    public function existsValidTicket() : bool{
+        if (request()->session()->has('expire_time') && request()->session()->get('expire_time') < now()) {
+             $this->removeTicket();
+             return 0;
+        }
+
+        return request()->session()->get('expire_time') > now();
+    }
+
+    public function setTicketCookie(){
+        request()->session()->put('expire_time', Carbon::parse(now())->addMinutes(180));
     }
 }

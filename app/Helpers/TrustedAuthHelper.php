@@ -15,9 +15,16 @@ class TrustedAuthHelper {
         return $ticket;
     }
 
-    public static function get_trusted_url($user, $server, $view_url, $site) {
+    public static function get_trusted_url($user, $server, $view_url, $existsValidTicket) {
         $params = ':embed=yes&:toolbar=yes&:tabs=no';
-        $ticket = self::get_trusted_ticket($server, $user);
+
+        if ($existsValidTicket){
+            return "/$view_url?$params";
+        }
+        else {
+            $ticket = self::get_trusted_ticket($server, $user);
+            auth()->user()->setTicketCookie();
+        }
 
         if ($ticket < 0)
             throw new \Exception("Server did not return a valid ticket");
