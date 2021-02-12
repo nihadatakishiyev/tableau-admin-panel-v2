@@ -20,9 +20,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        TableauElementAdded::class => [
-            CreateTableauElementPermission::class
-        ],
         'Illuminate\Auth\Events\Login' => ['App\Listeners\LoginSuccessful'],
         'Illuminate\Auth\Events\Logout' => ['App\Listeners\LogoutSuccessful'],
     ];
