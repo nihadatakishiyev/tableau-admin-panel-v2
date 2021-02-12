@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use function Illuminate\Events\queueable;
 
 class Workbook extends Model
 {
@@ -20,5 +21,16 @@ class Workbook extends Model
 
     public function views(){
         return $this->hasMany(View::class);
+    }
+
+    protected static function booted()
+    {
+        static::created(queueable(function ($workbook) {
+            Permission::create(['name' => $workbook->project()->get()[0]->name . '.' . $workbook->name]);
+        }));
+
+        static::deleted(queueable(function ($workbook) {
+            Permission::where('name', $workbook->project()->get()[0]->name . '.' . $workbook->name)->delete();
+        }));
     }
 }

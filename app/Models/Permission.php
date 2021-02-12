@@ -6,6 +6,9 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Models\Permission as OriginalPermission;
 
+/**
+ * @method static where(string $string, $name)
+ */
 class Permission extends OriginalPermission
 {
     use CrudTrait, LogsActivity;

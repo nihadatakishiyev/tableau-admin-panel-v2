@@ -23,7 +23,7 @@ class DashboardController extends Controller
         return view('pnf');
     }
 
-    public function renderView(Project $proj, Workbook $wb, View $view, Request $request){
+    public function renderView(Project $proj, Workbook $wb, View $view){
         try {
             if ($view->workbook_id == $wb->id && $wb->project_id == $proj->id && auth()->user()->can($proj->name . '.' . $wb->name . '.' . $view->name)){
                 if (auth()->user()->existsValidTicket()){
