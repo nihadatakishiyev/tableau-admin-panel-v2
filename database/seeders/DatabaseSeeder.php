@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Department;
+use App\Models\Permission;
 use App\Models\Position;
 use App\Models\Unit;
 use App\Models\UnitPosition;
@@ -56,6 +57,14 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
             'created_at' => now()
         ]);
+
+        Permission::create([
+            'name' => 'admin'
+        ]);
+
+        $user = User::findOrFail(1);
+        $user->assignRole('admin');
+        $user->save();
 
     }
 }
