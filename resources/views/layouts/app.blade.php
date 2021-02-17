@@ -21,17 +21,11 @@
 
     <!-- Bootstrap core CSS -->
     <link href={{ asset('css/bootstrap.min.css') }} rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href={{ asset('css/simple-sidebar.css') }} rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 {{--            <div class="container">--}}
-            <button class="btn" id="menu-toggle">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
             <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}

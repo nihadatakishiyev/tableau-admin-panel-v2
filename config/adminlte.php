@@ -224,11 +224,11 @@ return [
     */
 
     'menu' => [
-        [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
-        ],
+//        [
+//            'text' => 'search',
+//            'search' => true,
+//            'topnav' => true,
+//        ],
 //        [
 //            'text'        => 'pages',
 //            'url'         => 'admin/pages',

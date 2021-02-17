@@ -24,15 +24,20 @@ Auth::routes([
 ]);
 
 Route::middleware([TrackPageVisits::class, 'auth'])->group(function (){
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
     Route::prefix('dashboard')->group(function (){
         Route::get('', [DashboardController::class, 'index']);
-
         Route::get('/{proj}/{wb}/{view}', [DashboardController::class, 'renderView']);
     });
+});
 
-    Route::get('test', [DashboardController::class, 'test']);
+Route::middleware('auth')->group(function (){
+    Route::get('/api/unit', 'App\Http\Controllers\Api\UnitController@index');
+    Route::get('/api/unit/{id}', 'App\Http\Controllers\Api\UnitController@show');
 
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/api/position', 'App\Http\Controllers\Api\PositionController@index');
+    Route::get('/api/position/{id}', 'App\Http\Controllers\Api\PositionController@show');
 });
 
 

@@ -18,8 +18,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('unit', 'App\Http\Controllers\Api\UnitController@index');
-Route::get('unit/{id}', 'App\Http\Controllers\Api\UnitController@show');
-
-Route::get('position', 'App\Http\Controllers\Api\PositionController@index');
-Route::get('position/{id}', 'App\Http\Controllers\Api\PositionController@show');
