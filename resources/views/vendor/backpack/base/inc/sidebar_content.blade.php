@@ -29,3 +29,5 @@
 </li>
 
 
+
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('activitylog') }}'><i class='nav-icon la la-question'></i> ActivityLogs</a></li>

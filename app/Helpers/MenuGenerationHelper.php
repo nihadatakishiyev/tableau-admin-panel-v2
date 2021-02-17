@@ -51,6 +51,7 @@ class MenuGenerationHelper
                 foreach ($workbook->views as $view){
                     array_push($arr, [
                         'text' => $view->name,
+                        'id' => $view->id,
                         'url' => url('/') .
                             '/dashboard/'
                             . $proj->id
@@ -59,11 +60,23 @@ class MenuGenerationHelper
                         'shift' => 'ml-3'
                     ]);
                 }
-                $event->menu->add([
-                    'key' => $workbook->name,
-                    'text' => $workbook->name,
-                    'submenu' => $arr
-                ]);
+                if (sizeof($arr) > 1){
+                    $event->menu->add([
+                        'key' => $workbook->name,
+                        'text' => $workbook->name,
+                        'submenu' => $arr
+                    ]);
+                } else if (sizeof($arr) == 1){
+                    $event->menu->add([
+                        'key' => $workbook->name,
+                        'text' => $workbook->name,
+                        'url' => url('/') .
+                            '/dashboard/'
+                            . $proj->id
+                            . '/'. $workbook->id
+                            . '/' . $arr[0]['id'],
+                    ]);
+                }
             }
         }
     }
