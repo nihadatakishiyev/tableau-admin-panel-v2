@@ -17,43 +17,45 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('departments')->insert([
-            'name' => 'default',
-            'created_at' => now()
-        ]);
-
-        DB::table('units')->insert([
-            'name' => 'default',
-            'department_id' => 1,
-            'created_at' => now()
-        ]);
-
-        DB::table('positions')->insert([
-            'name' => 'default',
-            'created_at' => now()
-        ]);
-
-        DB::table('unit_positions')->insert([
-            'unit_id' => 1,
-            'position_id' => 1,
-            'created_at' => now()
-
-        ]);
-
-        DB::table('users')->insert([
-           'name' => 'admin',
-            'email' => 'admin@admin.com',
-            'department_id' => 1,
-            'unit_id' => 1,
-            'position_id' => 1,
-            'email_verified_at' => now(),
-            'password' => Hash::make('123123'),
-            'remember_token' => Str::random(10),
-            'created_at' => now()
-        ]);
-
-        Permission::create([
-            'name' => 'admin'
-        ]);
+//        DB::table('departments')->insert([
+//            'name' => 'default',
+//            'created_at' => now()
+//        ]);
+//
+//        DB::table('units')->insert([
+//            'name' => 'default',
+//            'department_id' => 1,
+//            'created_at' => now()
+//        ]);
+//
+//        DB::table('positions')->insert([
+//            'name' => 'default',
+//            'created_at' => now()
+//        ]);
+//
+//        DB::table('unit_positions')->insert([
+//            'unit_id' => 1,
+//            'position_id' => 1,
+//            'created_at' => now()
+//
+//        ]);
+//
+//        DB::table('users')->insert([
+//           'name' => 'admin',
+//            'email' => 'admin@admin.com',
+//            'department_id' => 1,
+//            'unit_id' => 1,
+//            'position_id' => 1,
+//            'email_verified_at' => now(),
+//            'password' => Hash::make('123123'),
+//            'remember_token' => Str::random(10),
+//            'created_at' => now()
+//        ]);
+//
+//        Permission::create([
+//            'name' => 'admin'
+//        ]);
+        $this->call(DepartmentSeeder::class);
+        $this->call(UnitSeeder::class);
     }
 }
