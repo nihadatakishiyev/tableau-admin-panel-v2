@@ -6,7 +6,7 @@
     <ul class="nav-dropdown-items">
         <li class="nav-item"><a class="nav-link" href="{{ backpack_url('user') }}"><i class="nav-icon la la-user"></i> <span>Users</span></a></li>
         <li class="nav-item"><a class="nav-link" href="{{ backpack_url('role') }}"><i class="nav-icon la la-id-badge"></i> <span>Roles</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ backpack_url('permission') }}"><i class="nav-icon la la-key"></i> <span>Permissions</span></a></li>
+{{--        <li class="nav-item"><a class="nav-link" href="{{ backpack_url('permission') }}"><i class="nav-icon la la-key"></i> <span>Permissions</span></a></li>--}}
     </ul>
 </li>
 
@@ -28,6 +28,12 @@
     </ul>
 </li>
 
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon las la-chart-line"></i> Logs</a>
+    <ul class="nav-dropdown-items">
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('activitylog') }}'><i class='nav-icon la la-question'></i> ActivityLogs</a></li>
+    </ul>
+</li>
 
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('activitylog') }}'><i class='nav-icon la la-question'></i> ActivityLogs</a></li>
+
