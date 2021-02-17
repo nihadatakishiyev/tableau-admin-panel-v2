@@ -26,11 +26,8 @@ Auth::routes([
 Route::middleware([TrackPageVisits::class, 'auth'])->group(function (){
     Route::prefix('dashboard')->group(function (){
         Route::get('', [DashboardController::class, 'index']);
-
         Route::get('/{proj}/{wb}/{view}', [DashboardController::class, 'renderView']);
     });
-
-    Route::get('test', [DashboardController::class, 'test']);
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
