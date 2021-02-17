@@ -61,10 +61,5 @@ class DatabaseSeeder extends Seeder
         Permission::create([
             'name' => 'admin'
         ]);
-
-        $user = User::findOrFail(1);
-        $user->assignRole('admin');
-        $user->save();
-
     }
 }
