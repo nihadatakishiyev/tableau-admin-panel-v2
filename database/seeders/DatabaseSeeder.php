@@ -2,12 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Department;
 use App\Models\Permission;
-use App\Models\Position;
-use App\Models\Unit;
-use App\Models\UnitPosition;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         DB::table('departments')->insert([
             'name' => 'default',
             'created_at' => now()

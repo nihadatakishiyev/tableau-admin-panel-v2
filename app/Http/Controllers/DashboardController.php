@@ -2,17 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\ApiAuthHelper;
 use App\Models\Project;
 use App\Models\View;
 use App\Models\Workbook;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
-use Throwable;
 use App\Helpers\TrustedAuthHelper;
-use App\Helpers\MenuGenerationHelper;
 
 class DashboardController extends Controller
 {
