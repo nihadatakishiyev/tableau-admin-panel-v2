@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Permission;
+use App\Models\UnitPosition;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -57,5 +58,8 @@ class DatabaseSeeder extends Seeder
 //        ]);
         $this->call(DepartmentSeeder::class);
         $this->call(UnitSeeder::class);
+        $this->call(PositionSeeder::class);
+        $this->call(UnitPosition::class);
+
     }
 }
