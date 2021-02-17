@@ -6,7 +6,7 @@
         <object class="tableauViz" width="100%" height="872" style="border:none;">
             <param name="path" value={{$url}} />
             <param name="tabs" value="no"/>
-            <param name='toolbar' value='yes'/>
+            <param name='toolbar' value='no'/>
         </object>
 {{--    </div>--}}
 
