@@ -201,7 +201,7 @@ return [
         // "asa" => "Asu",
         // "az_Cyrl" => "Azerbaijani (Cyrillic)",
         // "az_Cyrl_AZ" => "Azerbaijani (Cyrillic, Azerbaijan)",
-        // "az_Latn" => "Azerbaijani (Latin)",
+//         "az_Latn" => "Azerbaijani (Latin)",
         // "az_Latn_AZ" => "Azerbaijani (Latin, Azerbaijan)",
         // "az" => "Azerbaijani",
         // "bm_ML" => "Bambara (Mali)",
