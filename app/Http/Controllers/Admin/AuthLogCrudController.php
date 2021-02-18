@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ActivityLogRequest;
+use App\Http\Requests\AuthLogRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class ActivityLogCrudController
+ * Class AuthLogCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class ActivityLogCrudController extends CrudController
+class AuthLogCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class ActivityLogCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\ActivityLog::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/activitylog');
-        CRUD::setEntityNameStrings('activitylog', 'activity_logs');
+        CRUD::setModel(\App\Models\AuthLog::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/authlog');
+        CRUD::setEntityNameStrings('authlog', 'auth_logs');
     }
 
     /**
@@ -40,12 +40,10 @@ class ActivityLogCrudController extends CrudController
     protected function setupListOperation()
     {
         $this->crud->removeButton('create');
-        CRUD::column('log_name');
-        CRUD::column('description');
-        CRUD::column('subject_type');
-        CRUD::column('subject_id');
-        CRUD::column('causer_id');
-        CRUD::column('properties');
+
+        CRUD::column('user_id');
+        CRUD::column('action_name');
+        CRUD::column('ip_address');
         CRUD::column('created_at');
 
         /**
@@ -63,16 +61,14 @@ class ActivityLogCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-
         $this->crud->denyAccess('create');
-//        CRUD::setValidation(ActivityLogRequest::class);
-//
-//        CRUD::field('log_name');
-//        CRUD::field('description');
-//        CRUD::field('subject_type');
-//        CRUD::field('subject_id');
-//        CRUD::field('causer_id');
-//        CRUD::field('properties');
+
+        CRUD::setValidation(AuthLogRequest::class);
+
+        CRUD::field('user_id');
+        CRUD::field('action_name');
+        CRUD::field('ip_address');
+
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

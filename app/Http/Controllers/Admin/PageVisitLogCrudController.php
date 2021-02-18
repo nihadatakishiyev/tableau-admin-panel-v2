@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ActivityLogRequest;
+use App\Http\Requests\PageVisitLogRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class ActivityLogCrudController
+ * Class PageVisitLogCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class ActivityLogCrudController extends CrudController
+class PageVisitLogCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class ActivityLogCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\ActivityLog::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/activitylog');
-        CRUD::setEntityNameStrings('activitylog', 'activity_logs');
+        CRUD::setModel(\App\Models\PageVisitLog::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/pagevisitlog');
+        CRUD::setEntityNameStrings('pagevisitlog', 'page_visit_logs');
     }
 
     /**
@@ -40,12 +40,10 @@ class ActivityLogCrudController extends CrudController
     protected function setupListOperation()
     {
         $this->crud->removeButton('create');
-        CRUD::column('log_name');
-        CRUD::column('description');
-        CRUD::column('subject_type');
-        CRUD::column('subject_id');
-        CRUD::column('causer_id');
-        CRUD::column('properties');
+
+        CRUD::column('user_id');
+        CRUD::column('ip_address');
+        CRUD::column('page_url');
         CRUD::column('created_at');
 
         /**
@@ -63,16 +61,13 @@ class ActivityLogCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-
         $this->crud->denyAccess('create');
-//        CRUD::setValidation(ActivityLogRequest::class);
-//
-//        CRUD::field('log_name');
-//        CRUD::field('description');
-//        CRUD::field('subject_type');
-//        CRUD::field('subject_id');
-//        CRUD::field('causer_id');
-//        CRUD::field('properties');
+
+        CRUD::setValidation(PageVisitLogRequest::class);
+
+        CRUD::field('user_id');
+        CRUD::field('ip_address');
+        CRUD::field('page_url');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

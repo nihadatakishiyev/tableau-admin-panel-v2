@@ -29,11 +29,10 @@
 </li>
 
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon las la-chart-line"></i> Logs</a>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon las la-clock"></i> Logs</a>
     <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('activitylog') }}'><i class='nav-icon la la-question'></i> ActivityLogs</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('authlog') }}'><i class='nav-icon las la-sign-in-alt'></i> AuthLogs</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('activitylog') }}'><i class='nav-icon las la-hiking'></i> ActivityLogs</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('pagevisitlog') }}'><i class='nav-icon las la-pager'></i> PageVisitLogs</a></li>
     </ul>
 </li>
-
-
-
