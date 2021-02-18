@@ -63,7 +63,7 @@ class ActivityLogCrudController extends CrudController
     protected function setupCreateOperation()
     {
 
-        $this->crud->denyAccess('create');
+//        $this->crud->denyAccess('create');
 //        CRUD::setValidation(ActivityLogRequest::class);
 //
 //        CRUD::field('log_name');

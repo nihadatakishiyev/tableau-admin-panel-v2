@@ -9,6 +9,7 @@ class AuthLog extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
        'user_id', 'action_name', 'ip_address'
     ];
