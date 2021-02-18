@@ -40,6 +40,9 @@ class AuthLogCrudController extends CrudController
     protected function setupListOperation()
     {
         $this->crud->removeButton('create');
+        $this->crud->denyAccess('update');
+        $this->crud->denyAccess('delete');
+
 
         CRUD::column('user_id');
         CRUD::column('action_name');

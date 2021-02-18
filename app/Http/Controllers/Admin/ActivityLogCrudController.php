@@ -40,6 +40,9 @@ class ActivityLogCrudController extends CrudController
     protected function setupListOperation()
     {
         $this->crud->removeButton('create');
+        $this->crud->denyAccess('update');
+        $this->crud->denyAccess('delete');
+
         CRUD::column('log_name');
         CRUD::column('description');
         CRUD::column('subject_type');
