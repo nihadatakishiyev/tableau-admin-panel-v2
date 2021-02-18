@@ -15,7 +15,7 @@ class CreatePageVisitLogs extends Migration
     {
         Schema::create('page_visit_logs', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('ip_address');
             $table->string('page_url');
             $table->timestamps();

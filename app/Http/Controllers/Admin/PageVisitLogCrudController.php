@@ -43,7 +43,7 @@ class PageVisitLogCrudController extends CrudController
         $this->crud->denyAccess('update');
         $this->crud->denyAccess('delete');
 
-        CRUD::column('user_id');
+        CRUD::column('user')->type('relationship');
         CRUD::column('ip_address');
         CRUD::column('page_url');
         CRUD::column('created_at');
