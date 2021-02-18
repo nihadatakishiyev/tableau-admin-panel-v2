@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\UnitPosition;
 use Illuminate\Database\Seeder;
 
 class UnitPositionSeeder extends Seeder
@@ -41,5 +42,9 @@ class UnitPositionSeeder extends Seeder
                 'position_id' => 4,
             ],
         ];
+
+        foreach ($unit_positions as $unit_position){
+            UnitPosition::create($unit_position);
+        }
     }
 }
