@@ -11,7 +11,6 @@
             <param name='tooltip' value='no'/>
         </object>
 {{--    </div>--}}
-
     {{--    <div class="tableauPlaceholder" style='margin-left: auto; margin-right: auto'>--}}
     {{--        <iframe src="{{$url}}" style='width: 100% ; height: 100vh;border: none'/>--}}
     {{--    </div>--}}
