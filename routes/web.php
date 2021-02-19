@@ -34,6 +34,10 @@ Route::middleware([TrackPageVisits::class, 'auth'])->group(function (){
         Route::get('', [DashboardController::class, 'index']);
         Route::get('/{proj}/{wb}/{view}', [DashboardController::class, 'renderView']);
     });
+
+    Route::get('/logout', function(){
+        return redirect('login')->with(Auth::logout());
+    })->name('logout_bck');
 });
 
 Route::middleware('auth')->group(function (){
