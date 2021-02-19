@@ -74,15 +74,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request_data = $request->all();
-
-        $request->validate([
+        $validated = $request->validate([
             'current_password' => 'required|password',
-            'new_password' => 'required|min:8|different:current_password',
+            'new_password' => 'required|min:6|different:current_password',
             'password_confirmation' => 'required|same:new_password'
         ]);
 
-        $user->password = Hash::make($request_data['new_password']);
+        $user->password = Hash::make($validated['new_password']);
         $user->save();
 
         return redirect('/dashboard')->with('status', 'Password changed successfully!');
