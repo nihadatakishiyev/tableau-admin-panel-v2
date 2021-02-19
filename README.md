@@ -60,3 +60,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Google Chrome Usage Guide
+If you want to access website using Chrome browser, there is tiny configuration 
+required for the chrome to work with Tableau Trusted Auth properly. <br> 
+Please type in following urls in Chrome tab and disable it in the opening window<br> <br>
+·        chrome://flags/#same-site-by-default-cookies <br>
+·        chrome://flags/#cookies-without-same-site-must-be-secure
