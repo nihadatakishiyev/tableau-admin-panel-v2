@@ -10,7 +10,7 @@ use App\Helpers\TrustedAuthHelper;
 class DashboardController extends Controller
 {
 //    private $user = 'ehim.analytics';
-    private $user = 'ehim.analytics';
+    private $user = 'ehim.pms';
     private $remote_addr = '192.168.20.213';
 
     public function index(){

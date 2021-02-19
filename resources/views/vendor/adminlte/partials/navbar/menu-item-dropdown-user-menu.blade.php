@@ -31,24 +31,24 @@
     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
         {{-- User menu header --}}
-        @if(!View::hasSection('usermenu_header') && config('adminlte.usermenu_header'))
-            <li class="user-header {{ config('adminlte.usermenu_header_class', 'bg-primary') }}
-                @if(!config('adminlte.usermenu_image')) h-auto @endif">
-                @if(config('adminlte.usermenu_image'))
-                    <img src="{{ Auth::user()->adminlte_image() }}"
-                         class="img-circle elevation-2"
-                         alt="{{ Auth::user()->name }}">
-                @endif
-                <p class="@if(!config('adminlte.usermenu_image')) mt-0 @endif">
-                    {{ Auth::user()->name }}
-                    @if(config('adminlte.usermenu_desc'))
-                        <small>{{ Auth::user()->adminlte_desc() }}</small>
-                    @endif
-                </p>
-            </li>
-        @else
-            @yield('usermenu_header')
-        @endif
+{{--        @if(!View::hasSection('usermenu_header') && config('adminlte.usermenu_header'))--}}
+{{--            <li class="user-header {{ config('adminlte.usermenu_header_class', 'bg-primary') }}--}}
+{{--                @if(!config('adminlte.usermenu_image')) h-auto @endif">--}}
+{{--                @if(config('adminlte.usermenu_image'))--}}
+{{--                    <img src="{{ Auth::user()->adminlte_image() }}"--}}
+{{--                         class="img-circle elevation-2"--}}
+{{--                         alt="{{ Auth::user()->name }}">--}}
+{{--                @endif--}}
+{{--                <p class="@if(!config('adminlte.usermenu_image')) mt-0 @endif">--}}
+{{--                    {{ Auth::user()->name }}--}}
+{{--                    @if(config('adminlte.usermenu_desc'))--}}
+{{--                        <small>{{ Auth::user()->adminlte_desc() }}</small>--}}
+{{--                    @endif--}}
+{{--                </p>--}}
+{{--            </li>--}}
+{{--        @else--}}
+{{--            @yield('usermenu_header')--}}
+{{--        @endif--}}
 
         {{-- Configured user menu links --}}
         @each('adminlte::partials.navbar.dropdown-item', $adminlte->menu("navbar-user"), 'item')
@@ -68,6 +68,11 @@
                     {{ __('adminlte::menu.profile') }}
                 </a>
             @endif
+            <a class="btn btn-default btn-flat float-right @if(!$profile_url) btn-block @endif" href="{{'users/' . auth()->user()->id . '/change-password'}}" >
+                <i class="fas fa-key"></i>
+                <text>Change password</text>
+            </a>
+
             <a class="btn btn-default btn-flat float-right @if(!$profile_url) btn-block @endif"
                href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fa fa-fw fa-power-off"></i>

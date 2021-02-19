@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\TrackPageVisits;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,8 @@ Auth::routes([
 
 Route::middleware([TrackPageVisits::class, 'auth'])->group(function (){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('users/{user}/change-password', [UserController::class, 'edit']);
+//    Route::resource('user', UserController::class);
 
     Route::prefix('dashboard')->group(function (){
         Route::get('', [DashboardController::class, 'index']);

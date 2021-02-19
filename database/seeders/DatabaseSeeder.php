@@ -15,18 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(DepartmentSeeder::class);
-        $this->call(UnitSeeder::class);
-        $this->call(PositionSeeder::class);
-        $this->call(UnitPositionSeeder::class);
-        $this->call(UserSeeder::class);
-        $this->call(ProjectSeeder::class);
-        $this->call(WorkbookSeeder::class);
-        $this->call(ViewSeeder::class);
-        $this->call(RoleSeeder::class);
-
-        $user = User::findOrFail(1);
-        $user->assignRole('admin');
-        $user->save();
+        $this->call([
+            DepartmentSeeder::class,
+            UnitSeeder::class,
+            PositionSeeder::class,
+            UnitPositionSeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class,
+            ProjectSeeder::class,
+            WorkbookSeeder::class,
+            ViewSeeder::class,
+        ]);
     }
 }

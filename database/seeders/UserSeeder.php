@@ -42,5 +42,9 @@ class UserSeeder extends Seeder
         foreach ($users as $user){
             User::create($user);
         }
+
+        $user = User::findOrFail(1);
+        $user->assignRole('admin');
+        $user->save();
     }
 }
