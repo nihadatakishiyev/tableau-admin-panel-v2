@@ -42,6 +42,51 @@ class MenuGenerationHelper
     public static function generateSidebar($event){
         $projs = auth()->user()->getPermittedHierarchy();
 
+        foreach ($projs as $proj) {
+            $event->menu->add([
+                'key' => $proj->name,
+                'text' => strtoupper($proj->name)
+            ]);
+            foreach ($proj->workbooks as $workbook) {
+                if (count($workbook->views) == 1){
+                    $event->menu->addIn($proj->name, [
+                        'key' => $workbook->name,
+                        'text' => $workbook->name,
+                        'url' => url('/') .
+                            '/dashboard/'
+                            . $proj->id
+                            . '/'. $workbook->id
+                            . '/' . $workbook->views[0]->id,
+                        'shift' => 'ml-1'
+                    ]);
+                }
+                else if (count($workbook->views) > 1){
+                    $event->menu->addIn($proj->name, [
+                        'key' => $workbook->name,
+                        'text' => $workbook->name,
+                        'shift' => 'ml-2'
+                    ]);
+
+                    foreach ($workbook->views as $view) {
+                        $event->menu->addIn($workbook->name, [
+                            'text' => $view->name,
+                            'url' => url('/') .
+                                '/dashboard/'
+                                . $proj->id
+                                . '/'. $workbook->id
+                                . '/' . $view->id,
+                            'shift' => 'ml-4'
+                        ]);
+                    }
+                }
+            }
+        }
+    }
+
+    public static function generateSidebarOld($event)
+    {
+        $projs = auth()->user()->getPermittedHierarchy();
+
         foreach ($projs as $proj){
             $event->menu->add([
                 'header' => strtoupper($proj->name),
