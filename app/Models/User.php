@@ -81,6 +81,10 @@ class User extends Authenticatable
         return $this->hasMany(PageVisitLog::class);
     }
 
+    public function authLogs(){
+        return $this->hasMany(AuthLog::class);
+    }
+
     public function getPermittedHierarchy(){
         $projs = Project::with('workbooks', 'workbooks.views')->get();
         $perms = $this->getPermissionsViaRoles();

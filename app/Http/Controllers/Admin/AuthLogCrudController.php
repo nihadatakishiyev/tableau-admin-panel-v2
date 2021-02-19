@@ -44,7 +44,7 @@ class AuthLogCrudController extends CrudController
         $this->crud->denyAccess('delete');
 
 
-        CRUD::column('user_id');
+        CRUD::column('user')->type('relationship');
         CRUD::column('action_name');
         CRUD::column('ip_address');
         CRUD::column('created_at');

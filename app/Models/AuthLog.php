@@ -14,4 +14,8 @@ class AuthLog extends Model
     protected $fillable = [
        'user_id', 'action_name', 'ip_address'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

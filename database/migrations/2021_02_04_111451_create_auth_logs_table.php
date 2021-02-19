@@ -15,7 +15,7 @@ class CreateAuthLogsTable extends Migration
     {
         Schema::create('auth_logs', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('action_name');
             $table->string('ip_address');
             $table->timestamps();
