@@ -68,7 +68,7 @@
                     {{ __('adminlte::menu.profile') }}
                 </a>
             @endif
-            <a class="btn btn-default btn-flat float-right @if(!$profile_url) btn-block @endif" href="{{'/users/' . auth()->user()->id . '/change-password'}}" >
+            <a class="btn btn-default btn-flat float-right @if(!$profile_url) btn-block @endif" href="{{route('users.edit', auth()->user()->id)}}" >
                 <i class="fas fa-key"></i>
                 <text>Change password</text>
             </a>

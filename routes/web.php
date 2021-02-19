@@ -26,8 +26,9 @@ Auth::routes([
 
 Route::middleware([TrackPageVisits::class, 'auth'])->group(function (){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('users/{user}/change-password', [UserController::class, 'edit']);
-//    Route::resource('user', UserController::class);
+    Route::resource('users', UserController::class)->only([
+        'update', 'edit'
+    ]);
 
     Route::prefix('dashboard')->group(function (){
         Route::get('', [DashboardController::class, 'index']);

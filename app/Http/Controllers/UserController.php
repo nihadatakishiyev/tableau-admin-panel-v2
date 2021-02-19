@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserChangePasswordRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use MongoDB\Driver\Session;
 
 class UserController extends Controller
 {
@@ -58,19 +63,29 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return view('auth.passwords.change', compact($user));
-//        return view('changePassword', compact($user));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param User $user
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request_data = $request->all();
+
+        $request->validate([
+            'current_password' => 'required|password',
+            'new_password' => 'required|min:8|different:current_password',
+            'password_confirmation' => 'required|same:new_password'
+        ]);
+
+        $user->password = Hash::make($request_data['new_password']);
+        $user->save();
+
+        return redirect('/dashboard')->with('status', 'Password changed successfully!');
     }
 
     /**
