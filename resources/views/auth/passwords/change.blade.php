@@ -1,4 +1,4 @@
-@extends('vendor.adminlte.pageWithoutSidebar')
+@extends('adminlte::page')
 
 @section('left-sidebar')
 
