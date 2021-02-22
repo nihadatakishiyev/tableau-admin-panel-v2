@@ -114,10 +114,11 @@ class User extends Authenticatable
             request()->session()->pull('expire_time');
     }
 
-    public function existsValidTicket() : bool{
+    public function existsValidTicket(): bool
+    {
         if (request()->session()->has('expire_time') && request()->session()->get('expire_time') < now()) {
              $this->removeTicket();
-             return 0;
+             return false;
         }
 
         return request()->session()->get('expire_time') > now();
