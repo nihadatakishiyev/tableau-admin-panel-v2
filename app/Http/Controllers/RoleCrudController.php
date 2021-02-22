@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 use Backpack\PermissionManager\app\Http\Requests\RoleStoreCrudRequest as StoreRequest;
 use Backpack\PermissionManager\app\Http\Requests\RoleUpdateCrudRequest as UpdateRequest;
+use Cache;
 
 // VALIDATION
 
 class RoleCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    use ListOperation;
+    use CreateOperation;
+    use UpdateOperation;
+    use DeleteOperation;
 
     public function setup()
     {
@@ -101,7 +106,7 @@ class RoleCrudController extends CrudController
         $this->crud->setValidation(StoreRequest::class);
 
         //otherwise, changes won't have effect
-        \Cache::forget('spatie.permission.cache');
+        Cache::forget('spatie.permission.cache');
     }
 
     public function setupUpdateOperation()
@@ -110,7 +115,7 @@ class RoleCrudController extends CrudController
         $this->crud->setValidation(UpdateRequest::class);
 
         //otherwise, changes won't have effect
-        \Cache::forget('spatie.permission.cache');
+        Cache::forget('spatie.permission.cache');
     }
 
     private function addFields()

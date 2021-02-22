@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use \Illuminate\Validation\Rule;
 
 class PositionRequest extends FormRequest
 {
@@ -26,7 +27,8 @@ class PositionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:positions'
+//            'name' => 'required|unique:positions',
+            'name' => ['required', Rule::unique('positions')->ignore($this->route('id'))]
         ];
     }
 

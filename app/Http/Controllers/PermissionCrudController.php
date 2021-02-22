@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 use Backpack\PermissionManager\app\Http\Requests\PermissionStoreCrudRequest as StoreRequest;
 use Backpack\PermissionManager\app\Http\Requests\PermissionUpdateCrudRequest as UpdateRequest;
+use Cache;
 
 // VALIDATION
 
 class PermissionCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    use ListOperation;
+//    use CreateOperation;
+//    use UpdateOperation;
+//    use DeleteOperation;
 
     public function setup()
     {
@@ -42,6 +47,7 @@ class PermissionCrudController extends CrudController
             'name'  => 'name',
             'label' => trans('backpack::permissionmanager.name'),
             'type'  => 'text',
+            'limit' => 200
         ]);
 
         if (config('backpack.permissionmanager.multiple_guards')) {
@@ -59,7 +65,7 @@ class PermissionCrudController extends CrudController
         $this->crud->setValidation(StoreRequest::class);
 
         //otherwise, changes won't have effect
-        \Cache::forget('spatie.permission.cache');
+        Cache::forget('spatie.permission.cache');
     }
 
     public function setupUpdateOperation()
@@ -68,7 +74,7 @@ class PermissionCrudController extends CrudController
         $this->crud->setValidation(UpdateRequest::class);
 
         //otherwise, changes won't have effect
-        \Cache::forget('spatie.permission.cache');
+        Cache::forget('spatie.permission.cache');
     }
 
     private function addFields()

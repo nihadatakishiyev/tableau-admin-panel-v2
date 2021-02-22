@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UnitRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class UnitRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:units'
+            'name' => ['required', Rule::unique('units')->ignore($this->route('id'))]
         ];
     }
 
