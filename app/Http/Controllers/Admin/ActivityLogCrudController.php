@@ -3,21 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ActivityLogRequest;
+use App\Models\ActivityLog;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class ActivityLogCrudController
  * @package App\Http\Controllers\Admin
- * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
+ * @property-read CrudPanel $crud
  */
 class ActivityLogCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use ListOperation;
+//    use CreateOperation;
+//    use UpdateOperation;
+//    use DeleteOperation;
+    use ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -26,7 +33,7 @@ class ActivityLogCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\ActivityLog::class);
+        CRUD::setModel(ActivityLog::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/activitylog');
         CRUD::setEntityNameStrings('activitylog', 'activity_logs');
     }
@@ -39,16 +46,17 @@ class ActivityLogCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->removeButton('create');
-        $this->crud->denyAccess('update');
-        $this->crud->denyAccess('delete');
-
-        CRUD::column('log_name');
+       CRUD::column('log_name');
         CRUD::column('description');
         CRUD::column('subject_type');
         CRUD::column('subject_id');
         CRUD::column('causer_id');
-        CRUD::column('properties');
+        $this->crud->addColumn([
+            'name' => 'properties',
+            'label' => 'properties',
+            'limit' => 150
+        ]);
+//        CRUD::column('properties');
         CRUD::column('created_at');
 
         /**
@@ -67,15 +75,14 @@ class ActivityLogCrudController extends CrudController
     protected function setupCreateOperation()
     {
 
-        $this->crud->denyAccess('create');
-//        CRUD::setValidation(ActivityLogRequest::class);
-//
-//        CRUD::field('log_name');
-//        CRUD::field('description');
-//        CRUD::field('subject_type');
-//        CRUD::field('subject_id');
-//        CRUD::field('causer_id');
-//        CRUD::field('properties');
+        CRUD::setValidation(ActivityLogRequest::class);
+
+        CRUD::field('log_name');
+        CRUD::field('description');
+        CRUD::field('subject_type');
+        CRUD::field('subject_id');
+        CRUD::field('causer_id');
+        CRUD::field('properties');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

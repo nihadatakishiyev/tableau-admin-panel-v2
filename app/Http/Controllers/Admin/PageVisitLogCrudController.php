@@ -3,21 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PageVisitLogRequest;
+use App\Models\PageVisitLog;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class PageVisitLogCrudController
  * @package App\Http\Controllers\Admin
- * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
+ * @property-read CrudPanel $crud
  */
 class PageVisitLogCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use ListOperation;
+//    use CreateOperation;
+//    use UpdateOperation;
+//    use DeleteOperation;
+    use ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -26,7 +33,7 @@ class PageVisitLogCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\PageVisitLog::class);
+        CRUD::setModel(PageVisitLog::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/pagevisitlog');
         CRUD::setEntityNameStrings('pagevisitlog', 'page_visit_logs');
     }
@@ -39,10 +46,6 @@ class PageVisitLogCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->removeButton('create');
-        $this->crud->denyAccess('update');
-        $this->crud->denyAccess('delete');
-
         CRUD::column('user')->type('relationship');
         CRUD::column('ip_address');
         CRUD::column('page_url');
@@ -63,8 +66,6 @@ class PageVisitLogCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        $this->crud->denyAccess('create');
-
         CRUD::setValidation(PageVisitLogRequest::class);
 
         CRUD::field('user_id');
