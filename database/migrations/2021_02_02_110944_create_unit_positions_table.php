@@ -18,8 +18,7 @@ class CreateUnitPositionsTable extends Migration
             $table->id();
             $table->foreignId('unit_id')->references('id')->on('units')->cascadeOnDelete();
             $table->foreignId('position_id')->references('id')->on('positions')->cascadeOnDelete();
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 
