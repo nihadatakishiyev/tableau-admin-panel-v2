@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Jobs\LogPageVisits;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,16 +19,7 @@ class TrackPageVisits
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()){
-            DB::table('page_visit_logs')->insert([
-                'user_id' => Auth::user()->id,
-                'ip_address' => request()->ip(),
-                'page_url' => $request->url(),
-                'created_at' => now()
-            ]);
-        }
-
-
+        LogPageVisits::dispatchAfterResponse($request);
         return $next($request);
     }
 }
