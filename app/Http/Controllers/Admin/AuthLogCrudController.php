@@ -35,7 +35,7 @@ class AuthLogCrudController extends CrudController
     {
         CRUD::setModel(AuthLog::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/authlog');
-        CRUD::setEntityNameStrings('authlog', 'auth_logs');
+        CRUD::setEntityNameStrings('authlog', 'authentication logs');
     }
 
     /**

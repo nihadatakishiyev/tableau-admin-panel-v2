@@ -35,7 +35,7 @@ class PageVisitLogCrudController extends CrudController
     {
         CRUD::setModel(PageVisitLog::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/pagevisitlog');
-        CRUD::setEntityNameStrings('pagevisitlog', 'page_visit_logs');
+        CRUD::setEntityNameStrings('pagevisitlog', 'page visit logs');
     }
 
     /**
