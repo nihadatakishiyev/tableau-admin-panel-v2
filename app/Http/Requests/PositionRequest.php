@@ -26,12 +26,12 @@ class PositionRequest extends FormRequest
      */
     public function rules()
     {
-//        dd(request()->all());
+//        dd(gettype(request()->units[0]));
         return [
 
 //            'name' => 'required|unique:positions',
             'name' => ['required', Rule::unique('positions')->ignore($this->route('id'))],
-            'units' => 'required'
+            'units.0' => 'required'
         ];
     }
 
