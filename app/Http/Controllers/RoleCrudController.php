@@ -137,7 +137,7 @@ class RoleCrudController extends CrudController
 
         $this->crud->addField([
             'label'     => ucfirst(trans('backpack::permissionmanager.permission_plural')),
-            'type'      => 'checklist',
+            'type'      => 'select2_multiple',
             'name'      => 'permissions',
             'entity'    => 'permissions',
             'attribute' => 'name',

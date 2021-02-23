@@ -85,7 +85,7 @@ class PositionCrudController extends CrudController
             'pivot'       => true, // on create&update, do you need to add/delete pivot table entries?
             'model'                => "App\Models\Unit", // foreign key model
             'placeholder'          => "Select a unit", // placeholder for the select
-            'minimum_input_length' => 0, // minimum characters to type before querying results
+            'minimum_input_length' => 0, // minimum characters to type before querying results,
         ]);
 
         /**
