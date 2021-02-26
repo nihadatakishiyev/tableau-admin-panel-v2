@@ -31,7 +31,7 @@ class PositionRequest extends FormRequest
 
 //            'name' => 'required|unique:positions',
             'name' => ['required', Rule::unique('positions')->ignore($this->route('id'))],
-            'units.0' => 'required'
+//            'units.0' => 'required'
         ];
     }
 
