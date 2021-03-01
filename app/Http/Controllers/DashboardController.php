@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
 //    private $user = 'ehim.analytics';
     private $user = 'ehim.pms';
-    private $remote_addr = '192.168.20.213';
+    private $remote_addr = 'tableau.asan.local';
 
     public function index(){
         return view('pnf');
