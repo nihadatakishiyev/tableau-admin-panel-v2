@@ -7,8 +7,8 @@ use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-use Backpack\PermissionManager\app\Http\Requests\UserStoreCrudRequest as StoreRequest;
-use Backpack\PermissionManager\app\Http\Requests\UserUpdateCrudRequest as UpdateRequest;
+use App\Http\Requests\UserStoreCrudRequest as StoreRequest;
+use App\Http\Requests\UserUpdateCrudRequest as UpdateRequest;
 use Illuminate\Support\Facades\Hash;
 
 class UserCrudController extends CrudController

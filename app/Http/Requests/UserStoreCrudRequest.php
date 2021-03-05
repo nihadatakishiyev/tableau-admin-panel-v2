@@ -26,8 +26,11 @@ class UserStoreCrudRequest extends FormRequest
     {
         return [
             'email'    => 'required|unique:'.config('permission.table_names.users', 'users').',email',
-            'name'     => 'required',
+            'name'     => 'required|alpha_dash',
             'password' => 'required|confirmed',
+            'department_id' => 'required',
+            'unit_id' => 'required',
+            'position_id' => 'required'
         ];
     }
 }

@@ -27,7 +27,7 @@ class UnitRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', Rule::unique('units')->ignore($this->route('id'))]
+            'name' => ['required', Rule::unique('units')->ignore($this->route('id'))],
         ];
     }
 
