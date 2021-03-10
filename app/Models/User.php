@@ -125,6 +125,6 @@ class User extends Authenticatable
     }
 
     public function setTicketCookie(){
-        request()->session()->put('expire_time', Carbon::parse(now())->addMinutes(180));
+        request()->session()->put('expire_time', now()->addMinutes(180));
     }
 }
