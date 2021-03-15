@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Jobs\LogLogoutSuccessful;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -27,11 +28,6 @@ class LogoutSuccessful
      */
     public function handle(Logout $event)
     {
-        DB::table('auth_logs')->insert([
-            'user_id' => $event->user->id,
-            'action_name' => 'Logout',
-            'ip_address' => request()->ip(),
-            'created_at' => now()
-        ]);
+        dispatch(new LogLogoutSuccessful($event));
     }
 }

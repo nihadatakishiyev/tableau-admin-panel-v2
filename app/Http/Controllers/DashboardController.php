@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use _HumbugBoxfac515c46e83\Nette\Neon\Exception;
 use App\Models\Project;
 use App\Models\View;
 use App\Models\Workbook;
@@ -28,7 +29,7 @@ class DashboardController extends Controller
 
                 return view('renderView')->with('url', $url);
             }
-            return view('errors.403');
+            return view('errors.404');
         } catch (\Exception $e){
             return $e->getMessage();
         }

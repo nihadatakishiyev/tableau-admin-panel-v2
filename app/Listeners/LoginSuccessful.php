@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Jobs\LogLoginSuccessful;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -28,11 +29,6 @@ class LoginSuccessful
      */
     public function handle(Login $event)
     {
-        DB::table('auth_logs')->insert([
-            'user_id' => $event->user->id,
-            'action_name' => 'Login',
-            'ip_address' => request()->ip(),
-            'created_at' => now()
-        ]);
+        dispatch(new LogLoginSuccessful($event));
     }
 }
