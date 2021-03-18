@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'tableau' => [
+        'user' => env('TABLEAU_USER'),
+        'address' => env('TABLEAU_ADDRESS'),
+        'params' => env('TABLEAU_REQUEST_PARAMS')
+    ],
+
 ];

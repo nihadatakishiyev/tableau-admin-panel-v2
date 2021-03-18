@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use function Illuminate\Events\queueable;
 
+/**
+ * @property mixed name
+ */
 class Project extends Model
 {
-    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
+    use CrudTrait;
     use HasFactory;
 
     protected $fillable = [
