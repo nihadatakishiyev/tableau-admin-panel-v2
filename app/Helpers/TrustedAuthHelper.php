@@ -40,8 +40,7 @@ class TrustedAuthHelper {
                     $url = self::get_trusted_url( $view->tableau_url, 1)
                     :$url = self::get_trusted_url($view->tableau_url, 0);
 
-                return $url;
-//                return view('renderView')->with('url', $url);
+                return view('renderView')->with('url', $url);
             }
             return view('errors.404');
         } catch (\Exception $e){
