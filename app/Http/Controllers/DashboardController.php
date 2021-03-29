@@ -23,7 +23,7 @@ class DashboardController extends Controller
         $pathToImage = public_path('\screenshot.png');
 
         Browsershot::url('http://google.com')
-            ->setNodeBinary('/usr/bin/node')
+            ->setNodeBinary('C:\Programs\nodejs\node.exe')
 //            ->setNpmBinary('C:\Users\n.atakishiyev\AppData\Roamingg\npm')
             ->save($pathToImage);
     }

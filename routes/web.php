@@ -25,7 +25,7 @@ Auth::routes([
 ]);
 
 Route::middleware(['auth', TrackPageVisits::class])->group(function (){
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::redirect('/', '/dashboard')->name('home');
     Route::resource('users', UserController::class)->only([
         'update', 'edit'
     ]);
