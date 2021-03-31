@@ -11,7 +11,7 @@
         <object class="tableauViz " width="100%" height="" style="border:none; padding-top: 0; min-height: 100vh">
 {{--            <object class="tableauViz " width="100%" height="1000px" style="border:none; padding-top: 0;">--}}
             <param name="path" value={{$url}} />
-            <param name="tabs" value="yes"/>
+            <param name="tabs" value="no"/>
             <param name='toolbar' value='top'/>
             <param name='showShareOptions' value='false' />
             <param name='tooltip' value='no'/>

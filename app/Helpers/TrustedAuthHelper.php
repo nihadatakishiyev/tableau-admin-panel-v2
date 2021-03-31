@@ -34,7 +34,7 @@ class TrustedAuthHelper {
     }
 
     public static function renderView(Project $proj, Workbook $wb, View $view){
-        try {
+//        try {
             if ($view->workbook_id == $wb->id && $wb->project_id == $proj->id && auth()->user()->can($proj->name . '.' . $wb->name . '.' . $view->name)){
                 auth()->user()->existsValidTicket() ?
                     $url = self::get_trusted_url( $view->tableau_url, 1)
@@ -42,9 +42,9 @@ class TrustedAuthHelper {
 
                 return view('renderView')->with('url', $url);
             }
-            return view('errors.404');
-        } catch (\Exception $e){
-            return $e->getMessage();
-        }
+            abort(404);
+//        } catch (\Exception $e){
+//            return $e->getMessage();
+//        }
     }
 }

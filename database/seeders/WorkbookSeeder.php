@@ -46,12 +46,12 @@ class WorkbookSeeder extends Seeder
                 'project_id' => 1,
             ],
             [
-                'name' => 'Video Müraciətlər-Real Vaxt',
+                'name' => 'Video Müraciət-Real Vaxt',
                 'tableau_id' => 714,
                 'project_id' => 1,
             ],
             [
-                'name' => 'Video müraciətlər-Ümumi',
+                'name' => 'Video Müraciət-Ümumi',
                 'tableau_id' => 698,
                 'project_id' => 1,
             ],

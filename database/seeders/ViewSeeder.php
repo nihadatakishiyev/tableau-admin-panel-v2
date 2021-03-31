@@ -26,6 +26,21 @@ class ViewSeeder extends Seeder
                'tableau_url' => 'AsanLoginver03/AsanLogin'
            ],
             [
+                'name' => 'Tətbiqlər Unikal Istifadəçi',
+                'workbook_id' => 2,
+               'tableau_url' => 'AsanLoginver03/Ttbiqlrzrunikalistifadistatistikas'
+           ],
+            [
+                'name' => 'İstifadəçi məlumatları',
+                'workbook_id' => 2,
+               'tableau_url' => 'AsanLoginver03/stifadimlumatlar'
+           ],
+            [
+                'name' => '1 gün ərzində proseslər',
+                'workbook_id' => 2,
+               'tableau_url' => 'AsanLoginver03/1gnrzindsistemdgednproseslr'
+           ],
+            [
                 'name' => 'General',
                 'workbook_id' => 3,
                'tableau_url' => 'EGovvsAsanLogin/General'
@@ -41,21 +56,35 @@ class ViewSeeder extends Seeder
                'tableau_url' => 'Thlillr/Hftlikhesabat-Ver01'
            ],
             [
+                'name' => 'Həftəlik Hesabat-Ver02',
+                'workbook_id' => 5,
+               'tableau_url' => 'Thlillr/Hftlikhesabat-Ver02'
+           ],
+            [
                 'name' => 'Həftəlik Hesabat-Ver01',
                 'workbook_id' => 6,
                'tableau_url' => 'Thlillr2021Novruz/Hftlikhesabat-Ver01'
            ],
             [
-                'name' => 'Video Müraciətlər-Real Vaxt',
+                'name' => 'Video Müraciət-Real Vaxt',
                 'workbook_id' => 7,
                'tableau_url' => 'AsanLoginvideomracitlr-Realvaxt/VideomracitlrRealvaxt'
+           ],
+            [
+                'name' => 'AI Nəzarət-Real Vaxt',
+                'workbook_id' => 7,
+               'tableau_url' => 'AsanLoginvideomracitlr-Realvaxt/AInnzart-Realvaxt'
            ],
             [
                 'name' => 'Video Müraciətlər-DWH',
                 'workbook_id' => 8,
                'tableau_url' => 'AsanLoginvideomracitlr/Videomracitlr-DWH'
            ],
-
+            [
+                'name' => 'AI Nəzarət-DWH',
+                'workbook_id' => 8,
+               'tableau_url' => 'AsanLoginvideomracitlr/AInnzart-DWH'
+           ],
             [
                 'name' => 'General',
                 'workbook_id' => 9,
@@ -90,6 +119,11 @@ class ViewSeeder extends Seeder
                 'name' => '1-ci Versiya',
                 'workbook_id' => 13,
                'tableau_url' => 'Hftlikthlil_16158936075370/1-civersiya'
+           ],
+            [
+                'name' => '2-ci Versiya',
+                'workbook_id' => 13,
+               'tableau_url' => 'Hftlikthlil_16158936075370/2-civersiya'
            ],
             [
                 'name' => 'MyGov',
