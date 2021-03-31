@@ -16,8 +16,8 @@ class ProjectSeeder extends Seeder
     {
         $projects = [
           [
-              'name' => 'ASAN Finans',
-              'tableau_id' => 35,
+              'name' => 'ASAN Login',
+              'tableau_id' => 49,
           ],
             [
                 'name' => 'MyGov',
