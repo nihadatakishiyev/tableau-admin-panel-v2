@@ -57,7 +57,7 @@ class MenuGenerationHelper
                             . $proj->id
                             . '/'. $workbook->id
                             . '/' . $workbook->views[0]->id,
-                        'shift' => 'ml-1'
+                        'shift' => 'ml-2'
                     ]);
                 }
                 else if (count($workbook->views) > 1){
