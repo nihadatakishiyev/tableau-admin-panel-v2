@@ -36,7 +36,7 @@ class UserUpdateCrudRequest extends FormRequest
 
         return [
             'email'    => 'required|unique:'.config('permission.table_names.users', 'users').',email,'.$userId,
-            'name'     => 'required|alpha_dash',
+            'name'     => 'required|regex:/^[\pL\s\-]+$/u',
             'password' => 'confirmed',
             'department_id' => 'required',
             'unit_id' => 'required',

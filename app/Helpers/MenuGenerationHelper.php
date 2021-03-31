@@ -47,7 +47,7 @@ class MenuGenerationHelper
                 'key' => $proj->name,
                 'text' => strtoupper($proj->name)
             ]);
-            foreach ($proj->workbooks as $workbook) {
+            foreach ($proj->workbooks as $workbook) {;
                 if (count($workbook->views) == 1){
                     $event->menu->addIn($proj->name, [
                         'key' => $workbook->name,
@@ -56,7 +56,7 @@ class MenuGenerationHelper
                             '/dashboard/'
                             . $proj->id
                             . '/'. $workbook->id
-                            . '/' . $workbook->views[0]->id,
+                            . '/' . $workbook->views->first()->id,
                         'shift' => 'ml-2'
                     ]);
                 }
