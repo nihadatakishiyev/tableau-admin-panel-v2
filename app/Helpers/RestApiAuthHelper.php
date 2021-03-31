@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Helpers;
-
 
 use Illuminate\Support\Facades\Http;
 
-class ApiAuthHelper
+class RestApiAuthHelper
 {
     public static function getAuthToken(){
         $res = Http::withHeaders([
