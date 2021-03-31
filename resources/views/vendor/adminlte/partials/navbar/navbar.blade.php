@@ -18,7 +18,7 @@
     <ul class="navbar-nav ml-auto">
         {{-- Custom right links --}}
         @if(auth()->user()->hasRole('admin'))
-            <a class="nav-link" href="/admin">Admin Dashboard</a>
+            <a class="nav-link" href="/admin"><i class="fas fa-user-shield"></i> &nbsp;Admin Dashboard</a>
         @endif
         @yield('content_top_nav_right')
 
