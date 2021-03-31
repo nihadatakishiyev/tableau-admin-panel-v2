@@ -36,4 +36,10 @@ return [
         'params' => env('TABLEAU_REQUEST_PARAMS')
     ],
 
+    'tableau_restapi' => [
+       'url' => env('TABLEAU_RESTAPI_LOGIN_URL'),
+       'username' => env('TABLEAU_RESTAPI_USERNAME'),
+       'password' => env('TABLEAU_RESTAPI_PASSWORD')
+    ],
+
 ];

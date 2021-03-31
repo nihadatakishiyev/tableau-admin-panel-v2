@@ -8,15 +8,13 @@ use Illuminate\Support\Facades\Http;
 
 class ApiAuthHelper
 {
-    private static $url = 'http://192.168.20.213/api/3.9/auth/signin';
-
     public static function getAuthToken(){
         $res = Http::withHeaders([
             'Accept' => 'application/json'
-        ])->post(self::$url, [
+        ])->post(config('services.tableau_restapi.url'), [
             'credentials' => [
-                'name' => 'ehim.analytics',
-                'password' => 'Ld!@M21%bn20',
+                'name' => config('services.tableau_restapi.username'),
+                'password' => config('services.tableau_restapi.password'),
                 'site' => [
                     'contentUrl' => ''
                 ]
