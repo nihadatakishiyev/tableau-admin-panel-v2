@@ -32,7 +32,7 @@ Route::middleware(['auth', TrackPageVisits::class])->group(function (){
     Route::get('/test', [DashboardController::class, 'test']);
 
     Route::prefix('dashboard')->group(function (){
-        Route::get('', [DashboardController::class, 'index']);
+        Route::view('', 'home');
         Route::get('/{proj}/{wb}/{view}', [DashboardController::class, 'view']);
     });
 

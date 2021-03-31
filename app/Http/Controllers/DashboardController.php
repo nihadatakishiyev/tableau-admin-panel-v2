@@ -10,9 +10,6 @@ use Spatie\Browsershot\Browsershot;
 
 class DashboardController extends Controller
 {
-    public function index(){
-        return view('pnf');
-    }
 
     public function view(Project $proj, Workbook $wb, View $view){
         return TrustedAuthHelper::renderView($proj, $wb, $view);
