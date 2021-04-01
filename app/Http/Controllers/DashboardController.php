@@ -18,7 +18,7 @@ class DashboardController extends Controller
                'hour' => '4 hours ago'
            ],
             'dashboard2' => [
-               'name' => 'Asan Finance',
+               'name' => 'Asan Finance lorem ipsum doler sit amet',
                'hour' => '2 hours ago'
            ],
             'dashboard3' => [

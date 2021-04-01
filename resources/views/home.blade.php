@@ -6,11 +6,6 @@
 
 @section('content')
     <style>
-        .home-section-header {
-            border-bottom: 1px rgb(230, 230, 230) solid;
-            margin-bottom: 1.2em;
-            color: rgba(0,0,0,.5);
-        }
         .photo {
             width: 20rem;
             height: 12rem;
@@ -24,15 +19,27 @@
         .photo:hover {
             opacity: 0.3;
         }
+        .home-section-header {
+            border-bottom: 1px rgb(230, 230, 230) solid;
+            margin-bottom: 1.2em;
+            color: rgba(0,0,0,.5);
+        }
+        .card-text{
+            max-width: 22rem;
+        }
         .card-name{
-            font-size: 18px;
+            font-size: 16px;
             margin-top: 0.5rem;
             margin-left: 1.5rem;
+            width: 14rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow:ellipsis;
         }
         .recent-access-time{
             font-size: 16px;
             margin-top: 0.5rem;
-            margin-left: 2rem;
+            /*margin-left: 2rem;*/
             color: rgba(0, 0, 0, 0.6);
         }
         .recommendation-content{
