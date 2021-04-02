@@ -110,6 +110,21 @@ class User extends Authenticatable
         return $arr;
     }
 
+    public function getPermittedViews(){
+        $projs = $this->getPermittedHierarchy();
+        $view_ids = [];
+
+        foreach ($projs as $proj) {
+            foreach ($proj->workbooks as $wb){
+                foreach ($wb->views as $view){
+                    array_push($view_ids, $view->id);
+                }
+            }
+        }
+
+        return $view_ids;
+    }
+
     public function removeTicket(){
             request()->session()->pull('expire_time');
     }
