@@ -52,12 +52,12 @@
             <h4>Recents</h4>
         </header>
         <div class="cards-container d-flex flex-row">
-            @foreach($dashboards as $dashboard)
+            @foreach($recents as $recent)
                 <div class="card-content-wrapper d-flex flex-column">
-                    <a class="photo" href="#" id="photo" style="background-image: url({{asset('photos/thumb.png')}})"></a>
+                    <a class="photo" href="{{$recent->page_url}}" id="photo" style="background-image: url({{asset('photos/thumb.png')}})"></a>
                     <div class="card-text d-flex flex-row justify-content-between">
-                        <div class="card-name">{{$dashboard['name']}}</div>
-                        <div class="recent-access-time">{{$dashboard['hour']}}</div>
+                        <div class="card-name">{{$recent->name}}</div>
+                        <div class="recent-access-time">{{$recent->seconds}}</div>
                     </div>
                 </div>
             @endforeach

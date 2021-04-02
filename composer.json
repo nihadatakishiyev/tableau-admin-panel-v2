@@ -21,7 +21,8 @@
         "laravel/ui": "^3.2",
         "spatie/browsershot": "^3.40",
         "spatie/laravel-activitylog": "^3.16",
-        "spatie/laravel-permission": "^3.18"
+        "spatie/laravel-permission": "^3.18",
+      "ext-gettext": "*"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

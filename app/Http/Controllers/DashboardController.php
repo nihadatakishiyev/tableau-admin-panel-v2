@@ -43,14 +43,31 @@ class DashboardController extends Controller
             }
         }
 
-        return DB::select('select p.user_id, v.name, p.page_url, max(p.created_at) created_at
+        $recents = DB::select('select p.user_id, v.name, p.page_url, TIMESTAMPDIFF(SECOND , max(p.created_at), now()) seconds
                         from page_visit_logs p
                         left join views v on v.id = reverse(left(REVERSE(page_url), locate(\'/\', REVERSE(page_url)) -1))
                         where user_id =' . auth()->id() . ' and page_url REGEXP \'/dashboard/[0-9]/[0-9]/[0-9]\'
                         and reverse(left(REVERSE(page_url), locate(\'/\', REVERSE(page_url)) -1)) in (' . implode(',', $view_ids) . ')
                         group by user_id, page_url, v.name
-                        order by created_at desc
+                        order by max(p.created_at) desc
                         limit 4');
+
+        foreach ($recents as $recent){
+            if ($recent->seconds < 60){
+                $recent->seconds = 'few seconds ago';
+            }
+            else if ($recent->seconds < 3600){
+                $recent->seconds = round($recent->seconds/60) . ngettext(' minute', ' minutes', $recent->seconds/60) . ' ago';
+            }
+            else if ($recent->seconds < 86400){
+                $recent->seconds = round($recent->seconds/3600) . ngettext(' hour', ' hours', $recent->seconds/60) . ' ago';
+            }
+            else {
+                $recent->seconds = round($recent->seconds/24/3600) . ngettext(' day', ' days', $recent->seconds/24/3600) . ' ago';
+            }
+        }
+
+        return view('home')->with('dashboards', $dashboards)->with('recents', $recents);
 
     }
 
