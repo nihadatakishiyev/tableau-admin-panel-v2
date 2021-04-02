@@ -60,7 +60,7 @@ class DashboardController extends Controller
                 $recent->seconds = round($recent->seconds/60) . ngettext(' minute', ' minutes', $recent->seconds/60) . ' ago';
             }
             else if ($recent->seconds < 86400){
-                $recent->seconds = round($recent->seconds/3600) . ngettext(' hour', ' hours', $recent->seconds/60) . ' ago';
+                $recent->seconds = round($recent->seconds/3600) . ngettext(' hour', ' hours', $recent->seconds/3600) . ' ago';
             }
             else {
                 $recent->seconds = round($recent->seconds/24/3600) . ngettext(' day', ' days', $recent->seconds/24/3600) . ' ago';

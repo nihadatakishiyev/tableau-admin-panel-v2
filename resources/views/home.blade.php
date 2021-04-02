@@ -21,7 +21,7 @@
         }
         .home-section-header {
             border-bottom: 1px rgb(230, 230, 230) solid;
-            margin-bottom: 1.2em;
+            margin-bottom: 1.5em;
             color: rgba(0,0,0,.5);
         }
         .card-text{
