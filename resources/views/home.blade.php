@@ -6,9 +6,6 @@
 
 @section('content')
     <style>
-        .body{
-
-        }
         .photo {
             width: 20rem;
             height: 12rem;
@@ -48,7 +45,6 @@
         .recent-content{
             margin-bottom: 5rem;
         }
-
     </style>
 
     @if (session('status'))
@@ -65,7 +61,7 @@
             <div class="cards-container d-flex flex-row">
                 @foreach($recents as $recent)
                     <div class="card-content-wrapper d-flex flex-column">
-                        <a class="photo" href="{{$recent->page_url}}" id="photo" style="background-image: url({{asset('photos/thumb.png')}})"></a>
+                        <a class="photo" href="{{$recent->page_url}}" id="photo" style="background-image: url({{asset('photos/tab')}})"></a>
                         <div class="card-text d-flex flex-row justify-content-between">
                             <div class="card-name">{{$recent->name}}</div>
                             <div class="recent-access-time">{{$recent->seconds}}</div>

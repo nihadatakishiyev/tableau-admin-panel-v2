@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ViewRequest;
+use App\Models\View;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
@@ -32,7 +33,7 @@ class ViewCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\View::class);
+        CRUD::setModel(View::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/view');
         CRUD::setEntityNameStrings('view', 'views');
     }
