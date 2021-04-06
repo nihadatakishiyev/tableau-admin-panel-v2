@@ -6,6 +6,9 @@
 
 @section('content')
     <style>
+        .body{
+
+        }
         .photo {
             width: 20rem;
             height: 12rem;
@@ -42,49 +45,57 @@
             /*margin-left: 2rem;*/
             color: rgba(0, 0, 0, 0.6);
         }
-        .recommendation-content{
-            margin-top: 5rem;
+        .recent-content{
+            margin-bottom: 5rem;
         }
 
     </style>
-    <section class="recent-content">
-        <header class="home-section-header">
-            <h4>Recents</h4>
-        </header>
-        <div class="cards-container d-flex flex-row">
-            @foreach($recents as $recent)
-                <div class="card-content-wrapper d-flex flex-column">
-                    <a class="photo" href="{{$recent->page_url}}" id="photo" style="background-image: url({{asset('photos/thumb.png')}})"></a>
-                    <div class="card-text d-flex flex-row justify-content-between">
-                        <div class="card-name">{{$recent->name}}</div>
-                        <div class="recent-access-time">{{$recent->seconds}}</div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </section>
-
-    <section class="recommendation-content">
-        <header class="home-section-header">
-            <h4>Recommendations</h4>
-        </header>
-        <div class="cards-container d-flex flex-row">
-            @foreach($dashboards as $dashboard)
-                <div class="card-content-wrapper d-flex flex-column">
-                    <a class="photo" href="#" id="photo" style="background-image: url({{asset('photos/thumb.png')}})"></a>
-                    <div class="card-text d-flex flex-row justify-content-between">
-                        <div class="card-name">{{$dashboard['name']}}</div>
-                        <div class="recent-access-time">{{$dashboard['hour']}}</div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </section>
 
     @if (session('status'))
         <div class="alert alert-success" role="alert">
             {{ session('status') }}
         </div>
+    @endif
+
+    @if(count($recents))
+        <section class="recent-content">
+            <header class="home-section-header">
+                <h4>Recents</h4>
+            </header>
+            <div class="cards-container d-flex flex-row">
+                @foreach($recents as $recent)
+                    <div class="card-content-wrapper d-flex flex-column">
+                        <a class="photo" href="{{$recent->page_url}}" id="photo" style="background-image: url({{asset('photos/thumb.png')}})"></a>
+                        <div class="card-text d-flex flex-row justify-content-between">
+                            <div class="card-name">{{$recent->name}}</div>
+                            <div class="recent-access-time">{{$recent->seconds}}</div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </section>
+    @endif
+
+    @if(count($recoms))
+        <section class="recommendation-content">
+            <header class="home-section-header">
+                <h4>Recommendations</h4>
+            </header>
+            <div class="cards-container d-flex flex-row">
+                @foreach($recoms as $recom)
+                    <div class="card-content-wrapper d-flex flex-column">
+                        <a class="photo" href="{{$recom->page_url}}" id="photo" style="background-image: url({{asset('photos/thumb.png')}})"></a>
+                        <div class="card-text d-flex flex-row justify-content-between">
+                            <div class="card-name">{{$recom->name}} </div>
+                            <div class="recent-access-time" style="font-size: 15px !important; ">
+                                <i class="fas fa-eye"></i> &nbsp;
+                                {{$recom->times}}
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </section>
     @endif
 
     <script>

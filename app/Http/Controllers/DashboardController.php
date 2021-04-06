@@ -7,7 +7,6 @@ use App\Models\Project;
 use App\Models\View;
 use App\Models\Workbook;
 use App\Helpers\TrustedAuthHelper;
-use Illuminate\Support\Facades\DB;
 use Spatie\Browsershot\Browsershot;
 
 class DashboardController extends Controller
@@ -18,8 +17,9 @@ class DashboardController extends Controller
         $homeContentHelper = new HomeContentHelper(auth()->user()->getPermittedViews());
 
         return view('home')
-            ->with('dashboards', $homeContentHelper->getRecommendationContent())
-            ->with('recents', $homeContentHelper->getRecentContent());
+            ->with('recents', $homeContentHelper->getRecentContent())
+            ->with('recoms', $homeContentHelper->getRecommendationContent());
+
 
     }
 
