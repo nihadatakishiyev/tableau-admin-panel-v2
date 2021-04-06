@@ -12,7 +12,7 @@
             margin-left: 1rem;
             border: 1px solid #d8d8d8;
             border-radius: 1px;
-            background-size: cover;
+            background-size: 100% 100%;
             background-repeat: no-repeat;
             box-shadow: 0 1px 2px rgb(0 0 0 / 15%);
         }
@@ -61,7 +61,7 @@
             <div class="cards-container d-flex flex-row">
                 @foreach($recents as $recent)
                     <div class="card-content-wrapper d-flex flex-column">
-                        <a class="photo" href="{{$recent->page_url}}" id="photo" style="background-image: url({{asset('photos/tab')}})"></a>
+                        <a class="photo" href="{{$recent->page_url}}" id="photo" style="background-image: url({{asset('photos/tableau.jpg')}})"></a>
                         <div class="card-text d-flex flex-row justify-content-between">
                             <div class="card-name">{{$recent->name}}</div>
                             <div class="recent-access-time">{{$recent->seconds}}</div>
@@ -80,7 +80,7 @@
             <div class="cards-container d-flex flex-row">
                 @foreach($recoms as $recom)
                     <div class="card-content-wrapper d-flex flex-column">
-                        <a class="photo" href="{{$recom->page_url}}" id="photo" style="background-image: url({{asset('photos/thumb.png')}})"></a>
+                        <a class="photo" href="{{$recom->page_url}}" id="photo" style="background-image: url({{asset('photos/tableau.jpg')}})"></a>
                         <div class="card-text d-flex flex-row justify-content-between">
                             <div class="card-name">{{$recom->name}} </div>
                             <div class="recent-access-time" style="font-size: 15px !important; ">
