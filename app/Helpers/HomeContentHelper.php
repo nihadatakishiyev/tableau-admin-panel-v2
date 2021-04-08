@@ -54,25 +54,6 @@ class HomeContentHelper
 
     public function getRecommendationContent()
     {
-//        return [
-//            'dashboard1' => [
-//                'name' => 'MyGov',
-//                'hour' => '4 hours ago'
-//            ],
-//            'dashboard2' => [
-//                'name' => 'Asan Finance lorem ipsum doler sit amet',
-//                'hour' => '2 hours ago'
-//            ],
-//            'dashboard3' => [
-//                'name' => 'EGov',
-//                'hour' => '3 hours ago'
-//            ],
-//            'dashboard4' => [
-//                'name' => 'AsanPay',
-//                'hour' => '1 hour ago'
-//            ],
-//        ];
-
         $recoms = DB::select('select p.user_id, v.name, p.page_url, count(*) times
                         from page_visit_logs p
                         left join views v on v.id = reverse(left(REVERSE(page_url), locate(\'/\', REVERSE(page_url)) -1))
@@ -82,7 +63,6 @@ class HomeContentHelper
                         group by user_id, page_url, v.name
                         order by count(*) desc
                         limit 4');
-
 
 //        if (count($recoms) < 4){
 //            $random_ids = array_rand($this->view_ids, min(4, count($this->view_ids)));
