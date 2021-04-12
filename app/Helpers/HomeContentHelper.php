@@ -43,7 +43,7 @@ class HomeContentHelper
                         from page_visit_logs p
                         left join views v on v.id = reverse(left(REVERSE(page_url), locate(\'/\', REVERSE(page_url)) -1))
                         where user_id =' . auth()->id() . ' and page_url REGEXP \'/dashboard/[0-9]/[0-9]/[0-9]\'
-                        and reverse(left(REVERSE(page_url), locate(\'/\', REVERSE(page_url)) -1)) in (' . implode(',', $this->view_ids) . ')
+                        and reverse(left(REVERSE(page_url), INSTR(REVERSE(page_url), \'/\') -1)) in (' . implode(',', $this->view_ids) . ')
                         group by user_id, page_url, v.name
                         order by max(p.created_at) desc
                         limit 4');
@@ -57,7 +57,7 @@ class HomeContentHelper
                         from page_visit_logs p
                         left join views v on v.id = reverse(left(REVERSE(page_url), locate(\'/\', REVERSE(page_url)) -1))
                         where user_id =' . auth()->id() . ' and page_url REGEXP \'/dashboard/[0-9]/[0-9]/[0-9]\'
-                        and reverse(left(REVERSE(page_url), locate(\'/\', REVERSE(page_url)) -1)) in
+                        and reverse(left(REVERSE(page_url), INSTR(REVERSE(page_url), \'/\') -1)) in
                         (' . implode(',', $this->view_ids) . ')
                         group by user_id, page_url, v.name
                         order by count(*) desc
