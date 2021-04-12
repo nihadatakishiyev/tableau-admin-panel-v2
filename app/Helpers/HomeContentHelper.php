@@ -39,6 +39,10 @@ class HomeContentHelper
 
     public function getRecentContent(): array
     {
+        if (!$this->view_ids){
+            return [];
+        }
+
         $recents = DB::select('select p.user_id, v.name, p.page_url, TIMESTAMPDIFF(SECOND , max(p.created_at), now()) seconds
                         from page_visit_logs p
                         left join views v on v.id = reverse(left(REVERSE(page_url), locate(\'/\', REVERSE(page_url)) -1))
@@ -53,6 +57,10 @@ class HomeContentHelper
 
     public function getRecommendationContent(): array
     {
+        if (!$this->view_ids){
+            return [];
+        }
+
         $recoms = DB::select('select p.user_id, v.name, p.page_url, count(*) times
                         from page_visit_logs p
                         left join views v on v.id = reverse(left(REVERSE(page_url), locate(\'/\', REVERSE(page_url)) -1))

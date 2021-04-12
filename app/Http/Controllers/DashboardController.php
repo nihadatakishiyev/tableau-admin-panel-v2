@@ -14,6 +14,7 @@ class DashboardController extends Controller
 
     public function index(){
 
+
         $homeContentHelper = new HomeContentHelper(auth()->user()->getPermittedViews());
 
         return view('home')
