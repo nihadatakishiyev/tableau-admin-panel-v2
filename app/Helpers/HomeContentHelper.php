@@ -3,8 +3,6 @@
 
 namespace App\Helpers;
 
-
-use App\Models\View;
 use Illuminate\Support\Facades\DB;
 
 class HomeContentHelper
@@ -19,7 +17,8 @@ class HomeContentHelper
      * @param $recents
      * @return mixed
      */
-    protected function classifyDateDiff($recents){
+    protected function classifyDateDiff($recents): mixed
+    {
         foreach ($recents as $recent){
             if ($recent->seconds < 60){
                 $recent->seconds = 'few seconds ago';
@@ -52,7 +51,7 @@ class HomeContentHelper
         return $this->classifyDateDiff($recents);
     }
 
-    public function getRecommendationContent()
+    public function getRecommendationContent(): array
     {
         $recoms = DB::select('select p.user_id, v.name, p.page_url, count(*) times
                         from page_visit_logs p
