@@ -26,8 +26,10 @@ class TrustedAuthHelper {
         }
 
         $ticket = self::get_trusted_ticket();
+
         if ($ticket < 0)
             throw new \Exception("Server did not return a valid ticket");
+
         auth()->user()->setTicketCookie();
 
         return "trusted/$ticket/views/$view_url?$params";
@@ -40,7 +42,8 @@ class TrustedAuthHelper {
                         $url = self::get_trusted_url( $view->tableau_url, 1)
                         :$url = self::get_trusted_url($view->tableau_url, 0);
                 }  catch (\Exception $e){
-                        return $e->getMessage();
+                    abort(500);
+//                        return $e->getMessage();
                 }
                 return view('renderView')->with('url', $url);
             }
