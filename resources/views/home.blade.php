@@ -39,7 +39,6 @@
         .recent-access-time{
             font-size: 16px;
             margin-top: 0.5rem;
-            /*margin-left: 2rem;*/
             color: rgba(0, 0, 0, 0.6);
         }
         .recent-content{

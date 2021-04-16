@@ -26,8 +26,9 @@ class PositionController extends Controller
 
         // if a category has been selected, only show articles in that category
         if ($form['unit_id']) {
-            $options = $options->where('id', UnitPosition::select('position_id')->where('unit_id', $form['unit_id'])->pluck('position_id'));
+            $options = $options->whereIn('id', UnitPosition::select('position_id')->where('unit_id', $form['unit_id'])->pluck('position_id'));
         }
+
 
         if ($search_term) {
             $results = $options->where('name', 'LIKE', '%'.$search_term.'%')->paginate(10);
