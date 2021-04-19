@@ -1,0 +1,14 @@
+before_script:
+  - echo "Before script"
+  - cd /var/www/html/tableau-admin-panel #your project path
+deploying:
+  stage: build
+  script:
+    - echo "Deploying"
+    - git pull origin production
+    - composer install
+    - php artisan cache:clear
+    - php artisan config:cache
+    - php artisan view:cache
+    - php artisan route:cache
+    - echo "Deployed"
