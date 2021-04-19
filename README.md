@@ -10,7 +10,7 @@
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## Google Chrome Usage Guide
 If you want to access the website using a Chrome browser, there is a tiny configuration required for chrome to work with Tableau Trusted Auth properly.
