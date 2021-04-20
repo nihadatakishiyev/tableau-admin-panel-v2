@@ -59,6 +59,7 @@ class HomeContentHelper
     {
         if (!$this->view_ids){
             return [];
+
         }
 
         $recoms = DB::select('select p.user_id, v.name, p.page_url, count(*) times
