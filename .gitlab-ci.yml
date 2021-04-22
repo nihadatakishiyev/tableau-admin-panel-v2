@@ -5,7 +5,7 @@ deploying:
   stage: build
   script:
     - echo "Deploying"
-    - git pull origin production
+    - git pull origin_ssh production
     - composer install
     - php artisan cache:clear
     - php artisan config:cache
