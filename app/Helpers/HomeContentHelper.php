@@ -9,7 +9,6 @@ class HomeContentHelper
 {
     protected $view_ids;
 
-
     public function __construct($view_ids){
         $this->view_ids = $view_ids;
     }
