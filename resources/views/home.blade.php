@@ -31,7 +31,7 @@
             font-size: 0.9vw;
             margin-top: 1vh;
             margin-left: 1.5vw;
-            width: 12vw;
+            width: 10vw;
             white-space: nowrap;
             overflow: hidden;
             text-overflow:ellipsis;
