@@ -8,7 +8,7 @@
     <style>
         .photo {
             width: 17vw;
-            height: 21vh;
+            height: 22vh;
             margin-left: 1rem;
             border: 1px solid #d8d8d8;
             border-radius: 1px;
