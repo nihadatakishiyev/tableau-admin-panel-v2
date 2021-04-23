@@ -8,9 +8,9 @@
     <style>
         .photo {
             width: 17vw;
-            min-width: 100px;
+            min-width: 260px;
             height: 21vh;
-            min-height: 100px;
+            min-height: 200px;
             margin-left: 1vw;
             border: 1px solid #d8d8d8;
             border-radius: 1px;
@@ -44,6 +44,12 @@
         }
         .recent-content{
             margin-bottom: 10vh;
+        }
+
+        @media screen and (min-width: 420px) {
+        div.photo {
+            display: none;
+            }
         }
     </style>
 
