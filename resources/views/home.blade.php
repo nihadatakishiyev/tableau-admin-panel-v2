@@ -82,7 +82,7 @@
                         <a class="photo" href="{{$recom->page_url}}" id="photo" style="background-image: url({{asset('photos/tableau.jpg')}})"></a>
                         <div class="card-text d-flex flex-row justify-content-between">
                             <div class="card-name">{{$recom->name}} </div>
-                            <div class="recent-access-time" style="font-size: 15px !important; ">
+                            <div class="recent-access-time">
                                 <i class="fas fa-eye"></i> &nbsp;
                                 {{$recom->times}}
                             </div>
