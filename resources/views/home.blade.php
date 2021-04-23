@@ -25,11 +25,11 @@
             color: rgba(0,0,0,.5);
         }
         .card-text{
+            margin-top: 0.8vh;
             max-width: 22vw;
         }
         .card-name{
             font-size: 0.8vw;
-            margin-top: 1vh;
             margin-left: 1vw;
             width: 10vw;
             white-space: nowrap;
@@ -38,7 +38,6 @@
         }
         .recent-access-time{
             font-size: 0.8vw;
-            margin-top: 1vh;
             color: rgba(0, 0, 0, 0.6);
         }
         .recent-content{
