@@ -9,7 +9,7 @@
         .photo {
             width: 17vw;
             height: 21vh;
-            margin-left: 1rem;
+            margin-left: 1vw;
             border: 1px solid #d8d8d8;
             border-radius: 1px;
             background-size: 100% 100%;
@@ -21,28 +21,28 @@
         }
         .home-section-header {
             border-bottom: 1px rgb(230, 230, 230) solid;
-            margin-bottom: 1.5em;
+            margin-bottom: 2vh;
             color: rgba(0,0,0,.5);
         }
         .card-text{
-            max-width: 22rem;
+            max-width: 22vw;
         }
         .card-name{
-            font-size: 16px;
-            margin-top: 0.5rem;
-            margin-left: 1.5rem;
-            width: 12rem;
+            font-size: 0.9vw;
+            margin-top: 1vh;
+            margin-left: 1.5vw;
+            width: 12vw;
             white-space: nowrap;
             overflow: hidden;
             text-overflow:ellipsis;
         }
         .recent-access-time{
-            font-size: 16px;
-            margin-top: 0.5rem;
+            font-size: 0.9vw;
+            margin-top: 1vh;
             color: rgba(0, 0, 0, 0.6);
         }
         .recent-content{
-            margin-bottom: 5rem;
+            margin-bottom: 10vh;
         }
     </style>
 
