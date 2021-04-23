@@ -8,14 +8,13 @@
     <style>
         .photo {
             width: 17vw;
-            min-width: 260px;
             height: 21vh;
+            min-width: 280px;
             min-height: 200px;
             margin-left: 1vw;
             border: 1px solid #d8d8d8;
             border-radius: 1px;
             background-size: 100% 100%;
-            background-repeat: no-repeat;
             box-shadow: 0 1px 2px rgb(0 0 0 / 15%);
         }
         .photo:hover {
@@ -27,30 +26,26 @@
             color: rgba(0,0,0,.5);
         }
         .card-text{
+            min-width: 280px;
             margin-top: 0.8vh;
             max-width: 22vw;
             margin-left: 1.1vw;
+            font-size:calc(12px + 0.2vw);
         }
         .card-name{
-            font-size: 0.8vw;
-            width: 10vw;
+            width: calc(120px + 4vw);
             white-space: nowrap;
             overflow: hidden;
             text-overflow:ellipsis;
         }
         .recent-access-time{
-            font-size: 0.8vw;
             color: rgba(0, 0, 0, 0.6);
         }
         .recent-content{
             margin-bottom: 10vh;
         }
 
-        @media screen and (min-width: 420px) {
-        div.photo {
-            display: none;
-            }
-        }
+
     </style>
 
     @if (session('status'))
@@ -62,7 +57,7 @@
         @if(count($recents))
             <section class="recent-content">
                 <header class="home-section-header">
-                    <h4>Recents</h4>
+                    <h3>Recents</h3>
                 </header>
                 <div class="cards-container d-flex flex-row">
                     @foreach($recents as $recent)
@@ -81,7 +76,7 @@
         @if(count($recoms))
             <section class="recommendation-content">
                 <header class="home-section-header">
-                    <h4>Recommendations</h4>
+                    <h3>Recommendations</h3>
                 </header>
                 <div class="cards-container d-flex flex-row">
                     @foreach($recoms as $recom)
