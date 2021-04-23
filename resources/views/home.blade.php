@@ -27,10 +27,10 @@
         .card-text{
             margin-top: 0.8vh;
             max-width: 22vw;
+            margin-left: 1.1vw;
         }
         .card-name{
             font-size: 0.8vw;
-            margin-left: 1vw;
             width: 10vw;
             white-space: nowrap;
             overflow: hidden;
