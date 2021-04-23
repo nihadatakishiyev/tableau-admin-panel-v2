@@ -28,7 +28,7 @@
             max-width: 22vw;
         }
         .card-name{
-            font-size: 0.9vw;
+            font-size: 0.8vw;
             margin-top: 1vh;
             margin-left: 1vw;
             width: 10vw;
@@ -37,7 +37,7 @@
             text-overflow:ellipsis;
         }
         .recent-access-time{
-            font-size: 0.9vw;
+            font-size: 0.8vw;
             margin-top: 1vh;
             color: rgba(0, 0, 0, 0.6);
         }
