@@ -42,7 +42,11 @@
             color: rgba(0, 0, 0, 0.6);
         }
         .recent-content{
-            margin-bottom: 10vh;
+            margin-bottom: 5vh;
+        }
+
+        .recommendation-content{
+            margin-bottom: 5vh;
         }
 
 
