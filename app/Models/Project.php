@@ -5,6 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use function Illuminate\Events\queueable;
 
 /**
@@ -30,7 +31,7 @@ class Project extends Model
         }));
 
         static::deleted(queueable(function ($project) {
-            Permission::where('name', $project->name)->delete();
+            DB::delete ('delete from permissions where SUBSTRING_INDEX(name, \'.\', 1) = \'' . $project->name . '\'');
         }));
     }
 }

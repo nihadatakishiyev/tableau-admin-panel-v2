@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class WorkbookRequest extends FormRequest
 {
@@ -27,7 +28,7 @@ class WorkbookRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:255',
-            'tableau_id' => 'required|unique:workbooks',
+            'tableau_id' => ['required', Rule::unique('workbooks')->ignore($this->route('id'))],
             'project_id' => 'required'
         ];
     }

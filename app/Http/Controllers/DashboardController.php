@@ -26,7 +26,10 @@ class DashboardController extends Controller
     }
 
     public function test(){
+        $name = 'test';
 
+        return $query = 'delete from permissions where name = \'' . $name
+            . '\' or SUBSTRING_INDEX(name, \'.\', 1) = \'' . $name . '\'';
 
     }
 }
