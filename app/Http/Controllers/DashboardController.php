@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\HomeContentHelper;
 use App\Models\Project;
+use App\Models\Tenant;
 use App\Models\View;
 use App\Models\Workbook;
 use App\Helpers\TrustedAuthHelper;
@@ -13,15 +14,11 @@ class DashboardController extends Controller
 {
 
     public function index(){
-
-
         $homeContentHelper = new HomeContentHelper(auth()->user()->getPermittedViews());
 
         return view('home')
             ->with('recents', $homeContentHelper->getRecentContent())
             ->with('recoms', $homeContentHelper->getRecommendationContent());
-
-
     }
 
     public function view(Project $proj, Workbook $wb, View $view){
@@ -29,13 +26,11 @@ class DashboardController extends Controller
     }
 
     public function test(){
+        $tenant1 = Tenant::create(['id' => 'egov']);
+        $tenant1->domains()->create(['domain' => 'egov.ltab']);
 
-        $pathToImage = public_path('\screenshot.png');
-
-        Browsershot::url('http://google.com')
-            ->setNodeBinary('C:\Programs\nodejs\node.exe')
-//            ->setNpmBinary('C:\Users\n.atakishiyev\AppData\Roamingg\npm')
-            ->save($pathToImage);
+        $tenant2 = Tenant::create(['id' => 'asan']);
+        $tenant2->domains()->create(['domain' => 'asan.ltab']);
     }
 }
 

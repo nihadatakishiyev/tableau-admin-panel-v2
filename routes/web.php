@@ -29,7 +29,7 @@ Route::middleware(['auth', TrackPageVisits::class])->group(function (){
     Route::resource('users', UserController::class)->only([
         'update', 'edit'
     ]);
-    Route::get('/test', [DashboardController::class, 'test']);
+
 
     Route::prefix('dashboard')->group(function (){
         Route::get('', [DashboardController::class, 'index']);
@@ -40,6 +40,8 @@ Route::middleware(['auth', TrackPageVisits::class])->group(function (){
         return redirect('login')->with(Auth::logout());
     })->name('logout_bck');
 });
+
+Route::get('/test', [DashboardController::class, 'test']);
 
 Route::middleware('auth')->group(function (){
     Route::get('/api/unit', 'App\Http\Controllers\Api\UnitController@index');
