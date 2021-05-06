@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\TrackPageVisits;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;

@@ -26,11 +26,8 @@ class DashboardController extends Controller
     }
 
     public function test(){
-        $tenant1 = Tenant::create(['id' => 'egov']);
-        $tenant1->domains()->create(['domain' => 'egov.ltab']);
 
-        $tenant2 = Tenant::create(['id' => 'asan']);
-        $tenant2->domains()->create(['domain' => 'asan.ltab']);
+
     }
 }
 

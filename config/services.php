@@ -31,7 +31,8 @@ return [
     ],
 
     'tableau' => [
-        'user' => env('TABLEAU_USER'),
+        'user_egov' => env('TABLEAU_USER_EGOV'),
+        'user_asan' => env('TABLEAU_USER_ASAN'),
         'address' => env('TABLEAU_ADDRESS'),
         'params' => env('TABLEAU_REQUEST_PARAMS')
     ],
