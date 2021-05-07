@@ -33,5 +33,9 @@ class Project extends Model
         static::deleted(queueable(function ($project) {
             DB::delete ('delete from permissions where SUBSTRING_INDEX(name, \'.\', 1) = \'' . $project->name . '\'');
         }));
+
+        static::updated(queueable(function ($project) {
+            DB::select('call update_permission(\'' . $project->getOriginal('name') . '\',\'' . $project->name . '\',\'' . '1\')');
+        }));
     }
 }

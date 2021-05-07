@@ -26,10 +26,11 @@ class DashboardController extends Controller
     }
 
     public function test(){
-        $name = 'test';
+//        $name = 'asannn';
+        $project_name = 'egovvv';
+        $project_old_name = 'asannn';
 
-        return $query = 'delete from permissions where name = \'' . $name
-            . '\' or SUBSTRING_INDEX(name, \'.\', 1) = \'' . $name . '\'';
+        return $query = 'call update_permission(\'' . $project->getOriginal('name') . '\',\'' . $project->name . '\',\'' . '2\')';
 
     }
 }

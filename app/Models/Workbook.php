@@ -38,5 +38,9 @@ class Workbook extends Model
         static::deleted(queueable(function ($workbook) {
             DB::delete ('delete from permissions where SUBSTRING_INDEX(name, \'.\', 2) = \'' . $workbook->project()->get()[0]->name . '.' . $workbook->name . '\'');
         }));
+
+        static::updated(queueable(function ($project) {
+            DB::select('call update_permission(\'' . $project->getOriginal('name') . '\',\'' . $project->name . '\',\'' . '2\')');
+        }));
     }
 }
