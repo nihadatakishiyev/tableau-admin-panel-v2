@@ -5,6 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use function Illuminate\Events\queueable;
 
 /**
@@ -37,6 +38,10 @@ class View extends Model
             $project = $view->workbook()->get()[0]->project()->get()[0];
             $workbook = $view->workbook()->get()[0];
             Permission::where('name', $project->name . '.' . $workbook->name . '.' . $view->name)->delete();
+        }));
+
+        static::updated(queueable(function ($project) {
+            DB::select('call update_permission(\'' . $project->getOriginal('name') . '\',\'' . $project->name . '\',\'' . '3\')');
         }));
     }
 }
