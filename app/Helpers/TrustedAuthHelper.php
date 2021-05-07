@@ -12,8 +12,10 @@ class TrustedAuthHelper {
     private static function get_trusted_ticket(): string
     {
         $address = config('services.tableau.address');
+        $username = tenant('id') == 'egov' ? config('services.tableau.user_egov') : config('services.tableau.user_asan');
+
         return Http::asForm()->post("http://$address/trusted", [
-            'username' => config('services.tableau.user'),
+            'username' => $username,
         ])->body();
     }
 

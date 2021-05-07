@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-gettext": "*",
         "backpack/crud": "4.1.*",
         "backpack/permissionmanager": "^6.0",
         "enlightn/enlightn": "^1.13",
@@ -22,7 +23,7 @@
         "spatie/browsershot": "^3.40",
         "spatie/laravel-activitylog": "^3.16",
         "spatie/laravel-permission": "^3.18",
-      "ext-gettext": "*"
+        "stancl/tenancy": "^3.4"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

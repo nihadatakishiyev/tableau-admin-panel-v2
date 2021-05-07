@@ -19,35 +19,7 @@ use App\Http\Controllers\DashboardController;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Auth::routes([
-    'register' => false,
-    'reset' => false
-]);
 
-Route::middleware(['auth', TrackPageVisits::class])->group(function (){
-    Route::redirect('/', '/dashboard')->name('home');
-    Route::resource('users', UserController::class)->only([
-        'update', 'edit'
-    ]);
-    Route::get('/test', [DashboardController::class, 'test']);
-
-    Route::prefix('dashboard')->group(function (){
-        Route::get('', [DashboardController::class, 'index']);
-        Route::get('/{proj}/{wb}/{view}', [DashboardController::class, 'view']);
-    });
-
-    Route::get('/logout', function(){
-        return redirect('login')->with(Auth::logout());
-    })->name('logout_bck');
-});
-
-Route::middleware('auth')->group(function (){
-    Route::get('/api/unit', 'App\Http\Controllers\Api\UnitController@index');
-    Route::get('/api/unit/{id}', 'App\Http\Controllers\Api\UnitController@show');
-
-    Route::get('/api/position', 'App\Http\Controllers\Api\PositionController@index');
-    Route::get('/api/position/{id}', 'App\Http\Controllers\Api\PositionController@show');
-});
 
 
 
