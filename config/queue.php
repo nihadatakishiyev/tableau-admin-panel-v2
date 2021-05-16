@@ -39,6 +39,7 @@ return [
             'table' => 'jobs',
             'queue' => 'default',
             'retry_after' => 90,
+            'connection' => 'mysql'
         ],
 
         'beanstalkd' => [
@@ -84,6 +85,7 @@ return [
         'driver' => env('QUEUE_FAILED_DRIVER', 'database-uuids'),
         'database' => env('DB_CONNECTION', 'mysql'),
         'table' => 'failed_jobs',
+        'connection' => 'mysql',
     ],
 
 ];
