@@ -26,6 +26,10 @@ class View extends Model
         return $this->belongsTo(Workbook::class);
     }
 
+    public function project(){
+        return $this->belongsTo(Project::class);
+    }
+
     protected static function booted()
     {
         static::created(queueable(function ($view) {

@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Api\PositionController;
+use App\Http\Controllers\Api\UnitController;
+use App\Http\Controllers\Api\WorkbookController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TrackPageVisits;
@@ -52,10 +55,13 @@ Route::middleware([
     Route::get('/test', [DashboardController::class, 'test']);
 
     Route::middleware('auth')->group(function (){
-        Route::get('/api/unit', 'App\Http\Controllers\Api\UnitController@index');
-        Route::get('/api/unit/{id}', 'App\Http\Controllers\Api\UnitController@show');
+        Route::get('/api/unit', [UnitController::class, 'index']);
+        Route::get('/api/unit/{id}', [UnitController::class, 'show']);
 
-        Route::get('/api/position', 'App\Http\Controllers\Api\PositionController@index');
-        Route::get('/api/position/{id}', 'App\Http\Controllers\Api\PositionController@show');
+        Route::get('/api/position', [PositionController::class, 'index']);
+        Route::get('/api/position/{id}', [PositionController::class, 'show']);
+
+        Route::get('/api/workbook', [WorkbookController::class, 'index']);
+        Route::get('/api/workbook/{id}', [WorkbookController::class, 'index']);
     });
 });

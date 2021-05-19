@@ -8,6 +8,7 @@ use App\Models\Tenant;
 use App\Models\View;
 use App\Models\Workbook;
 use App\Helpers\TrustedAuthHelper;
+use Illuminate\Support\Facades\Log;
 use Spatie\Browsershot\Browsershot;
 
 class DashboardController extends Controller
@@ -26,11 +27,13 @@ class DashboardController extends Controller
     }
 
     public function test(){
+        TrustedAuthHelper::get_trusted_ticket();
+        Log::info('test');
 //        $name = 'asannn';
         $project_name = 'egovvv';
         $project_old_name = 'asannn';
 
-        return $query = 'call update_permission(\'' . $project->getOriginal('name') . '\',\'' . $project->name . '\',\'' . '2\')';
+//        return $query = 'call update_permission(\'' . $project->getOriginal('name') . '\',\'' . $project->name . '\',\'' . '2\')';
 
     }
 }

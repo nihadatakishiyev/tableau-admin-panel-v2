@@ -6,15 +6,17 @@ use App\Models\Project;
 use App\Models\View;
 use App\Models\Workbook;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class TrustedAuthHelper {
 
-    private static function get_trusted_ticket(): string
+    public static function get_trusted_ticket(): string
     {
         $address = config('services.tableau.address');
         $username = tenant('id') == 'egov' ? config('services.tableau.user_egov') : config('services.tableau.user_asan');
+        Log::info(tenant('id') . ': ' . $username);
 
-        return Http::asForm()->post("http://$address/trusted", [
+        return Http::asForm()->post("https://$address/trusted", [
             'username' => $username,
         ])->body();
     }
@@ -44,8 +46,8 @@ class TrustedAuthHelper {
                         $url = self::get_trusted_url( $view->tableau_url, 1)
                         :$url = self::get_trusted_url($view->tableau_url, 0);
                 }  catch (\Exception $e){
-                    abort(500);
-//                        return $e->getMessage();
+//                    abort(500);
+                        return $e->getMessage();
                 }
                 return view('renderView')->with('url', $url);
             }

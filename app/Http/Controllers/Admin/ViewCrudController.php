@@ -69,11 +69,7 @@ class ViewCrudController extends CrudController
     {
         CRUD::setValidation(ViewRequest::class);
 
-        CRUD::field('name');
-        CRUD::field('workbook_id');
-        CRUD::field('tableau_url')->size(6);
-        CRUD::field('photo_url')->size(6);
-
+        $this->addUserFields();
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
@@ -90,5 +86,52 @@ class ViewCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function addUserFields(){
+//        CRUD::field('name');
+//        CRUD::field('project_id')->size(6);
+//        CRUD::field('workbook_id')->size(6);
+//        CRUD::field('tableau_url')->size(6);
+//        CRUD::field('photo_url')->size(6);
+
+
+        $this->crud->addFields([
+            [
+                'name'  => 'name',
+                'type'  => 'text',
+            ],
+            [
+                'label'         => 'Project',
+                'type'          => 'select',
+                'name'          => 'project_id', //name to be referred by dependant
+                'entity'        => 'project', //method name in the model
+                'attribute'     => 'name', //attribute to be displayed, ex name, id
+                'wrapper' => ['class' => 'form-group col-md-6']
+            ],
+            [
+                'label'                => 'Workbook', // Table column heading
+                'type'                 => 'select2_from_ajax',
+                'name'                 => 'workbook_id', // the column that contains the ID of that connected entity;
+                'entity'               => 'workbook', // the method that defines the relationship in your Model
+                'attribute'            => 'name', // foreign key attribute that is shown to user
+                'data_source'          => url('api/workbook'), // url to controller search function (with /{id} should return model)
+                'placeholder'          => 'Select a workbook', // placeholder for the select
+                'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
+                'minimum_input_length' => 0, // minimum characters to type before querying results
+                'dependencies'         => ['project_id'], // when a dependency changes, this select2 is reset to null
+                'wrapper' => ['class' => 'form-group col-md-6']
+            ],
+            [
+                'name'  => 'tableau_url',
+                'type'  => 'text',
+                'wrapper' => ['class' => 'form-group col-md-6']
+            ],
+            [
+                'name'  => 'photo_url',
+                'type'  => 'text',
+                'wrapper' => ['class' => 'form-group col-md-6']
+            ],
+        ]);
     }
 }

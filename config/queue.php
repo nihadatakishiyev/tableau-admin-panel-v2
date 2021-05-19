@@ -87,5 +87,4 @@ return [
         'table' => 'failed_jobs',
         'connection' => 'mysql',
     ],
-
 ];
