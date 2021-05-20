@@ -16,9 +16,7 @@ class CreateWorkbooksTable extends Migration
         Schema::create('workbooks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('tableau_id')->unique();
             $table->foreignId('project_id')->references('id')->on('projects')->cascadeOnDelete();
-            $table->string('photo_url')->nullable();
             $table->timestamps();
         });
     }

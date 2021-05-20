@@ -18,7 +18,6 @@ class CreateViewsTable extends Migration
             $table->string('name');
             $table->foreignId('workbook_id')->references('id')->on('workbooks')->cascadeOnDelete();
             $table->string('tableau_url');
-            $table->string('photo_url')->nullable();
             $table->timestamps();
         });
     }

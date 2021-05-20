@@ -30,7 +30,7 @@ class UserCrudController extends CrudController
         $this->crud->addColumns([
             [
                 'name'  => 'name',
-                'label' => trans('backpack::permissionmanager.name'),
+                'label' => 'Full Name',
                 'type'  => 'text',
             ],
             [
@@ -164,7 +164,10 @@ class UserCrudController extends CrudController
         $this->crud->addFields([
             [
                 'name'  => 'name',
-                'label' => trans('backpack::permissionmanager.name'),
+                'label' => 'Full Name',
+                'attributes' => [
+                    'placeholder' => 'Name Surname',
+                ],
                 'type'  => 'text',
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],
