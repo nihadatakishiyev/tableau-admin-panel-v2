@@ -62,6 +62,6 @@ Route::middleware([
         Route::get('/api/position/{id}', [PositionController::class, 'show']);
 
         Route::get('/api/workbook', [WorkbookController::class, 'index']);
-        Route::get('/api/workbook/{id}', [WorkbookController::class, 'index']);
+        Route::get('/api/workbook/{id}', [WorkbookController::class, 'show']);
     });
 });

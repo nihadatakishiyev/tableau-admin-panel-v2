@@ -69,33 +69,6 @@ class ViewCrudController extends CrudController
     {
         CRUD::setValidation(ViewRequest::class);
 
-        $this->addUserFields();
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
-    }
-
-    /**
-     * Define what happens when the Update operation is loaded.
-     *
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
-    protected function setupUpdateOperation()
-    {
-        $this->setupCreateOperation();
-    }
-
-    protected function addUserFields(){
-//        CRUD::field('name');
-//        CRUD::field('project_id')->size(6);
-//        CRUD::field('workbook_id')->size(6);
-//        CRUD::field('tableau_url')->size(6);
-//        CRUD::field('photo_url')->size(6);
-
-
         $this->crud->addFields([
             [
                 'name'  => 'name',
@@ -107,6 +80,7 @@ class ViewCrudController extends CrudController
                 'name'          => 'project_id', //name to be referred by dependant
                 'entity'        => 'project', //method name in the model
                 'attribute'     => 'name', //attribute to be displayed, ex name, id
+                'fake' => 'true',
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],
             [
@@ -133,5 +107,11 @@ class ViewCrudController extends CrudController
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],
         ]);
+    }
+
+
+    protected function setupUpdateOperation()
+    {
+        $this->setupCreateOperation();
     }
 }
