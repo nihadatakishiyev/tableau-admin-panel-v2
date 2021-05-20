@@ -50,7 +50,6 @@ class ViewCrudController extends CrudController
         CRUD::column('name');
         CRUD::column('workbook_id');
         CRUD::column('tableau_url');
-        CRUD::column('photo_url');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -98,11 +97,6 @@ class ViewCrudController extends CrudController
             ],
             [
                 'name'  => 'tableau_url',
-                'type'  => 'text',
-                'wrapper' => ['class' => 'form-group col-md-6']
-            ],
-            [
-                'name'  => 'photo_url',
                 'type'  => 'text',
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],

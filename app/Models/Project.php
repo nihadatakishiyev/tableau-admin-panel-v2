@@ -17,7 +17,7 @@ class Project extends Model
     use HasFactory;
 
     protected $fillable = [
-       'name', 'tableau_id', 'photo_url'
+       'name'
     ];
 
     public function workbooks(){

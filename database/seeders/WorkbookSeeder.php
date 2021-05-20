@@ -17,72 +17,58 @@ class WorkbookSeeder extends Seeder
         $wbs = [
            [
                'name' => 'Real Vaxt Analizi',
-               'tableau_id' => 644,
                'project_id' => 1,
            ],
             [
                 'name' => 'Ümumi Analiz',
-                'tableau_id' => 701,
                 'project_id' => 1,
             ],
             [
                 'name' => 'EGov və Asan Login Analiz',
-                'tableau_id' => 725,
                 'project_id' => 1,
             ],
             [
                 'name' => 'EGov və MyGov Analiz',
-                'tableau_id' => 664,
                 'project_id' => 1,
             ],
             [
                 'name' => 'Təhlillər',
-                'tableau_id' => 726,
                 'project_id' => 1,
             ],
             [
                 'name' => 'Təhlillər 2021 Novruz',
-                'tableau_id' => 732,
                 'project_id' => 1,
             ],
             [
                 'name' => 'Video Müraciət-Real Vaxt',
-                'tableau_id' => 714,
                 'project_id' => 1,
             ],
             [
                 'name' => 'Video Müraciət-Ümumi',
-                'tableau_id' => 698,
                 'project_id' => 1,
             ],
             [
                 'name' => 'Əks Əlaqə',
-                'tableau_id' => 462,
                 'project_id' => 2,
             ],
             [
                 'name' => 'Aylıq Detallı Statistika',
-                'tableau_id' => 706,
                 'project_id' => 2,
             ],
             [
                 'name' => 'Bildirişlər',
-                'tableau_id' => 656,
                 'project_id' => 2,
             ],
             [
                 'name' => 'General',
-                'tableau_id' => 653,
                 'project_id' => 2,
             ],
             [
                 'name' => 'Həftəlik Təhlil',
-                'tableau_id' => 721,
                 'project_id' => 2,
             ],
             [
                 'name' => 'MyGov Portalı',
-                'tableau_id' => 334,
                 'project_id' => 2,
             ],
         ];

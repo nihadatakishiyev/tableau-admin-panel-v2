@@ -19,7 +19,7 @@ class View extends Model
     use HasFactory;
 
     protected $fillable = [
-       'name', 'workbook_id', 'tableau_url', 'photo_url'
+       'name', 'workbook_id', 'tableau_url'
     ];
 
     public function workbook(){

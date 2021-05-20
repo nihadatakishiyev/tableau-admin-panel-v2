@@ -46,8 +46,6 @@ class ProjectCrudController extends CrudController
     {
         CRUD::column('id');
         CRUD::column('name');
-        CRUD::column('tableau_id');
-        CRUD::column('photo_url');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -66,9 +64,7 @@ class ProjectCrudController extends CrudController
     {
         CRUD::setValidation(ProjectRequest::class);
 
-        CRUD::field('name')->size(6);
-        CRUD::field('tableau_id')->size(6);
-        CRUD::field('photo_url');
+        CRUD::field('name');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

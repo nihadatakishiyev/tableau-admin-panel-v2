@@ -47,9 +47,7 @@ class WorkbookCrudController extends CrudController
     {
         CRUD::column('id');
         CRUD::column('name');
-        CRUD::column('tableau_id');
         CRUD::column('project_id');
-        CRUD::column('photo_url');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -69,9 +67,7 @@ class WorkbookCrudController extends CrudController
         CRUD::setValidation(WorkbookRequest::class);
 
         CRUD::field('name');
-        CRUD::field('tableau_id')->size(6);
         CRUD::field('project_id')->size(6);
-        CRUD::field('photo_url');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
