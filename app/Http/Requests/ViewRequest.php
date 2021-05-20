@@ -4,7 +4,11 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
+/**
+ * @property mixed workbook_id
+ */
 class ViewRequest extends FormRequest
 {
     /**
@@ -26,9 +30,9 @@ class ViewRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3|max:255',
+            'name' => 'required|min:3|max:255|unique_custom:views,name,workbook_id,' . $this->workbook_id . ',' . $this->route('id'),
             'workbook_id' => 'required',
-            'tableau_url' => 'required'
+            'tableau_url' => 'required|unique:views,tableau_url,' . $this->route('id')
         ];
     }
 
@@ -52,7 +56,7 @@ class ViewRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'name.unique_custom' => 'Name already exists for the specified workbook'
         ];
     }
 }

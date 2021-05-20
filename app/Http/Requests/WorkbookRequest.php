@@ -6,6 +6,9 @@ use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * @property mixed project_id
+ */
 class WorkbookRequest extends FormRequest
 {
     /**
@@ -27,8 +30,7 @@ class WorkbookRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3|max:255',
-            'tableau_id' => ['required', Rule::unique('workbooks')->ignore($this->route('id'))],
+            'name' => 'required|min:3|max:255|unique_custom:workbooks,name,project_id,' . $this->project_id . ',' . $this->route('id'),
             'project_id' => 'required'
         ];
     }
@@ -53,7 +55,7 @@ class WorkbookRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'name.unique_custom' => 'Name already exists for the specified project'
         ];
     }
 }
