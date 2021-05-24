@@ -30,7 +30,7 @@ class ViewRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3|max:255|unique_custom:views,name,workbook_id,' . $this->workbook_id . ',' . $this->route('id'),
+            'name' => 'required|min:3|max:255|alpha_num|unique_custom:views,name,workbook_id,' . $this->workbook_id . ',' . $this->route('id'),
             'workbook_id' => 'required',
             'tableau_url' => 'required|unique:views,tableau_url,' . $this->route('id')
         ];

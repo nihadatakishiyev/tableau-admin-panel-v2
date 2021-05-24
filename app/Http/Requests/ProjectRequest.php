@@ -28,7 +28,7 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3|max:255|unique:projects',
+            'name' => 'required|min:3|max:255|unique:projects|alpha_num',
             'tableau_id' => ['required', Rule::unique('projects')->ignore($this->route('id'))],
         ];
     }
