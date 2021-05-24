@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Helpers\HomeContentHelper;
 use App\Models\Project;
 use App\Models\Tenant;
+use App\Models\User;
 use App\Models\View;
 use App\Models\Workbook;
 use App\Helpers\TrustedAuthHelper;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Spatie\Browsershot\Browsershot;
 
@@ -27,13 +29,11 @@ class DashboardController extends Controller
     }
 
     public function test(){
-        TrustedAuthHelper::get_trusted_ticket();
-        Log::info('test');
-//        $name = 'asannn';
-        $project_name = 'egovvv';
-        $project_old_name = 'asannn';
 
-//        return $query = 'call update_permission(\'' . $project->getOriginal('name') . '\',\'' . $project->name . '\',\'' . '2\')';
+
+        $res = User::select('id')->where('name', 'like', '%admin%')->pluck('id')->toArray();
+
+        return implode(',', $res);
 
     }
 }

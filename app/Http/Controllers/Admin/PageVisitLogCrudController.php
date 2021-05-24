@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PageVisitLogRequest;
 use App\Models\PageVisitLog;
+use App\Models\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
@@ -12,6 +13,7 @@ use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class PageVisitLogCrudController
@@ -46,6 +48,29 @@ class PageVisitLogCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->addFilter([
+            'type'  => 'text',
+            'name'  => 'User',
+            'label' => 'User'
+        ],
+            false,
+            function($value) { // if the filter is active
+                $res = User::select('id')->where('name', 'like', "%$value%")->pluck('id')->toArray();
+                $this->crud->addClause('whereIn', 'user_id', $res);
+            });
+
+        $this->crud->addFilter([
+            'type'  => 'date_range',
+            'name'  => 'from_to',
+            'label' => 'Date range'
+        ],
+            false,
+            function ($value) { // if the filter is active, apply these constraints
+                 $dates = json_decode($value);
+                 $this->crud->addClause('where', 'created_at', '>=', $dates->from);
+                 $this->crud->addClause('where', 'created_at', '<=', $dates->to . ' 23:59:59');
+            });
+
         CRUD::column('user')->type('relationship');
         CRUD::column('ip_address');
         CRUD::column('page_url');

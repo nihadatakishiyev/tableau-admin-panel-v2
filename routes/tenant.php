@@ -32,7 +32,6 @@ Route::middleware([
 ])->group(function () {
     Auth::routes([
         'register' => false,
-        'reset' => false
     ]);
 
     Route::middleware(['auth', TrackPageVisits::class])->group(function (){
