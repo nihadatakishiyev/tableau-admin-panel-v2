@@ -3,20 +3,7 @@ CREATE FUNCTION FIND_OCCR(
   needle VARCHAR(12)
 )
 RETURNS VARCHAR(255)
-RETURN CHAR_LENGTH(text) - CHAR_LENGTH(REPLACE(text, needle, SPACE(LENGTH(needle)-1))); 
-
---------------------------------------------------------------------------------------
-
-CREATE FUNCTION SPLIT_STR_OLD(
-  x VARCHAR(255),
-  delim VARCHAR(12),
-  pos INT
-)
-RETURNS VARCHAR(255)
-RETURN REPLACE(SUBSTRING(SUBSTRING_INDEX(x, delim, pos),
-       LENGTH(SUBSTRING_INDEX(x, delim, pos -1)) + 1),
-       delim, '');
-
+RETURN CHAR_LENGTH(text) - CHAR_LENGTH(REPLACE(text, needle, SPACE(LENGTH(needle)-1)));
 
 --------------------------------------------------------------------------------------
 
@@ -26,10 +13,10 @@ CREATE FUNCTION SPLIT_STR(
   pos INT
 )
 RETURNS VARCHAR(255)
-RETURN CASE
-			WHEN pos = 3 then REPLACE(SUBSTRING(SUBSTRING_INDEX(x, delim, pos), LENGTH(SUBSTRING_INDEX(x, delim, pos -1))), delim, '')
-            ELSE REPLACE(SUBSTRING(SUBSTRING_INDEX(x, delim, pos), LENGTH(SUBSTRING_INDEX(x, delim, pos -1)) + 1), delim, '')
-       END;
+RETURN REPLACE(SUBSTRING(SUBSTRING_INDEX(x, delim, pos),
+       CHAR_LENGTH(SUBSTRING_INDEX(x, delim, pos -1)) + 1),
+       delim, '');
+
 
 --------------------------------------------------------------------------------------
 
@@ -37,22 +24,22 @@ DELIMITER $$
 CREATE PROCEDURE update_permission( old_name VARCHAR(255), new_name VARCHAR(255), place VARCHAR(3))
 BEGIN
 	update permissions
-	set name = 
-		CASE 
-			when place = 1 THEN 
+	set name =
+		CASE
+			when place = 1 THEN
 								case
 									when find_occr(name, '.') = 0 then new_name
 									when find_occr(name, '.') = 1 then concat(new_name, '.', split_str(name, '.', 2))
-									when find_occr(name, '.') = 2 then concat(new_name, '.', split_str(name, '.', 2), '.', split_str(name, '.', 3)) 
+									when find_occr(name, '.') = 2 then concat(new_name, '.', split_str(name, '.', 2), '.', split_str(name, '.', 3))
 								end
-			WHEN place = 2 THEN 
+			WHEN place = 2 THEN
 								CASE
 									when find_occr(name, '.') = 1 then concat(split_str(name, '.', 1),'.', new_name)
-									when find_occr(name, '.') = 2 then concat(split_str(name, '.', 1), '.', new_name, '.', split_str(name, '.', 3)) 
+									when find_occr(name, '.') = 2 then concat(split_str(name, '.', 1), '.', new_name, '.', split_str(name, '.', 3))
 								end
-			when place = 3 THEN 
+			when place = 3 THEN
 								case
-									when find_occr(name, '.') = 2 then concat(split_str(name, '.', 1), '.', split_str(name, '.', 2), '.', new_name) 
+									when find_occr(name, '.') = 2 then concat(split_str(name, '.', 1), '.', split_str(name, '.', 2), '.', new_name)
 								end
         END
     where split_str(name, '.', place) = old_name;

@@ -30,7 +30,7 @@ class WorkbookRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3|max:255|alpha_num|unique_custom:workbooks,name,project_id,' . $this->project_id . ',' . $this->route('id'),
+            'name' => 'required|min:3|max:255|regex:/^[a-zA-Z0-9\s]+$/|unique_custom:workbooks,name,project_id,' . $this->project_id . ',' . $this->route('id'),
             'project_id' => 'required'
         ];
     }
@@ -55,7 +55,8 @@ class WorkbookRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.unique_custom' => 'Name already exists for the specified project'
+            'name.unique_custom' => 'Name already exists for the specified project',
+            'name.regex' => 'The name my only contain letters, numbers, and space'
         ];
     }
 }
