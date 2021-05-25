@@ -28,7 +28,7 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3|max:255|unique:projects|regex:/^[a-zA-Z0-9\s]+$/',
+            'name' => 'required|min:3|max:255|unique:projects|regex:/^[\pL\s\-0-9]+$/u',
         ];
     }
 
