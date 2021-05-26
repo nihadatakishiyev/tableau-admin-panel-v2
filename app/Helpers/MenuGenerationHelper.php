@@ -44,13 +44,13 @@ class MenuGenerationHelper
 
         foreach ($projs as $proj) {
             $event->menu->add([
-                'key' => $proj->name,
+                'key' => $proj->id,
                 'text' => strtoupper($proj->name)
             ]);
             foreach ($proj->workbooks as $workbook) {;
                 if (count($workbook->views) == 1){
-                    $event->menu->addIn($proj->name, [
-                        'key' => $workbook->name,
+                    $event->menu->addIn($proj->id, [
+                        'key' => $workbook->id,
                         'text' => $workbook->name,
                         'url' => url('/') .
                             '/dashboard/'
@@ -61,14 +61,14 @@ class MenuGenerationHelper
                     ]);
                 }
                 else if (count($workbook->views) > 1){
-                    $event->menu->addIn($proj->name, [
-                        'key' => $workbook->name,
+                    $event->menu->addIn($proj->id, [
+                        'key' => $workbook->id,
                         'text' => $workbook->name,
                         'shift' => 'ml-2'
                     ]);
 
                     foreach ($workbook->views as $view) {
-                        $event->menu->addIn($workbook->name, [
+                        $event->menu->addIn($workbook->id, [
                             'text' => $view->name,
                             'url' => url('/') .
                                 '/dashboard/'

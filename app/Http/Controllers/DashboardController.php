@@ -30,11 +30,44 @@ class DashboardController extends Controller
 
     public function test(){
 
+        $projs = auth()->user()->getPermittedHierarchy();
 
-        $res = User::select('id')->where('name', 'like', '%admin%')->pluck('id')->toArray();
+        foreach ($projs as $proj) {
+            echo $proj->name;
+            foreach ($proj->workbooks as $workbook) {;
+                if (count($workbook->views) == 1){
+                    $event->menu->addIn($proj->name, [
+                        'key' => $workbook->name,
+                        'text' => $workbook->name,
+                        'url' => url('/') .
+                            '/dashboard/'
+                            . $proj->id
+                            . '/'. $workbook->id
+                            . '/' . $workbook->views->first()->id,
+                        'shift' => 'ml-2'
+                    ]);
+                }
+                else if (count($workbook->views) > 1){
+                    $event->menu->addIn($proj->name, [
+                        'key' => $workbook->name,
+                        'text' => $workbook->name,
+                        'shift' => 'ml-2'
+                    ]);
 
-        return implode(',', $res);
-
+                    foreach ($workbook->views as $view) {
+                        $event->menu->addIn($workbook->name, [
+                            'text' => $view->name,
+                            'url' => url('/') .
+                                '/dashboard/'
+                                . $proj->id
+                                . '/'. $workbook->id
+                                . '/' . $view->id,
+                            'shift' => 'ml-4'
+                        ]);
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -67,7 +67,7 @@ class WorkbookCrudController extends CrudController
         CRUD::setValidation(WorkbookRequest::class);
 
         CRUD::field('name');
-        CRUD::field('project_id')->size(6);
+        CRUD::field('project_id');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

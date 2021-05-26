@@ -98,8 +98,12 @@ class ViewCrudController extends CrudController
             [
                 'name'  => 'tableau_url',
                 'type'  => 'text',
-                'wrapper' => ['class' => 'form-group col-md-6']
             ],
+//            [   // Browse
+//                'name'  => 'image',
+//                'label' => 'Image',
+//                'type'  => 'browse'
+//            ],
         ]);
     }
 
