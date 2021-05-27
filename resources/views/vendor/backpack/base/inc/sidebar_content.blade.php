@@ -36,3 +36,4 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('pagevisitlog') }}'><i class='nav-icon las la-pager'></i> PageVisitLogs</a></li>
     </ul>
 </li>
+

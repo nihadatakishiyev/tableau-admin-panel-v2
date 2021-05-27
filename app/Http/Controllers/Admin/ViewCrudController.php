@@ -50,6 +50,7 @@ class ViewCrudController extends CrudController
         CRUD::column('name');
         CRUD::column('workbook_id');
         CRUD::column('tableau_url');
+        CRUD::column('pdf_url');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -99,11 +100,16 @@ class ViewCrudController extends CrudController
                 'name'  => 'tableau_url',
                 'type'  => 'text',
             ],
-//            [   // Browse
-//                'name'  => 'image',
-//                'label' => 'Image',
-//                'type'  => 'browse'
-//            ],
+            [   // Upload
+                'name'      => 'pdf_url',
+                'label'     => 'PDF',
+                'type'      => 'upload',
+                'upload'    => true,
+                'disk'      => 'uploads', // if you store files in the /public folder, please omit this; if you store them in /storage or S3, please specify it;
+                'wrapper' => ['class' => 'form-group col-md-6'],
+                'url' => 'test'
+
+            ],
         ]);
     }
 

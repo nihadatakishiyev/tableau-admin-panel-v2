@@ -11,6 +11,7 @@ use App\Models\Workbook;
 use App\Helpers\TrustedAuthHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Browsershot\Browsershot;
 
 class DashboardController extends Controller
@@ -29,45 +30,9 @@ class DashboardController extends Controller
     }
 
     public function test(){
+        $view = View::find(30);
 
-        $projs = auth()->user()->getPermittedHierarchy();
-
-        foreach ($projs as $proj) {
-            echo $proj->name;
-            foreach ($proj->workbooks as $workbook) {;
-                if (count($workbook->views) == 1){
-                    $event->menu->addIn($proj->name, [
-                        'key' => $workbook->name,
-                        'text' => $workbook->name,
-                        'url' => url('/') .
-                            '/dashboard/'
-                            . $proj->id
-                            . '/'. $workbook->id
-                            . '/' . $workbook->views->first()->id,
-                        'shift' => 'ml-2'
-                    ]);
-                }
-                else if (count($workbook->views) > 1){
-                    $event->menu->addIn($proj->name, [
-                        'key' => $workbook->name,
-                        'text' => $workbook->name,
-                        'shift' => 'ml-2'
-                    ]);
-
-                    foreach ($workbook->views as $view) {
-                        $event->menu->addIn($workbook->name, [
-                            'text' => $view->name,
-                            'url' => url('/') .
-                                '/dashboard/'
-                                . $proj->id
-                                . '/'. $workbook->id
-                                . '/' . $view->id,
-                            'shift' => 'ml-4'
-                        ]);
-                    }
-                }
-            }
-        }
+        return tenant_asset($view->pdf_url);
     }
 }
 
