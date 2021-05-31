@@ -143,6 +143,7 @@ class RoleCrudController extends CrudController
             'attribute' => 'name',
             'model'     => $this->permission_model,
             'pivot'     => true,
+            'allows_null' => false
         ]);
     }
 

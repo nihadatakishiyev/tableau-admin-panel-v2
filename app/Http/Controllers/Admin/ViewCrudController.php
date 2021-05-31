@@ -97,20 +97,37 @@ class ViewCrudController extends CrudController
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],
             [
+                'name'        => 'is_pdf',
+                'label'       => "Is PDF",
+                'type'        => 'select_from_array',
+                'options'     => ['no' => 'No', 'yes' => 'Yes'],
+                'fake' => 'true',
+                'allows_null' => false,
+                'wrapper' => ['class' => 'form-group col-md-6']
+            ],
+            [
                 'name'  => 'tableau_url',
                 'type'  => 'text',
+                "visibility" => [
+                    'field_name' => 'is_pdf',
+                    'value'      => 'no',
+                    'add_disabled' => true,
+                ],
+                'wrapper' => ['class' => 'form-group col-md-6']
             ],
-            [   // Upload
+            [
                 'name'      => 'pdf_url',
                 'label'     => 'PDF',
                 'type'      => 'upload',
                 'upload'    => true,
-                'disk'      => 'uploads', // if you store files in the /public folder, please omit this; if you store them in /storage or S3, please specify it;
+                'disk'      => 'uploads',
                 'wrapper' => ['class' => 'form-group col-md-6'],
-                'url' => 'test'
+                "visibility" => [
+                    'field_name' => 'is_pdf',
+                    'value'      => 'yes',
+                    'add_disabled' => true,
+                ]
             ],
-
-
         ]);
     }
 
