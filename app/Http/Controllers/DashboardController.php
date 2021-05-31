@@ -26,13 +26,15 @@ class DashboardController extends Controller
     }
 
     public function view(Project $proj, Workbook $wb, View $view){
+        if ($view->pdf_url !=null){
+            return view('renderPdf')->with('url', tenant_asset($view->pdf_url));
+        }
+
         return TrustedAuthHelper::renderView($proj, $wb, $view);
     }
 
     public function test(){
-        $view = View::find(30);
-
-        return tenant_asset($view->pdf_url);
+        return auth()->user()->getPermittedHierarchy();
     }
 }
 

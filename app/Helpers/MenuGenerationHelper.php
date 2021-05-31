@@ -44,37 +44,28 @@ class MenuGenerationHelper
 
         foreach ($projs as $proj) {
             $event->menu->add([
-                'key' => $proj->id,
+                'key' => 'proj' . $proj->id,
                 'text' => strtoupper($proj->name)
             ]);
-            foreach ($proj->workbooks as $workbook) {;
+            foreach ($proj->workbooks as $workbook) {
                 if (count($workbook->views) == 1){
-                    $event->menu->addIn($proj->id, [
-                        'key' => $workbook->id,
+                    $event->menu->addIn('proj' . $proj->id, [
+                        'key' => 'wb' . $workbook->id,
                         'text' => $workbook->name,
-                        'url' => url('/') .
-                            '/dashboard/'
-                            . $proj->id
-                            . '/'. $workbook->id
-                            . '/' . $workbook->views->first()->id,
+                        'url' => url('/') . '/dashboard/' . $proj->id . '/'. $workbook->id . '/' . $workbook->views->first()->id,
                         'shift' => 'ml-2'
                     ]);
                 }
-                else if (count($workbook->views) > 1){
-                    $event->menu->addIn($proj->id, [
-                        'key' => $workbook->id,
+                else {
+                    $event->menu->addIn('proj' . $proj->id, [
+                        'key' => 'wb' . $workbook->id,
                         'text' => $workbook->name,
                         'shift' => 'ml-2'
                     ]);
-
                     foreach ($workbook->views as $view) {
-                        $event->menu->addIn($workbook->id, [
+                        $event->menu->addIn('wb' . $workbook->id, [
                             'text' => $view->name,
-                            'url' => url('/') .
-                                '/dashboard/'
-                                . $proj->id
-                                . '/'. $workbook->id
-                                . '/' . $view->id,
+                            'url' => url('/') . '/dashboard/' . $proj->id . '/'. $workbook->id . '/' . $view->id,
                             'shift' => 'ml-4'
                         ]);
                     }
