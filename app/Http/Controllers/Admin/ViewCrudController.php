@@ -80,6 +80,7 @@ class ViewCrudController extends CrudController
                 'name'          => 'project_id', //name to be referred by dependant
                 'entity'        => 'project', //method name in the model
                 'attribute'     => 'name', //attribute to be displayed, ex name, id
+                'allows_null' => false,
                 'fake' => 'true',
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],
