@@ -6,6 +6,6 @@
             padding: 0;
         }
     </style>
-    <embed src="{{$url}}" width="100%" height="" style="border:none; min-height: 93vh"
-           type="application/pdf">
+
+    <embed src="{{$url}}" width="100%" height="" style="border:none; min-height: 93vh" type="application/pdf">
 @stop

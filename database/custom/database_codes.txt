@@ -7,16 +7,29 @@ RETURN CHAR_LENGTH(text) - CHAR_LENGTH(REPLACE(text, needle, SPACE(LENGTH(needle
 
 --------------------------------------------------------------------------------------
 
-CREATE FUNCTION SPLIT_STR(
+CREATE FUNCTION SPLIT_STR_OLD(
   x VARCHAR(255),
   delim VARCHAR(12),
   pos INT
 )
 RETURNS VARCHAR(255)
 RETURN REPLACE(SUBSTRING(SUBSTRING_INDEX(x, delim, pos),
-       CHAR_LENGTH(SUBSTRING_INDEX(x, delim, pos -1)) + 1),
+       LENGTH(SUBSTRING_INDEX(x, delim, pos -1)) + 1),
        delim, '');
 
+
+--------------------------------------------------------------------------------------
+
+CREATE FUNCTION SPLIT_STR(
+  x VARCHAR(255),
+  delim VARCHAR(12),
+  pos INT
+)
+RETURNS VARCHAR(255)
+RETURN CASE
+			WHEN pos = 3 then REPLACE(SUBSTRING(SUBSTRING_INDEX(x, delim, pos), LENGTH(SUBSTRING_INDEX(x, delim, pos -1))), delim, '')
+            ELSE REPLACE(SUBSTRING(SUBSTRING_INDEX(x, delim, pos), LENGTH(SUBSTRING_INDEX(x, delim, pos -1)) + 1), delim, '')
+       END;
 
 --------------------------------------------------------------------------------------
 
