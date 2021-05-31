@@ -34,7 +34,7 @@ class DashboardController extends Controller
     }
 
     public function test(){
-        return auth()->user()->getPermittedHierarchy();
+        return $pdfs = Workbook::select('id')->where('name', 'Arayışlar')->pluck('id');
     }
 }
 

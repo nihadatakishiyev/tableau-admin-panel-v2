@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\Models\Workbook;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request as Request2;
 use Illuminate\Validation\Rule;
 
 /**
@@ -16,6 +18,8 @@ class ViewRequest extends FormRequest
      *
      * @return bool
      */
+
+
     public function authorize()
     {
         // only allow updates if the user is logged in
@@ -29,10 +33,20 @@ class ViewRequest extends FormRequest
      */
     public function rules()
     {
+        $is_pdf = in_array(request('workbook_id'), Workbook::select('id')->where('name', 'Arayışlar')->pluck('id')->toArray());
+
+        if ($is_pdf){
+            return [
+                'name' => 'required|min:3|max:255|regex:/^[\pL\s\-0-9]+$/u|unique_custom:views,name,workbook_id,' . $this->workbook_id . ',' . $this->route('id'),
+                'workbook_id' => 'required',
+                'pdf_url' => 'required'
+            ];
+        }
+
         return [
             'name' => 'required|min:3|max:255|regex:/^[\pL\s\-0-9]+$/u|unique_custom:views,name,workbook_id,' . $this->workbook_id . ',' . $this->route('id'),
             'workbook_id' => 'required',
-            'tableau_url' => 'required|unique:views,tableau_url,' . $this->route('id')
+            'tableau_url' => 'required|unique:views,tableau_url,' . $this->route('id'),
         ];
     }
 
