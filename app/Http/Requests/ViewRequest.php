@@ -33,7 +33,7 @@ class ViewRequest extends FormRequest
      */
     public function rules()
     {
-        $is_pdf = in_array(request('workbook_id'), Workbook::select('id')->where('name', 'Arayışlar')->pluck('id')->toArray());
+        $is_pdf = in_array(request('workbook_id'), Workbook::select('id')->where('name', 'Təhlil arayışları')->pluck('id')->toArray());
 
         if ($is_pdf){
             return [
