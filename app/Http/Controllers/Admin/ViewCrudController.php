@@ -59,17 +59,17 @@ class ViewCrudController extends CrudController
             ],
             [
                 'name'  => 'workbook_id',
-                'label' => 'workbook_id',
+                'label' => 'Workbook',
                 'type'  => 'relationship',
             ],
             [
                 'name'  => 'tableau_url',
-                'label' => 'tableau_url',
+                'label' => 'Tableau URL',
                 'type'  => 'text',
             ],
             [
                 'name'  => 'pdf_url',
-                'label' => 'pdf_url',
+                'label' => 'PDF URL',
                 'type'  => 'text',
                 'wrapper' => [
                     'href' => function($crud, $column, $entry, $related_key){

@@ -28,6 +28,9 @@ class Project extends Model
     {
         static::created(queueable(function ($project) {
             Permission::create(['name' => $project->name]);
+
+            $role = Role::firstWhere('name', 'admin');
+            $role->givePermissionTo($project->name);
         }));
 
         static::deleted(queueable(function ($project) {

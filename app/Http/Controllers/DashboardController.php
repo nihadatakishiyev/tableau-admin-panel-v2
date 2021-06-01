@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\HomeContentHelper;
 use App\Models\Project;
+use App\Models\Role;
 use App\Models\Tenant;
 use App\Models\User;
 use App\Models\View;
@@ -34,8 +35,9 @@ class DashboardController extends Controller
     }
 
     public function test(){
-
-        return mb_strtoupper('aöğıəçşü');
+//        return gettype(Role::findById(1));
+        return gettype(Role::where('name', 'admin')->get());
+//        return mb_strtoupper('aöğıəçşü');
     }
 }
 
