@@ -37,7 +37,7 @@ class LogLoginSuccessful implements ShouldQueue
         DB::table('auth_logs')->insert([
             'user_id' => $this->event->user->id,
             'action_name' => 'Login',
-            'ip_address' => request()->ip(),
+            'ip_address' => request()->getClientIp(),
             'created_at' => now()
         ]);
     }
