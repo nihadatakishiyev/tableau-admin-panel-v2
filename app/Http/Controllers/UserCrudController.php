@@ -29,6 +29,11 @@ class UserCrudController extends CrudController
     {
         $this->crud->addColumns([
             [
+                'name'  => 'id',
+                'label' => 'ID',
+                'type'  => 'text',
+            ],
+            [
                 'name'  => 'name',
                 'label' => 'Full Name',
                 'type'  => 'text',
