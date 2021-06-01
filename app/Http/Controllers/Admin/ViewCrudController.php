@@ -46,11 +46,38 @@ class ViewCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
-        CRUD::column('name');
-        CRUD::column('workbook_id');
-        CRUD::column('tableau_url');
-        CRUD::column('pdf_url');
+        $this->crud->addColumns([
+            [
+                'name'  => 'id',
+                'label' => 'ID',
+                'type'  => 'text',
+            ],
+            [
+                'name'  => 'name',
+                'label' => 'Name',
+                'type'  => 'text',
+            ],
+            [
+                'name'  => 'workbook_id',
+                'label' => 'workbook_id',
+                'type'  => 'relationship',
+            ],
+            [
+                'name'  => 'tableau_url',
+                'label' => 'tableau_url',
+                'type'  => 'text',
+            ],
+            [
+                'name'  => 'pdf_url',
+                'label' => 'pdf_url',
+                'type'  => 'text',
+                'wrapper' => [
+                    'href' => function($crud, $column, $entry, $related_key){
+                        return tenant_asset($entry->pdf_url);
+                    }
+                ]
+            ]
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:

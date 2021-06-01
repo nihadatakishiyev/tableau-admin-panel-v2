@@ -34,7 +34,8 @@ class DashboardController extends Controller
     }
 
     public function test(){
-        return $pdfs = Workbook::select('id')->where('name', 'Arayışlar')->pluck('id');
+        $id = View::find(26);
+        return tenant_asset($id->pdf_url);
     }
 }
 
