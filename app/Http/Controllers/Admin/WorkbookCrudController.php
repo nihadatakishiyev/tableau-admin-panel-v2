@@ -86,4 +86,11 @@ class WorkbookCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+
+    protected function setupShowOperation()
+    {
+        CRUD::column('id');
+        CRUD::column('name');
+        CRUD::column('project_id');
+    }
 }

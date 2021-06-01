@@ -48,31 +48,36 @@ class ViewCrudController extends CrudController
     {
         $this->crud->addColumns([
             [
-                'name'  => 'id',
+                'name' => 'id',
                 'label' => 'ID',
-                'type'  => 'text',
+                'type' => 'text',
             ],
             [
-                'name'  => 'name',
+                'name' => 'name',
                 'label' => 'Name',
-                'type'  => 'text',
+                'type' => 'text',
             ],
             [
-                'name'  => 'workbook_id',
+                'name' => 'workbook_id',
                 'label' => 'Workbook',
-                'type'  => 'relationship',
-            ],
-            [
-                'name'  => 'tableau_url',
-                'label' => 'Tableau URL',
-                'type'  => 'text',
-            ],
-            [
-                'name'  => 'pdf_url',
-                'label' => 'PDF URL',
-                'type'  => 'text',
+                'type' => 'relationship',
                 'wrapper' => [
-                    'href' => function($crud, $column, $entry, $related_key){
+                    'href' => function ($crud, $column, $entry, $related_key) {
+                        return '/admin/workbook/' . $entry->workbook_id . '/show';
+                    }
+                ]
+            ],
+            [
+                'name' => 'tableau_url',
+                'label' => 'Tableau URL',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'pdf_url',
+                'label' => 'PDF URL',
+                'type' => 'text',
+                'wrapper' => [
+                    'href' => function ($crud, $column, $entry, $related_key) {
                         return tenant_asset($entry->pdf_url);
                     }
                 ]
@@ -94,65 +99,67 @@ class ViewCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+
         CRUD::setValidation(ViewRequest::class);
 
         $this->crud->addFields([
             [
-                'name'  => 'name',
-                'type'  => 'text',
+                'name' => 'name',
+                'type' => 'text',
             ],
             [
-                'label'         => 'Project',
-                'type'          => 'select',
-                'name'          => 'project_id', //name to be referred by dependant
-                'entity'        => 'project', //method name in the model
-                'attribute'     => 'name', //attribute to be displayed, ex name, id
+                'label' => 'Project',
+                'type' => 'select',
+                'name' => 'project_id', //name to be referred by dependant
+                'entity' => 'project', //method name in the model
+                'attribute' => 'name', //attribute to be displayed, ex name, id
                 'allows_null' => false,
                 'fake' => 'true',
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],
             [
-                'label'                => 'Workbook', // Table column heading
-                'type'                 => 'select2_from_ajax',
-                'name'                 => 'workbook_id', // the column that contains the ID of that connected entity;
-                'entity'               => 'workbook', // the method that defines the relationship in your Model
-                'attribute'            => 'name', // foreign key attribute that is shown to user
-                'data_source'          => url('api/workbook'), // url to controller search function (with /{id} should return model)
-                'placeholder'          => 'Select a workbook', // placeholder for the select
+                'label' => 'Workbook', // Table column heading
+                'type' => 'select2_from_ajax',
+                'name' => 'workbook_id', // the column that contains the ID of that connected entity;
+                'entity' => 'workbook', // the method that defines the relationship in your Model
+                'attribute' => 'name', // foreign key attribute that is shown to user
+                'data_source' => url('api/workbook'), // url to controller search function (with /{id} should return model)
+                'placeholder' => 'Select a workbook', // placeholder for the select
                 'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
                 'minimum_input_length' => 0, // minimum characters to type before querying results
-                'dependencies'         => ['project_id'], // when a dependency changes, this select2 is reset to null
+                'dependencies' => ['project_id'], // when a dependency changes, this select2 is reset to null
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],
             [
-                'name'        => 'is_pdf',
-                'label'       => "Is PDF",
-                'type'        => 'select_from_array',
-                'options'     => ['no' => 'No', 'yes' => 'Yes'],
+                'name' => 'is_pdf',
+                'label' => "Is PDF",
+                'type' => 'select_from_array',
+                'options' => ['no' => 'No', 'yes' => 'Yes'],
+                'default' => $this->isPdf() ? 'yes' : 'no',
                 'fake' => 'true',
                 'allows_null' => false,
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],
             [
-                'name'  => 'tableau_url',
-                'type'  => 'text',
+                'name' => 'tableau_url',
+                'type' => 'text',
                 "visibility" => [
                     'field_name' => 'is_pdf',
-                    'value'      => 'no',
+                    'value' => 'no',
                     'add_disabled' => true,
                 ],
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],
             [
-                'name'      => 'pdf_url',
-                'label'     => 'PDF',
-                'type'      => 'upload',
-                'upload'    => true,
-                'disk'      => 'uploads',
+                'name' => 'pdf_url',
+                'label' => 'PDF',
+                'type' => 'upload',
+                'upload' => true,
+                'disk' => 'uploads',
                 'wrapper' => ['class' => 'form-group col-md-6'],
                 "visibility" => [
                     'field_name' => 'is_pdf',
-                    'value'      => 'yes',
+                    'value' => 'yes',
                     'add_disabled' => true,
                 ]
             ],
@@ -163,5 +170,15 @@ class ViewCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function isPdf(): bool
+    {
+        $url = explode('/', request()->url());
+        if (count($url) > 2){
+            $id = $url[count($url) - 2];
+            return View::find($id)?->pdf_url != null;
+        }
+        return false;
     }
 }
