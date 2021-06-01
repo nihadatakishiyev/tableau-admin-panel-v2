@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Helpers\RestApiAuthHelper;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -37,7 +38,7 @@ class LogLoginSuccessful implements ShouldQueue
         DB::table('auth_logs')->insert([
             'user_id' => $this->event->user->id,
             'action_name' => 'Login',
-            'ip_address' => request()->getClientIp(),
+            'ip_address' => RestApiAuthHelper::getIp(),
             'created_at' => now()
         ]);
     }
