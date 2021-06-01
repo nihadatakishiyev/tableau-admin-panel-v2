@@ -45,7 +45,7 @@ class MenuGenerationHelper
         foreach ($projs as $proj) {
             $event->menu->add([
                 'key' => 'proj' . $proj->id,
-                'text' => strtoupper($proj->name)
+                'text' => mb_strtoupper($proj->name)
             ]);
             foreach ($proj->workbooks as $workbook) {
                 if (count($workbook->views) == 1){

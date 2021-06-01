@@ -34,8 +34,8 @@ class DashboardController extends Controller
     }
 
     public function test(){
-        $id = View::find(26);
-        return tenant_asset($id->pdf_url);
+
+        return mb_strtoupper('aöğıəçşü');
     }
 }
 
