@@ -73,6 +73,11 @@ class PageVisitLogCrudController extends CrudController
 
         CRUD::column('user')->type('relationship');
         CRUD::column('ip_address');
+        $this->crud->addColumn([
+            'name' => 'page_url',
+            'label' => 'Page URL',
+            'limit' => 150
+        ]);
         CRUD::column('page_url');
         CRUD::column('created_at');
 
