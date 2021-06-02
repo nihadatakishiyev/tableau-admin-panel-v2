@@ -46,7 +46,8 @@ class ActivityLogCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-       CRUD::column('log_name');
+        CRUD::column('id');
+        CRUD::column('log_name');
         CRUD::column('description');
         CRUD::column('subject_type');
         CRUD::column('subject_id');
