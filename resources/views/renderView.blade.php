@@ -14,6 +14,6 @@
             <param name="tabs" value="no"/>
             <param name='toolbar' value='top'/>
             <param name='showShareOptions' value='false' />
-            <param name='tooltip' value='no'/>
+            <param name='tooltip' value='yes'/>
         </object>
 @stop
