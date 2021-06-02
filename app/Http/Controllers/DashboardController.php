@@ -35,9 +35,7 @@ class DashboardController extends Controller
     }
 
     public function test(){
-//        return gettype(Role::findById(1));
-        return gettype(Role::where('name', 'admin')->get());
-//        return mb_strtoupper('aöğıəçşü');
+        return View::find(50)?->workbook?->project?->name;
     }
 }
 

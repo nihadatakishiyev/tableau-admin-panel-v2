@@ -101,4 +101,19 @@ class ActivityLogCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+
+    protected function setupShowOperation()
+    {
+        CRUD::column('log_name');
+        CRUD::column('description');
+        CRUD::column('subject_type');
+        CRUD::column('subject_id');
+        CRUD::column('causer_id');
+        $this->crud->addColumn([
+            'name' => 'properties',
+            'label' => 'properties',
+            'limit' => 150
+        ]);
+        CRUD::column('created_at');
+    }
 }
