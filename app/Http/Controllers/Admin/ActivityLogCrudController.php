@@ -56,7 +56,6 @@ class ActivityLogCrudController extends CrudController
             'label' => 'properties',
             'limit' => 150
         ]);
-//        CRUD::column('properties');
         CRUD::column('created_at');
 
         /**
