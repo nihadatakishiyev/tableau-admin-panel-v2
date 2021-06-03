@@ -113,7 +113,7 @@ class ViewCrudController extends CrudController
                 'entity' => 'project', //method name in the model
                 'attribute' => 'name', //attribute to be displayed, ex name, id
                 'allows_null' => false,
-                'default' => 'MyGov',
+                'default' => $this->projectDefault(),
                 'fake' => true,
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],
@@ -188,6 +188,6 @@ class ViewCrudController extends CrudController
         if (count($url) > 2){
             $id = $url[count($url) - 2];
         }
-        return View::find($id)?->workbook?->project?->name;
+        return View::find($id)?->workbook?->project?->id;
     }
 }
