@@ -45,7 +45,7 @@ class CheckIfAdmin
         if ($request->ajax() || $request->wantsJson()) {
             return response(trans('backpack::base.unauthorized'), 401);
         } else {
-            return redirect()->back();
+            return redirect()->route('home');
         }
     }
 

@@ -40,17 +40,17 @@ class TrustedAuthHelper {
     }
 
     public static function renderView(Project $proj, Workbook $wb, View $view){
-            if ($view->workbook_id == $wb->id && $wb->project_id == $proj->id && auth()->user()->can($proj->name . '.' . $wb->name . '.' . $view->name)){
-                try {
-                    auth()->user()->existsValidTicket() ?
-                        $url = self::get_trusted_url( $view->tableau_url, 1)
-                        :$url = self::get_trusted_url($view->tableau_url, 0);
-                }  catch (\Exception $e){
+        if ($view->workbook_id == $wb->id && $wb->project_id == $proj->id && auth()->user()->can($proj->name . '.' . $wb->name . '.' . $view->name)){
+            try {
+                auth()->user()->existsValidTicket() ?
+                    $url = self::get_trusted_url( $view->tableau_url, 1)
+                    :$url = self::get_trusted_url($view->tableau_url, 0);
+            }  catch (\Exception $e){
 //                    abort(500);
-                        return $e->getMessage();
-                }
-                return view('renderView')->with('url', $url);
+                return $e->getMessage();
             }
-            abort(404);
+            return view('renderView')->with('url', $url);
+        }
+        abort(404);
     }
 }

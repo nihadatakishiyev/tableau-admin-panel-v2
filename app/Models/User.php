@@ -140,6 +140,7 @@ class User extends Authenticatable
     }
 
     public function setTicketCookie(){
+//        setcookie('expire_time', now()->addMinutes(180), 0);
         request()->session()->put('expire_time', now()->addMinutes(180));
     }
 }

@@ -113,7 +113,7 @@ class ViewCrudController extends CrudController
                 'entity' => 'project', //method name in the model
                 'attribute' => 'name', //attribute to be displayed, ex name, id
                 'allows_null' => false,
-                'default' => $this->projectDefault(),
+                'default' => $this->getProjectDefault(),
                 'fake' => true,
                 'wrapper' => ['class' => 'form-group col-md-6']
             ],
@@ -182,7 +182,7 @@ class ViewCrudController extends CrudController
         return false;
     }
 
-    protected function projectDefault()
+    protected function getProjectDefault()
     {
         $url = explode('/', request()->url());
         if (count($url) > 2){

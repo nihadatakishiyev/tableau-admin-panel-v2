@@ -4,16 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Helpers\HomeContentHelper;
 use App\Models\Project;
-use App\Models\Role;
-use App\Models\Tenant;
-use App\Models\User;
 use App\Models\View;
 use App\Models\Workbook;
 use App\Helpers\TrustedAuthHelper;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
-use Spatie\Browsershot\Browsershot;
 
 class DashboardController extends Controller
 {
@@ -35,7 +28,7 @@ class DashboardController extends Controller
     }
 
     public function test(){
-        return View::find(50)?->workbook?->project?->name;
+        return range(1, Project::find(1)->workbooks->count());
     }
 }
 

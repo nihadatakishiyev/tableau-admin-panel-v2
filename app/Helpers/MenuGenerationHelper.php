@@ -45,7 +45,8 @@ class MenuGenerationHelper
         foreach ($projs as $proj) {
             $event->menu->add([
                 'key' => 'proj' . $proj->id,
-                'text' => mb_strtoupper($proj->name)
+                'text' => mb_strtoupper($proj->name),
+                'icon' => 'fas fa-project-diagram'
             ]);
             foreach ($proj->workbooks as $workbook) {
                 if (count($workbook->views) == 1){
@@ -53,20 +54,23 @@ class MenuGenerationHelper
                         'key' => 'wb' . $workbook->id,
                         'text' => $workbook->name,
                         'url' => url('/') . '/dashboard/' . $proj->id . '/'. $workbook->id . '/' . $workbook->views->first()->id,
-                        'shift' => 'ml-2'
+                        'shift' => 'ml-2',
+                        'icon' => 'fas fa-book'
                     ]);
                 }
                 else {
                     $event->menu->addIn('proj' . $proj->id, [
                         'key' => 'wb' . $workbook->id,
                         'text' => $workbook->name,
-                        'shift' => 'ml-2'
+                        'shift' => 'ml-2',
+                        'icon' => 'fas fa-book'
                     ]);
                     foreach ($workbook->views as $view) {
                         $event->menu->addIn('wb' . $workbook->id, [
                             'text' => $view->name,
                             'url' => url('/') . '/dashboard/' . $proj->id . '/'. $workbook->id . '/' . $view->id,
-                            'shift' => 'ml-4'
+                            'shift' => 'ml-4',
+                            'icon' => 'fas fa-file'
                         ]);
                     }
                 }

@@ -53,7 +53,7 @@ Route::middleware([
 
     Route::get('/test', [DashboardController::class, 'test']);
 
-    Route::middleware('auth')->group(function (){
+    Route::middleware(['auth', 'admin'])->group(function (){
         Route::get('/api/unit', [UnitController::class, 'index']);
         Route::get('/api/unit/{id}', [UnitController::class, 'show']);
 
@@ -62,5 +62,9 @@ Route::middleware([
 
         Route::get('/api/workbook', [WorkbookController::class, 'index']);
         Route::get('/api/workbook/{id}', [WorkbookController::class, 'show']);
+
+//        Route::get('/api/workbook/order', [WorkbookController::class, 'order']);
+//        Route::get('/api/workbook/order_number/{id}', [WorkbookController::class, 'show_order_number']);
+
     });
 });

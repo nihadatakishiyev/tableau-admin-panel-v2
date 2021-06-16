@@ -7,7 +7,7 @@
         }
     </style>
 
-    <embed src="{{$url}}" width="100%" height="" style="border:none; min-height: 93vh" type="application/pdf">
+    <embed src="{{$url}}" width="100%" height="" style="border:none; min-height: 92vh" type="application/pdf">
 {{--    <iframe src='{{$url}}' width='100%' height='600px' style="border:none; min-height: 93vh">--}}
 
 @stop
