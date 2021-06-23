@@ -13,8 +13,11 @@ class AddOrderNumberToProjectsTable extends Migration
      */
     public function up()
     {
+
         Schema::table('projects', function (Blueprint $table) {
-            $table->integer('order_number');
+            $table->after('name', function ($table){
+                $table->integer('order_number')->nullable();
+            });
         });
     }
 

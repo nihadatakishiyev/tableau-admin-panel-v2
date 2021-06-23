@@ -14,7 +14,9 @@ class AddOrderNumberToViewsTable extends Migration
     public function up()
     {
         Schema::table('views', function (Blueprint $table) {
-            $table->integer('order_number');
+            $table->after('pdf_url', function ($table){
+                $table->integer('order_number')->nullable();
+            });
         });
     }
 

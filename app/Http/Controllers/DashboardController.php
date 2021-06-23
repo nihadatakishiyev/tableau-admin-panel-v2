@@ -28,7 +28,7 @@ class DashboardController extends Controller
     }
 
     public function test(){
-        return auth()->user()->getPermittedHierarchy();
+        return Project::count();
     }
 }
 

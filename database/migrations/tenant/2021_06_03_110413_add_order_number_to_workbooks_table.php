@@ -14,7 +14,9 @@ class AddOrderNumberToWorkbooksTable extends Migration
     public function up()
     {
         Schema::table('workbooks', function (Blueprint $table) {
-            $table->integer('order_number');
+            $table->after('project_id', function ($table){
+                $table->integer('order_number')->nullable();
+            });
         });
     }
 
