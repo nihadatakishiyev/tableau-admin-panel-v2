@@ -14,7 +14,6 @@ class TrustedAuthHelper {
     {
         $address = config('services.tableau.address');
         $username = tenant('id') == 'egov' ? config('services.tableau.user_egov') : config('services.tableau.user_asan');
-        Log::info(tenant('id') . ': ' . $username);
 
         return Http::asForm()->post("http://$address/trusted", [
             'username' => $username,
@@ -46,7 +45,6 @@ class TrustedAuthHelper {
                     $url = self::get_trusted_url( $view->tableau_url, 1)
                     :$url = self::get_trusted_url($view->tableau_url, 0);
             }  catch (\Exception $e){
-//                    abort(500);
                 return $e->getMessage();
             }
             return view('renderView')->with('url', $url);

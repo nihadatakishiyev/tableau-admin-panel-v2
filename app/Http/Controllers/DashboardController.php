@@ -19,7 +19,7 @@ class DashboardController extends Controller
             ->with('recoms', $homeContentHelper->getRecommendationContent());
     }
 
-    public function view(Project $proj, Workbook $wb, View $view){
+    public function show(Project $proj, Workbook $wb, View $view){
         if ($view->pdf_url !=null){
             return view('renderPdf')->with('url', tenant_asset($view->pdf_url));
         }
@@ -28,7 +28,7 @@ class DashboardController extends Controller
     }
 
     public function test(){
-        return Project::count();
+        return auth()->user()->getPermittedHierarchy_old();
     }
 }
 

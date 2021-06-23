@@ -43,7 +43,7 @@ Route::middleware([
 
         Route::prefix('dashboard')->group(function (){
             Route::get('', [DashboardController::class, 'index']);
-            Route::get('/{proj}/{wb}/{view}', [DashboardController::class, 'view']);
+            Route::get('/{proj}/{wb}/{view}', [DashboardController::class, 'show']);
         });
 
         Route::get('/logout', function(){

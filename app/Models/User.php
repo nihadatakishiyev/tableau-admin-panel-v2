@@ -113,6 +113,7 @@ class User extends Authenticatable
         return $arr;
     }
 
+
     public function getPermittedViews(){
         $projs = $this->getPermittedHierarchy();
         $view_ids = [];
