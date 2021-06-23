@@ -46,6 +46,7 @@ class ProjectCrudController extends CrudController
     {
         CRUD::column('id');
         CRUD::column('name');
+        CRUD::column('order_number');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -65,6 +66,11 @@ class ProjectCrudController extends CrudController
         CRUD::setValidation(ProjectRequest::class);
 
         CRUD::field('name');
+
+        $this->crud->addField([
+            'name' => 'order_number',
+            'type' => 'number',
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

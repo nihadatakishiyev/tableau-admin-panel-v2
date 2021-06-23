@@ -28,7 +28,7 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3|max:255|unique:projects|regex:/^[\pL\s\-0-9]+$/u',
+            'name' => ['required', 'min:3', 'max:255', 'regex:/^[\pL\s\-0-9]+$/u', Rule::unique('projects')->ignore($this->route('id'))],
         ];
     }
 

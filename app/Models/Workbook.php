@@ -26,7 +26,7 @@ class Workbook extends Model
     }
 
     public function views(){
-        return $this->hasMany(View::class);
+        return $this->hasMany(View::class)->orderBy('order_number');
     }
 
     protected static function booted()

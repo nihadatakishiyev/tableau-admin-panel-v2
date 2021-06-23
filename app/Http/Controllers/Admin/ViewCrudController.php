@@ -81,7 +81,12 @@ class ViewCrudController extends CrudController
                         return tenant_asset($entry->pdf_url);
                     }
                 ]
-            ]
+            ],
+            [
+                'name' => 'order_number',
+                'label' => 'Order Number',
+                'type' => 'number',
+            ],
         ]);
 
         /**
@@ -162,6 +167,10 @@ class ViewCrudController extends CrudController
                     'value' => 'yes',
                     'add_disabled' => true,
                 ]
+            ],
+            [
+                'name' => 'order_number',
+                'type' => 'number',
             ],
         ]);
     }

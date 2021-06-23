@@ -17,7 +17,7 @@ class Project extends Model
     use HasFactory;
 
     protected $fillable = [
-       'name'
+       'name', 'order_number'
     ];
 
     public function workbooks(){
