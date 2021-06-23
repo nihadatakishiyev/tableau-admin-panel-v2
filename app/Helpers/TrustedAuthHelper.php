@@ -15,7 +15,7 @@ class TrustedAuthHelper {
         $address = config('services.tableau.address');
         $username = tenant('id') == 'egov' ? config('services.tableau.user_egov') : config('services.tableau.user_asan');
 
-        return Http::asForm()->post("https://$address/trusted", [
+        return Http::asForm()->post("$address/trusted", [
             'username' => $username,
         ])->body();
     }
