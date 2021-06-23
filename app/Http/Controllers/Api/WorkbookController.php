@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Workbook;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class WorkbookController extends Controller
 {
-//    public function index(Request $request)
+//    public function index(Request $request): LengthAwarePaginator|array
 //    {
 //        $search_term = $request->input('q');
 //
@@ -62,6 +63,7 @@ class WorkbookController extends Controller
             $options = $options->where('project_id', $form['project_id']);
         }
 
+        Log::info($options);
 
         if ($search_term) {
             $results = $options->where('name', 'LIKE', '%'.$search_term.'%')->paginate(10);
@@ -69,6 +71,9 @@ class WorkbookController extends Controller
             $results = $options->paginate(10);
         }
 
+        $options->get()[0]->id = 5;
+
+        Log::info($options->get()[0]->id);
         return $results;
     }
 

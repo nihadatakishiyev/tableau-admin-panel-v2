@@ -21,7 +21,7 @@ class Project extends Model
     ];
 
     public function workbooks(){
-        return $this->hasMany(Workbook::class);
+        return $this->hasMany(Workbook::class)->orderBy('order_number');
     }
 
     protected static function booted()

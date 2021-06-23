@@ -28,7 +28,7 @@ class DashboardController extends Controller
     }
 
     public function test(){
-        return range(1, Project::find(1)->workbooks->count());
+        return auth()->user()->getPermittedHierarchy();
     }
 }
 

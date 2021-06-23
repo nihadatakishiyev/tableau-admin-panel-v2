@@ -86,7 +86,10 @@ class User extends Authenticatable
     }
 
     public function getPermittedHierarchy(){
-        $projs = Project::with('workbooks', 'workbooks.views')->get();
+        $projs = Project::with('workbooks', 'workbooks.views')
+//            ->join('workbooks', 'projects.id', '=', 'workbooks.project_id')
+//            ->orderBy('workbooks.order_number')
+            ->get();
         $perms = $this->getPermissionsViaRoles();
         $arr = [];
 

@@ -27,8 +27,8 @@ class UnitRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', Rule::unique('units')->ignore($this->route('id'))],
-        ];
+            'name' => ['required', 'unique_custom:units,name,department_id,' . $this->department_id . ',' . $this->route('id')]
+            ];
     }
 
     /**
@@ -51,7 +51,7 @@ class UnitRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'name.unique_custom' => 'The unit with the specified name already exists for the department'
         ];
     }
 }
