@@ -62,9 +62,5 @@ Route::middleware([
 
         Route::get('/api/workbook', [WorkbookController::class, 'index']);
         Route::get('/api/workbook/{id}', [WorkbookController::class, 'show']);
-
-//        Route::get('/api/workbook/order', [WorkbookController::class, 'order']);
-//        Route::get('/api/workbook/order_number/{id}', [WorkbookController::class, 'show_order_number']);
-
     });
 });

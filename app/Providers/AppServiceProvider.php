@@ -45,8 +45,7 @@ class AppServiceProvider extends ServiceProvider
             list($table, $field, $field2, $field2Value, $id) = $parameters;
 
             Log::info('field: ' . $field . ',  value: ' . $value );
-            return $value == 0 ||
-                DB::table($table)->where($field, $value)->where($field2, $field2Value)->where('id', '!=', $id)->count() == 0;
+            return DB::table($table)->where($field, $value)->where($field2, $field2Value)->where('id', '!=', $id)->count() == 0;
         });
     }
 }

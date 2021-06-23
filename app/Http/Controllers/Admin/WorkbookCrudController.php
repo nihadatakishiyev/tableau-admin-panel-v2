@@ -71,27 +71,6 @@ class WorkbookCrudController extends CrudController
 
         CRUD::field('name');
         CRUD::field('project_id')->size(6);
-//        $this->crud->addField([
-//           'name' => 'order_number',
-//           'label' => 'Order number',
-//           'type' =>  'select_from_array',
-//            'options' => [1,2,3],
-//            'wrapper' => ['class' => 'form-group col-md-6']
-//        ]);
-
-//        $this->crud->addField([
-//            'label' => 'Order number', // Table column heading
-//            'type' => 'select2_from_ajax',
-//            'name' => 'order_number', // the column that contains the ID of that connected entity;
-//            'entity' => 'project', // the method that defines the relationship in your Model
-//            'attribute' => 'order_number', // foreign key attribute that is shown to user
-//            'data_source' => url('api/workbook'),
-//            'placeholder' => 'Select an order number', // placeholder for the select
-//            'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
-//            'minimum_input_length' => 0, // minimum characters to type before querying results
-//            'dependencies' => ['project_id'], // when a dependency changes, this select2 is reset to null
-//            'wrapper' => ['class' => 'form-group col-md-6']
-//        ]);
 
         $this->crud->addField([   // Number
             'name' => 'order_number',
@@ -123,8 +102,5 @@ class WorkbookCrudController extends CrudController
         CRUD::column('id');
         CRUD::column('name');
         CRUD::column('project_id');
-    }
-
-    protected function getOrderArray(){
     }
 }
