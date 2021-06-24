@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 use phpDocumentor\Reflection\Types\Boolean;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
@@ -86,29 +87,38 @@ class User extends Authenticatable
     }
 
     public function getPermittedHierarchy(){
-        $projs = Project::with('workbooks', 'workbooks.views')
-            ->orderBy('order_number')
-            ->get();
+        $perms = auth()->user()->getPermissionsViaRoles();
+        $permitted_projects = [];
 
-        $perms = $this->getPermissionsViaRoles();
-        $arr = [];
+        foreach ($perms as $perm){
+            $proj_name = explode('.', $perm->name)[0];
+            if (!in_array($proj_name, $permitted_projects))
+                $permitted_projects[]= $proj_name;
+        }
+
+        $projs = Project::whereIn('name', $permitted_projects)
+            ->with('workbooks', 'workbooks.views')
+            ->orderBy('order_number')
+            ->get(); //all projects, workbooks and views
+
+
+        $arr = []; //user has permissions
 
         foreach ($projs as $i => $proj){
-            if($this->can($proj->name) || MenuGenerationHelper::projChecker($perms, $proj->name)){
                 array_push($arr, $proj);
                 foreach ($proj->workbooks as $j=> $workbook){
-                    if (!$this->can($proj->name . '.' . $workbook->name) && !MenuGenerationHelper::wbChecker($perms, $workbook->name)){
+                    if (!$this->can($proj->name . '.' . $workbook->name) && !MenuGenerationHelper::wbChecker($perms, $workbook->name)){ //check for several workbooks same name
                         unset($arr[$i]->workbooks[$j]);
                     }
                     else {
                         foreach ($workbook->views as $k => $view){
-                            if (!$this->can($proj->name . '.' . $workbook->name . '.' . $view->name) && !MenuGenerationHelper::viewChecker($perms, $view->name)){
+                            if (!$this->can($proj->name . '.' . $workbook->name . '.' . $view->name)){
+                                Log::info($proj->name . '.' . $workbook->name . '.' . $view->name);
                                 unset($arr[$i]->workbooks[$j]->views[$k]);
                             }
                         }
                     }
                 }
-            }
         }
         return $arr;
     }

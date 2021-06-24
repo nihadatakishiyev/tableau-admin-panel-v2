@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\HomeContentHelper;
+use App\Helpers\MenuGenerationHelper;
 use App\Models\Project;
 use App\Models\View;
 use App\Models\Workbook;
@@ -27,8 +28,14 @@ class DashboardController extends Controller
         return TrustedAuthHelper::renderView($proj, $wb, $view);
     }
 
-    public function test(){
-        return config('services.tableau.address') . '/javascripts/api/viz_v1.js';
+    public function test()
+    {
+//        return auth()->user()->getPermittedHierarchy();
+//        return auth()->user()->can('Asan Finans.Ümumi.Qurum və xidmət siyahısı');
+
     }
+
+
+
 }
 

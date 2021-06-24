@@ -52,6 +52,9 @@ Route::middleware([
     });
 
     Route::get('/test', [DashboardController::class, 'test']);
+    Route::get('/test2', function (){
+        return \auth()->user()->getPermittedHierarchy();
+    });
 
     Route::middleware(['auth', 'admin'])->group(function (){
         Route::get('/api/unit', [UnitController::class, 'index']);
