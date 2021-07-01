@@ -30,17 +30,12 @@ class WorkbookController extends Controller
             $options = $options->where('project_id', $form['project_id']);
         }
 
-        Log::info($options);
-
         if ($search_term) {
             $results = $options->where('name', 'LIKE', '%'.$search_term.'%')->paginate(10);
         } else {
             $results = $options->paginate(10);
         }
 
-        $options->get()[0]->id = 5;
-
-        Log::info($options->get()[0]->id);
         return $results;
     }
 

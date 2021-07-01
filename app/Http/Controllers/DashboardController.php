@@ -30,7 +30,7 @@ class DashboardController extends Controller
 
     public function test()
     {
-//        return auth()->user()->getPermittedHierarchy();
+        return auth()->user()->getPermittedViews();
 //        return auth()->user()->can('Asan Finans.Ümumi.Qurum və xidmət siyahısı');
 
     }

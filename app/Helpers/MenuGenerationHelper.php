@@ -6,17 +6,6 @@ namespace App\Helpers;
 
 class MenuGenerationHelper
 {
-    public static function projChecker($perms, $name): bool
-    {
-        foreach ($perms as $perm) {
-            $temp = explode( '.', $perm->name);
-            if (abs(!strcmp($temp[0], $name))){
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static function wbChecker($perms, $name): bool // $perms, workbook->name
     {
         foreach ($perms as $perm) {
@@ -73,49 +62,6 @@ class MenuGenerationHelper
                             'icon' => 'fas fa-file'
                         ]);
                     }
-                }
-            }
-        }
-    }
-
-    public static function generateSidebarOld($event)
-    {
-        $projs = auth()->user()->getPermittedHierarchy();
-
-        foreach ($projs as $proj){
-            $event->menu->add([
-                'header' => strtoupper($proj->name),
-            ]);
-            foreach ($proj->workbooks as $workbook){
-                $arr = [];
-                foreach ($workbook->views as $view){
-                    array_push($arr, [
-                        'text' => $view->name,
-                        'id' => $view->id,
-                        'url' => url('/') .
-                            '/dashboard/'
-                            . $proj->id
-                            . '/'. $workbook->id
-                            . '/'. $view->id,
-                        'shift' => 'ml-3'
-                    ]);
-                }
-                if (sizeof($arr) > 1){
-                    $event->menu->add([
-                        'key' => $workbook->name,
-                        'text' => $workbook->name,
-                        'submenu' => $arr
-                    ]);
-                } else if (sizeof($arr) == 1){
-                    $event->menu->add([
-                        'key' => $workbook->name,
-                        'text' => $workbook->name,
-                        'url' => url('/') .
-                            '/dashboard/'
-                            . $proj->id
-                            . '/'. $workbook->id
-                            . '/' . $arr[0]['id'],
-                    ]);
                 }
             }
         }

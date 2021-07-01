@@ -88,7 +88,7 @@ class User extends Authenticatable
 
     public function getPermittedHierarchy(){
         $perms = auth()->user()->getPermissionsViaRoles();
-        $permitted_projects = [];
+        $permitted_projects = []; //names of permitted projects
 
         foreach ($perms as $perm){
             $proj_name = explode('.', $perm->name)[0];
@@ -99,7 +99,7 @@ class User extends Authenticatable
         $projs = Project::whereIn('name', $permitted_projects)
             ->with('workbooks', 'workbooks.views')
             ->orderBy('order_number')
-            ->get(); //all projects, workbooks and views
+            ->get(); //permitted projects with all workbooks and views
 
 
         $arr = []; //user has permissions
