@@ -48,6 +48,7 @@ class PageVisitLogCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        CRUD::column('id');
         $this->crud->addFilter([
             'type'  => 'text',
             'name'  => 'User',

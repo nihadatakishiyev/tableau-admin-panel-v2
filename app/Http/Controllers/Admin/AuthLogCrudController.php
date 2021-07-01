@@ -46,6 +46,7 @@ class AuthLogCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        CRUD::column('id');
         CRUD::column('user')->type('relationship');
         CRUD::column('action_name');
         CRUD::column('ip_address');

@@ -59,7 +59,7 @@ class MenuGenerationHelper
                             'text' => $view->name,
                             'url' => url('/') . '/dashboard/' . $proj->id . '/'. $workbook->id . '/' . $view->id,
                             'shift' => 'ml-4',
-                            'icon' => 'fas fa-file'
+                            'icon' => $view->pdf_url == null ? 'fas fa-file-alt': 'fas fa-file-pdf'
                         ]);
                     }
                 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\HomeContentHelper;
 use App\Helpers\MenuGenerationHelper;
+use App\Helpers\RestApiAuthHelper;
 use App\Models\Project;
 use App\Models\View;
 use App\Models\Workbook;
@@ -30,7 +31,7 @@ class DashboardController extends Controller
 
     public function test()
     {
-        return auth()->user()->getPermittedViews();
+        return RestApiAuthHelper::getAuthToken();
 //        return auth()->user()->can('Asan Finans.Ümumi.Qurum və xidmət siyahısı');
 
     }

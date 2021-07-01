@@ -101,7 +101,6 @@ class User extends Authenticatable
             ->orderBy('order_number')
             ->get(); //permitted projects with all workbooks and views
 
-
         $arr = []; //user has permissions
 
         foreach ($projs as $i => $proj){
@@ -113,7 +112,6 @@ class User extends Authenticatable
                     else {
                         foreach ($workbook->views as $k => $view){
                             if (!$this->can($proj->name . '.' . $workbook->name . '.' . $view->name)){
-                                Log::info($proj->name . '.' . $workbook->name . '.' . $view->name);
                                 unset($arr[$i]->workbooks[$j]->views[$k]);
                             }
                         }
