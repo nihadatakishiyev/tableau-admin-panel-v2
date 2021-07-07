@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\HomeContentHelper;
-use App\Helpers\MenuGenerationHelper;
 use App\Helpers\RestApiAuthHelper;
 use App\Models\Project;
 use App\Models\View;
@@ -33,7 +32,6 @@ class DashboardController extends Controller
     {
         return RestApiAuthHelper::getAuthToken();
 //        return auth()->user()->can('Asan Finans.Ümumi.Qurum və xidmət siyahısı');
-
     }
 
 
