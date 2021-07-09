@@ -11,6 +11,8 @@
             height: 21vh;
             min-width: 280px;
             min-height: 200px;
+            max-width: 392px;
+            max-height: 280px;
             margin-left: 1vw;
             border: 1px solid #d8d8d8;
             border-radius: 1px;
