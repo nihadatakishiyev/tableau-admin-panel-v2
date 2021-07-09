@@ -34,11 +34,13 @@ class LogPageVisits implements ShouldQueue
      */
     public function handle(Request $request)
     {
-        DB::table('page_visit_logs')->insert([
-            'user_id' => Auth::user()->id,
-            'ip_address' => request()->ip(),
-            'page_url' => $request->url(),
-            'created_at' => now()
-        ]);
+        if ($request->url()!= route('home')){
+            DB::table('page_visit_logs')->insert([
+                'user_id' => Auth::id(),
+                'ip_address' => request()->ip(),
+                'page_url' => $request->url(),
+                'created_at' => now()
+            ]);
+        }
     }
 }

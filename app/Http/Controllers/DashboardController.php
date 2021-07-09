@@ -30,8 +30,7 @@ class DashboardController extends Controller
 
     public function test()
     {
-        return RestApiAuthHelper::getAuthToken();
-//        return auth()->user()->can('Asan Finans.Ümumi.Qurum və xidmət siyahısı');
+        return route('home');
     }
 
 
