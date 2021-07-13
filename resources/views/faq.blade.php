@@ -53,7 +53,7 @@
                         <div class="card-header p-2" id="headingThree">
                             <h5 class="mb-0">
                                 <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    3. Nə üçün <strong>Safari</strong> ilə sayta daxil olduqda hesabatları görə bilmirəm?
+                                    3. Nə üçün <strong>cd:qi</strong> ilə sayta daxil olduqda hesabatları görə bilmirəm?
                                 </button>
                             </h5>
                         </div>
