@@ -48,7 +48,7 @@ Route::middleware([
 
         Route::get('/faq', function (){
             return view('faq');
-        });
+        })->name('faq');
 
         Route::get('/logout', function(){
             return redirect('login')->with(Auth::logout());

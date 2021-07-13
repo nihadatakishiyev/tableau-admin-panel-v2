@@ -30,7 +30,7 @@ class DashboardController extends Controller
 
     public function test()
     {
-        return route('home');
+        return "{{route('faq')}}";
     }
 
 

@@ -20,7 +20,7 @@
         @if(auth()->user()->hasRole('admin'))
             <a class="nav-link" href="/admin"><i class="fas fa-user-shield"></i> &nbsp;Admin Dashboard</a>
         @endif
-        <a class="nav-link" href="/faq"><i class="fas fa-question-circle"></i> &nbsp;FAQ</a>
+        <a class="nav-link" href="{{route('faq')}}"><i class="fas fa-question-circle"></i> &nbsp;FAQ</a>
         @yield('content_top_nav_right')
 
         {{-- Configured right links --}}
