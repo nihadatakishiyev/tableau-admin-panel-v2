@@ -55,8 +55,7 @@
                                 <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                     3. Nə üçün <strong>Safari</strong> ilə sayta daxil olduqda hesabatları görə bilmirəm?
                                 </button>
-                            </h5>
-                        </div>
+                            </h5>                        </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqExample">
                             <div class="card-body">
                                 İlk öncə <strong>1-ci sualda qeyd olunan problemin sizdə yaşanmadığından əmin olun.</strong> Növbəti olaraq <strong>Safari</strong> brauzerinin parametrlərinə daxil olaraq
