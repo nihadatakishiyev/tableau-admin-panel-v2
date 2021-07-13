@@ -53,9 +53,10 @@
                         <div class="card-header p-2" id="headingThree">
                             <h5 class="mb-0">
                                 <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    3. Nə üçün <strong>cd:qi</strong> ilə sayta daxil olduqda hesabatları görə bilmirəm?
+                                    3. Nə üçün <strong>Safari</strong> ilə sayta daxil olduqda hesabatları görə bilmirəm?
                                 </button>
-                            </h5>                        </div>
+                            </h5>
+                        </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqExample">
                             <div class="card-body">
                                 İlk öncə <strong>1-ci sualda qeyd olunan problemin sizdə yaşanmadığından əmin olun.</strong> Növbəti olaraq <strong>Safari</strong> brauzerinin parametrlərinə daxil olaraq
@@ -63,7 +64,7 @@
                                 <br> <br>
                                 <h5><em>Safari -> Preferences -> Privacy -> Prevent cross-site tracking</em></h5>
                                 <br>
-                                <img src="{{asset('photos/safari_cross.jpg')}}" class="img-fluid"  alt="">
+                                <img src="{{asset('photos/safari_cross-site_tracking.png')}}" class="img-fluid"  alt="">
                             </div>
                         </div>
                     </div>
