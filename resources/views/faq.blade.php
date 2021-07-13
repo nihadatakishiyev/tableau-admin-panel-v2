@@ -63,7 +63,7 @@
                                 <br> <br>
                                 <h5><em>Safari -> Preferences -> Privacy -> Prevent cross-site tracking</em></h5>
                                 <br>
-                                <img src="{{asset('photos/safari_cross-site_tracking.png')}}" class="img-fluid"  alt="">
+                                <img src="{{asset('photos/safari_cross.jpg')}}" class="img-fluid"  alt="">
                             </div>
                         </div>
                     </div>
