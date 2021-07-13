@@ -45,7 +45,7 @@
                                 <br> <br>
                                 <h5><em>Google Chrome -> Settings -> Cookies and other site data -> Allow all cookies</em></h5>
                                 <br>
-                                <img src="{{asset('photos/sign_in_to_tableau.png')}}" class="img-fluid"  alt="">
+                                <img src="{{asset('photos/tableau_signin.png')}}" class="img-fluid"  alt="">
                             </div>
                         </div>
                     </div>
