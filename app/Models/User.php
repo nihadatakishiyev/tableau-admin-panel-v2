@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use phpDocumentor\Reflection\Types\Boolean;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -154,5 +155,10 @@ class User extends Authenticatable
     public function setTicketCookie(){
 //        setcookie('expire_time', now()->addMinutes(180), 0);
         request()->session()->put('expire_time', now()->addMinutes(180));
+    }
+
+    public function isFirstLogin(): bool
+    {
+        return DB::table('page_visit_logs')->where('user_id', auth()->id())->count() < 10;
     }
 }

@@ -50,8 +50,6 @@
         .recommendation-content{
             margin-bottom: 5vh;
         }
-
-
     </style>
 
     @if (session('status'))
@@ -59,6 +57,14 @@
             {{ session('status') }}
         </div>
     @endif
+
+    @if (session('reminder'))
+        <div class="alert alert-info" role="alert">
+            {{ session('reminder') }}
+        </div>
+    @endif
+
+
 
         @if(count($recents))
             <section class="recent-content">
@@ -106,6 +112,6 @@
             $(".alert").fadeTo(1500, 0).slideUp(500, function(){
                 $(this).remove();
             });
-        }, 3000);
+        }, 10000);
     </script>
 @stop
