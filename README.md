@@ -11,10 +11,3 @@
 ## License
 
 The project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-## Google Chrome Usage Guide
-If you want to access the website using a Chrome browser, there is a tiny configuration required for chrome to work with Tableau Trusted Auth properly.
-Please type in the following URLs in the Chrome tab and disable them in the opening window
-
-· chrome://flags/#same-site-by-default-cookies </br>
-· chrome://flags/#cookies-without-same-site-must-be-secure
